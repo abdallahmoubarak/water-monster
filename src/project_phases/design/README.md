@@ -37,3 +37,9 @@ Services Provider:
 - User shall be able to see a path and calculate selected containers needed for water.
 - User shall be able to see a wallet.
 - User shall verify the filling process by selecting the container and clicking on start filling.
+
+---
+
+### 2- Sketching
+
+<img src='./Water_Monster_Admin_v0.1.png'>
