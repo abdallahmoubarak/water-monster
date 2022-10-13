@@ -42,8 +42,8 @@ Services Provider:
 
 ### 2- Sketching
 
-<img src='./Water_Monster_Admin_v0.1.png'>
+<img src='./Water_Monster_Admin_v2.png'>
 
-<img src='./Water_Monster_Client_v0.1.png'>
+<img src='./Water_Monster_Client_v2.png'>
 
 <img src='./Water_Monster_Provider_v0.1.png'>
