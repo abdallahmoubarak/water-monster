@@ -33,7 +33,7 @@ Services Provider:
 - User shall be able to upload contract documents.
 - User shall be able to view a real time map of active containers.
 - User shall be able to view the level of the water for each.
-- User shall be able to chat with service water and make a voice call.
+- User shall be able to chat with client and make a voice call.
 - User shall be able to see a path and calculate selected containers needed for water.
 - User shall be able to see a wallet.
 - User shall verify the filling process by selecting the container and clicking on start filling.
