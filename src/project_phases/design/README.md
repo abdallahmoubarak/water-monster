@@ -42,17 +42,19 @@ Services Provider:
 
 ### 2- Sketching
 
-<img src='./Water_Monster_Admin_v2.png'>
+<img src='./wm_admin_sketching_v2.png'>
 
-<img src='./Water_Monster_Client_v2.png'>
+<img src='./wm_client_sketching_v2.png'>
 
-<img src='./Water_Monster_Provider_v0.1.png'>
+<img src='./wm_provider_sketching_v1.png'>
 
-<img src='./Water_Monster_System_v1.png'>
+<img src='./wm_system_design_v1.png'>
 
 ---
 
 ### 3- Wireframes
+
+<img src='./wm_admin_wireframe_v1.png'>
 
 ---
 
