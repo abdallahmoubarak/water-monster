@@ -58,6 +58,8 @@ Services Provider:
 
 <img src='./wm_client_wireframe_v1.png'>
 
+<img src='./wm_provider_wireframe_v1.png'>
+
 ---
 
 ### 4- Components
