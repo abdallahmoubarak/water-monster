@@ -64,6 +64,20 @@ Services Provider:
 
 ### 4- Components
 
+<img src='./wm_components_v1.png'>
+
 ---
 
 ### 5- Mockups
+
+<img src='./wm_admin_mockup_v1.png'>
+
+<img src='./wm_client_mockup_v1.png'>
+
+<img src='./wm_provider_mockup_v1.png'>
+
+---
+
+### 6- ER Diagram
+
+<img src='./wm_er_diagram_v1.png'>
