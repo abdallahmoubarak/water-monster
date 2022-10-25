@@ -6,8 +6,4 @@ export const userDefs = gql`
     name: String
     age: Int
   }
-
-  type Query {
-    users: [User]
-  }
 `;

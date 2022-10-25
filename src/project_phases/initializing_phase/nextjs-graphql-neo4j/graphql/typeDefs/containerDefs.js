@@ -6,8 +6,4 @@ export const containerDefs = gql`
     name: String
     size: Int
   }
-
-  type Query {
-    containers: [Container]
-  }
 `;

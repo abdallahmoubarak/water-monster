@@ -1,8 +1,10 @@
 import { ApolloServer } from "apollo-server-micro";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import schema from "./schema";
 import { typeDefs } from "./typeDefs";
 require("dotenv").config();
+import "ts-tiny-invariant";
+import { Neo4jGraphQL } from "@neo4j/graphql";
+import neo4j from "neo4j-driver";
 
 const driver = neo4j.driver(
   process.env.NEO4J_URI,
