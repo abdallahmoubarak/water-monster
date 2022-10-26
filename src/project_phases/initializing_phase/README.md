@@ -151,6 +151,30 @@ mutation {
 <details><summary>Details</summary>
 <p>
 
+##### First we go to the directory!
+
+```bash
+   cd .\src\project_phases\initializing_phase\google-authentication-firebase
+```
+
+##### Installing node_modules!
+
+```bash
+   npm run build
+```
+
+##### Add .env file and add the variables to it
+
+```bash
+
+```
+
+##### Run the project!
+
+```bash
+   npm run dev
+```
+
 </p>
 </details>
 
