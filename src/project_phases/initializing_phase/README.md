@@ -59,6 +59,8 @@ there you go...
 
 - Using GraphQL Interface And Union Types : https://github.com/neo4j-graphql/neo4j-graphql-js/blob/master/docs/graphql-interface-union-types.md
 
+- Fullstack graphql : https://github.com/johnymontana/fullstack-graphql-neo4j-auradb-nextjs-vercel-workshop/blob/main/nextjs/pages/api/graphql.js
+
 </p>
 </details>
 
@@ -143,6 +145,14 @@ mutation {
 ### 2- Building nextjs-socketio mini project
 
 #### How to start the project
+
+<details><summary>Details</summary>
+<p>
+
+</p>
+</details>
+
+#### Important links
 
 <details><summary>Details</summary>
 <p>
