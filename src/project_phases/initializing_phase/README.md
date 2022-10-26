@@ -138,6 +138,8 @@ mutation {
 </details>
 
 <img src='./src/mutation_resalt.png' alt=''>
+<img src='./src/data_modeling.png' alt=''>
+
 <img src='./src/GRAND.png' alt=''>
 
 ---
