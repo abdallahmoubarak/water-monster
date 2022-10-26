@@ -57,6 +57,8 @@ there you go...
 
 - Main link : https://lyonwj.com/blog/graphql-server-next-js-neo4j-aura-vercel
 
+- Using GraphQL Interface And Union Types : https://github.com/neo4j-graphql/neo4j-graphql-js/blob/master/docs/graphql-interface-union-types.md
+
 </p>
 </details>
 
@@ -113,10 +115,28 @@ mutation {
 }
 ```
 
+```graphql
+mutation {
+  updateUsers(
+    where: { name: "Sandy" }
+    update: { location: { longitude: 12.2123, latitude: 19.2323 } }
+  ) {
+    users {
+      name
+      location {
+        longitude
+        latitude
+      }
+    }
+  }
+}
+```
+
 </p>
 </details>
 
 <img src='./src/mutation_resalt.png' alt=''>
+<img src='./src/GRAND.png' alt=''>
 
 ---
 
