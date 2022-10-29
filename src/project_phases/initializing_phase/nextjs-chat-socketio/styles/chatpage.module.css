@@ -8,14 +8,17 @@
   padding: 0.5rem;
   text-align: center;
   font-weight: bold;
-  height: 5rem;
+  height: 3.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .chatBox {
-  max-height: calc(100vh - 5rem);
+  max-height: calc(100vh - 3.6rem);
+  display: flex;
+  flex-flow: column wrap;
+  padding: 0.6rem 1.2rem;
 }
 
 .chatInputContainer {
