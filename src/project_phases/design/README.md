@@ -78,6 +78,8 @@ Services Provider:
 
 ---
 
-### 6- ER Diagram
+### 6- Data Modeling
 
-<img src='./wm_er_diagram_v1.png'>
+(updated)
+
+<img src='./data_modeling_v1.png'>

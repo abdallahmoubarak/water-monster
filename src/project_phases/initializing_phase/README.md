@@ -66,7 +66,6 @@ there you go...
 
 #### Queries and mutations
 
-<details><summary>Details</summary>
 <p>
 
 ##### Query
@@ -134,54 +133,123 @@ mutation {
 }
 ```
 
-</p>
-</details>
-
 <img src='./src/mutation_resalt.png' alt=''>
-<img src='./src/data_modeling.png' alt=''>
 
 <img src='./src/GRAND.png' alt=''>
 
 ---
 
-### 2- Building nextjs-socketio mini project
+### 2- Building Google authentication mini project
 
-#### How to start the project
-
-<details><summary>Details</summary>
 <p>
 
-##### First we go to the directory!
+##### - First we go to the directory!
 
 ```bash
    cd .\src\project_phases\initializing_phase\google-authentication-firebase
 ```
 
-##### Installing node_modules!
+##### - Installing node_modules!
 
 ```bash
    npm run build
 ```
 
-##### Add .env file and add the variables to it
+##### - Setup a Firebase app
 
-```bash
+- To use firebase authentication, you need to sign into or create an account at [firebase](https://console.firebase.google.com).
 
+- From the firebase console, create a project or select an existing one.
+
+- Go to Overview -> Settings icon -> Project settings (General tab) to get your Web API Key.
+
+##### - Add ".env.local" file then add the variables to it
+
+```js
+NEXT_PUBLIC_GOOGLE_API_KEY = XX;
+NEXT_PUBLIC_GOOGLE_AUTH_DOMAIN = XX;
+NEXT_PUBLIC_GOOGLE_PROJECT_ID = XX;
+NEXT_PUBLIC_GOOGLE_STORAGE_BUCKET = XX;
+NEXT_PUBLIC_GOOGLE_MESSAGEING_SENDER = XX;
+NEXT_PUBLIC_GOOGLE_APP_ID = XX;
 ```
 
-##### Run the project!
+##### - Run the project!
 
 ```bash
    npm run dev
 ```
 
-</p>
-</details>
+##### - Go to the browser
 
-#### Important links
+use : http://localhost:3000
+
+there you go...
+
+</p>
+
+---
+
+### 3- Building Metamask authentication mini project:
+
+---
+
+### 4- Connecting the ultrasonic sensor to the Arduino:
+
+##### - Hardware
+
+- Arduino ESP8266
+- Water-profe ultrasonic JSN-SR04T
+- wires
+
+##### - Software, libraries and links
+
+- Arduino IDE
+- Preference -> Addional board manager url https://arduino.esp8266.com/stable/package_esp8266com_index.json
+- CP2102 driver
+- Websocket package
+
+##### - Connecting
+
+<table>
+  <tr>
+    <td><strong>ESP8266 Mini</strong></td>
+    <td><strong>JSN-SR04T Ultrasonic Sensor</strong></td>
+  </tr>
+  <tr>
+    <td>Vin</td>
+    <td>5V</td>
+  </tr>
+  <tr>
+    <td>D5</td>
+    <td>Trig</td>
+  </tr>
+  <tr>
+    <td>D6</td>
+    <td>Echo</td>
+  </tr>
+  <tr>
+    <td>GND</td>
+    <td>GND</td>
+  </tr>
+</table>
+<img src="./src/diagram.png" alt="" />
+
+##### - Code
 
 <details><summary>Details</summary>
 <p>
+```bash
 
+```
 </p>
 </details>
+
+---
+
+### 5- Building Socketio Nextjs app:
+
+---
+
+### 6- Building Stripe Nextjs app
+```
