@@ -1,8 +1,21 @@
+.msgsContainer {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .bubble {
   border-radius: 1em;
   padding: 0.25em 0.75em;
   margin: 0.0625em;
   max-width: 50%;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -ms-border-radius: 1em;
+  -o-border-radius: 1em;
 }
 
 .sender {
@@ -16,23 +29,9 @@
 }
 
 .sender.first {
-  border-bottom-left-radius: 0.1em;
-}
-.sender.last {
-  border-top-left-radius: 0.1em;
-}
-.sender.middle {
-  border-bottom-left-radius: 0.1em;
   border-top-left-radius: 0.1em;
 }
 
 .recipient.first {
-  border-bottom-right-radius: 0.1em;
-}
-.recipient.last {
-  border-top-right-radius: 0.1em;
-}
-.recipient.middle {
-  border-bottom-right-radius: 0.1em;
   border-top-right-radius: 0.1em;
 }

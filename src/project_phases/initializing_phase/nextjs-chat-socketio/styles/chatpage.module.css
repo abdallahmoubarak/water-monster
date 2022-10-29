@@ -1,5 +1,8 @@
 .container {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 .topBar {
   background: blue;
@@ -12,18 +15,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .chatBox {
-  max-height: calc(100vh - 3.6rem);
-  display: flex;
-  flex-flow: column wrap;
-  padding: 0.6rem 1.2rem;
+  overflow: hidden;
+  flex: 1 1 100%;
 }
 
 .chatInputContainer {
   width: 100%;
-  position: fixed;
   bottom: 0;
   background: white;
   padding: 0.3rem 1.6rem;
