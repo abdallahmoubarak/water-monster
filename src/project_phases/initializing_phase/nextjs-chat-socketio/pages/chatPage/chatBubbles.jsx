@@ -1,17 +1,20 @@
 import styles from "@/styles/chat.module.css";
 
-export default function ({ messages }) {
+export default function ({ messages, user }) {
   return (
     <>
-      {messages?.map((message, i) => (
-        <div
-          key={i}
-          className={`${styles.bubble} ${styles.first} ${
-            message.owner ? styles.recipient : styles.sender
-          }`}>
-          {message.content}
-        </div>
-      ))}
+      <div className={styles.msgsContainer}>
+        {messages?.map((message, i) => (
+          <div
+            key={i}
+            className={`${styles.bubble} ${styles.first} ${
+              message?.user === user ? styles.recipient : styles.sender
+            }`}>
+            <div>{message?.user === user ? "Me" : message?.user}</div>
+            <div>{message?.content}</div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
