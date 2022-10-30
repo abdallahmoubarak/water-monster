@@ -23,6 +23,7 @@
   -ms-border-radius: 0.4rem;
   -o-border-radius: 0.4rem;
   outline: none;
+  font-weight: 500;
 }
 
 .input::placeholder {
@@ -37,7 +38,7 @@
   left: 0;
   top: 1rem;
   padding: 0.2rem 1.1rem;
-  color: gray;
+  color: lightgray;
   transition: all 0.1s ease-in;
   -webkit-transition: all 0.1s ease-in;
   -moz-transition: all 0.1s ease-in;

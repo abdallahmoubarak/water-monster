@@ -1,5 +1,5 @@
 import { styles } from "@/utils/styles";
-import Logo from "./Logo";
+import Logo from "./SVG/Logo";
 
 export default function TopBar({ withImg }) {
   return (

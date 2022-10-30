@@ -1,6 +1,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Select from "@/components/Select";
+import Or from "@/components/SVG/Or";
+import { styles } from "@/utils/styles";
 import { useState } from "react";
 import Layout from "./layout";
 
@@ -51,6 +53,23 @@ export default function SignPage() {
             onClick={() => handleSignClick(signup ? "signup" : "signin")}
           />
         </div>
+        <div className="or-container">
+          <Or />
+        </div>
+        <div className="btn-container">
+          <button className="google-btn">
+            <div>
+              <img src="/svg/google.svg" alt="G" height="26" />
+            </div>
+            <div>Sign In with google</div>
+          </button>
+          <button className="google-btn">
+            <div>
+              <img src="/svg/metamask.svg" alt="G" height="26" />
+            </div>
+            <div>Sign In with Metamask</div>
+          </button>
+        </div>
       </Layout>
       <style jsx>{`
         h1 {
@@ -69,10 +88,8 @@ export default function SignPage() {
           color: var(--primary-color);
         }
         .inputs-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          ${styles.flexBothcenter};
+          ${styles.flexColumn}
           gap: 0.8rem;
           width: 100%;
           padding: 1rem 0;
@@ -88,10 +105,44 @@ export default function SignPage() {
           min-height: 1rem;
           width: 100%;
         }
+        .or-container {
+          max-width: 26rem;
+          margin: auto;
+          padding: 2rem;
+        }
+        .btn-container {
+          ${styles.flexBothcenter};
+          ${styles.flexColumn};
+          gap: 1rem;
+          padding-bottom: 2rem;
+        }
+        .google-btn {
+          transition: background-color 0.3s, box-shadow 0.3s;
+          padding: 0.6rem 1rem;
+          border: none;
+          border-radius: 3px;
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04),
+            0 1px 1px rgba(0, 0, 0, 0.25);
+          color: #757575;
+          background-color: white;
+          cursor: pointer;
+          ${styles.flexBothcenter}
+          gap:1rem;
+        }
+        .google-btn:hover {
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04),
+            0 2px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        .google-btn:focus {
+          outline: none;
+          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04),
+            0 2px 4px rgba(0, 0, 0, 0.25), 0 0 0 3px #c8dafc;
+        }
         @media only screen and (min-width: 600px) {
           .sign-container {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 1rem;
+            margin-top: 2rem;
             border-radius: 1rem;
             -webkit-border-radius: 1rem;
             -moz-border-radius: 1rem;
