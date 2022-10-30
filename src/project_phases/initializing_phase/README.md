@@ -252,4 +252,4 @@ there you go...
 ---
 
 ### 6- Building Stripe Nextjs app
-```
+
