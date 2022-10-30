@@ -1,14 +1,14 @@
 import { styles } from "@/utils/styles";
 import Logo from "./Logo";
 
-export default function TopBar() {
+export default function TopBar({ withImg }) {
   return (
     <>
       <div className="top-bar">
         <div className="logo">
           <Logo />
         </div>
-        <div className="profile-image"></div>
+        {withImg && <div className="profile-image"></div>}
       </div>
 
       <style jsx>{`
