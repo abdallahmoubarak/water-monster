@@ -1,8 +1,3 @@
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -14,10 +9,19 @@ a {
   overscroll-behavior: contain;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  font-family: "Reem Kufi";
+  font-family: "Nunito";
+  font-weight: bold;
   scroll-behavior: smooth;
-  font-family: "Times New Roman";
 }
 *::-webkit-scrollbar {
   display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+:root {
+  --primary-color: #43b9c3;
+  --gray-color: #757575;
 }
