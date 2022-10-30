@@ -5,6 +5,9 @@ import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
 import { useState } from "react";
 import Layout from "./layout";
+import googleLogo from "@/public/svg/google.svg";
+import metaLogo from "@/public/svg/metamask.svg";
+import Image from "next/image";
 
 export default function SignPage() {
   const [signup, setSignUp] = useState(true);
@@ -59,13 +62,13 @@ export default function SignPage() {
         <div className="btn-container">
           <button className="google-btn">
             <div>
-              <img src="/svg/google.svg" alt="G" height="26" />
+              <Image src={googleLogo} alt="G" height={"30"} />
             </div>
             <div>Sign In with google</div>
           </button>
           <button className="google-btn">
             <div>
-              <img src="/svg/metamask.svg" alt="G" height="26" />
+              <Image src={metaLogo} alt="M" height={"30"} />
             </div>
             <div>Sign In with Metamask</div>
           </button>
@@ -118,7 +121,8 @@ export default function SignPage() {
         }
         .google-btn {
           transition: background-color 0.3s, box-shadow 0.3s;
-          padding: 0.6rem 1rem;
+          padding: 0.4rem 1rem;
+          padding-top: 0.6rem;
           border: none;
           border-radius: 3px;
           box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04),
