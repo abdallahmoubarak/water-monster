@@ -118,7 +118,7 @@ export default function NavBar({ active = "Containers", setActive }) {
         .circule::before {
           content: "";
           position: absolute;
-          top: 54%;
+          top: 53%;
           left: -2.8rem;
           width: 2.8rem;
           height: 1.2rem;
@@ -130,7 +130,7 @@ export default function NavBar({ active = "Containers", setActive }) {
         .circule::after {
           content: "";
           position: absolute;
-          top: 54%;
+          top: 53%;
           right: -2.8rem;
           width: 2.8rem;
           height: 1.2rem;
