@@ -1,5 +1,5 @@
-import TopBar from "../components/TopBar";
-import { styles } from "../util/styles";
+import TopBar from "@/components/TopBar";
+import { styles } from "@/utils/styles";
 
 export default function Layout({ children }) {
   return (

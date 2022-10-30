@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import "@fontsource/nunito";
 
 function MyApp({ Component, pageProps }) {

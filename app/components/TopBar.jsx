@@ -1,4 +1,4 @@
-import { styles } from "../util/styles";
+import { styles } from "@/utils/styles";
 import Logo from "./Logo";
 
 export default function TopBar() {
