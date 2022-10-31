@@ -2,8 +2,12 @@ export const styles = {
   primaryColor: "#43b9c3",
   secondaryColor: "#C34D43",
   grey: "#8f8f8f",
+  transitionAll3s:
+    "transition: all 0.3s ease; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease;",
   boxshadow:
-    "-webkit-box-shadow: 0 0px 8px 0 grey;box-shadow: 0 0px 8px 0 grey;",
+    "-webkit-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);",
+  boxshadowHover:
+    "-webkit-box-shadow: 0 0px 18px 0 rgba(0, 0, 0, 0.2);box-shadow: 0 0px 18px 0 rgba(0, 0, 0, 0.2);",
   flexAligncenter:
     "display:-webkit-box; display:-ms-flexbox; display:flex; -webkit-box-align:center; -ms-flex-align:center; align-items:center;",
   flexJustifycenter:

@@ -7,28 +7,44 @@ import { styles } from "@/utils/styles";
 export default function Containers() {
   return (
     <>
-      <div className="flex">
-        <div>Roof Container</div>
-        <Image src={settings} alt="s" />
+      <div className="container-card">
+        <div className="flex">
+          <div>Roof Container</div>
+          <Image src={settings} alt="s" />
+        </div>
+
+        <div className="container-container">
+          <Container />
+        </div>
+        <div className="flex">
+          <div>Sensor State</div>
+          <div className="state-led"></div>
+        </div>
       </div>
 
-      <div className="container-container">
-        <Container />
-      </div>
-      <div className="flex">
-        <div>Sensor State</div>
-        <div className="state-led"></div>
-      </div>
       <Button text="Request New Installation" dark={true} />
 
       <style jsx>{`
-        .container-container {
-          max-width: 18rem;
+        .container-card {
+          border: 1px solid lightgray;
+          max-width: 26rem;
           margin: auto;
+          padding: 1rem 2rem;
+          border-radius: 1rem;
+          -webkit-border-radius: 1rem;
+          -moz-border-radius: 1rem;
+          -ms-border-radius: 1rem;
+          -o-border-radius: 1rem;
+          ${styles.boxshadow};
+          ${styles.transitionAll3s};
+        }
+        .container-card:hover {
+          ${styles.boxshadowHover};
+          ${styles.transitionAll3s};
+        }
+        .container-container {
         }
         .flex {
-          max-width: 18rem;
-          margin: auto;
           font-size: 1.4rem;
           ${styles.flexAligncenter};
           ${styles.justifyBetween};

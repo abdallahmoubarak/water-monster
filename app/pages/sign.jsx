@@ -143,26 +143,18 @@ export default function SignPage() {
         }
         @media only screen and (min-width: 600px) {
           .sign-container {
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             margin-top: 2rem;
             border-radius: 1rem;
             -webkit-border-radius: 1rem;
             -moz-border-radius: 1rem;
             -ms-border-radius: 1rem;
             -o-border-radius: 1rem;
-            transition: all 0.3s ease;
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
+            ${styles.boxshadow};
+            ${styles.transitionAll3s};
           }
           .sign-container:hover {
-            box-shadow: 0px 0px 19px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
+            ${styles.boxshadowHover};
+            ${styles.transitionAll3s};
           }
         }
       `}</style>
