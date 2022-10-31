@@ -3,16 +3,23 @@ import Container from "@/components/SVG/Container";
 import Image from "next/image";
 import settings from "@/public/svg/settings.svg";
 import { styles } from "@/utils/styles";
+import { useState } from "react";
+import RequestInstallation from "@/components/RequestInstallation";
 
 export default function Containers() {
+  const [request, setRequest] = useState();
+  const [requestOn, setRequestOn] = useState(false);
+
   return (
     <>
       <div className="containers">
-        {containers.map((container, i) => (
+        {containers?.map((container, i) => (
           <div key={i} className="container-card">
             <div className="flex">
               <div>{container.name}</div>
-              <Image src={settings} alt="s" />
+              <div className="stng">
+                <Image width={30} src={settings} alt="s" />
+              </div>
             </div>
             <div className="container-container">
               <Container level={container.level} />
@@ -28,15 +35,25 @@ export default function Containers() {
         ))}
       </div>
       <div className="new-installation-btn">
-        <Button text="Request New Installation" dark={true} />
+        <Button
+          text={requestOn ? "Cancel" : "Request New Installation"}
+          dark={true}
+          onClick={() => setRequestOn(!requestOn)}
+        />
       </div>
+
+      {requestOn && (
+        <div className="container-card">
+          <RequestInstallation />
+        </div>
+      )}
 
       <style jsx>{`
         .containers {
           ${styles.flexAligncenter};
           flex-wrap: wrap;
           gap: 1rem;
-          padding: 1rem;
+          padding: 1rem 0rem;
         }
         .container-card {
           border: 1px solid lightgray;
@@ -78,6 +95,12 @@ export default function Containers() {
         }
         .new-installation-btn {
           padding: 2rem;
+        }
+
+        .stng {
+          width: 2rem;
+          height: 2rem;
+          cursor: pointer;
         }
       `}</style>
     </>

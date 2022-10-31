@@ -16,7 +16,7 @@ export default function Container({ level = 1 }) {
             stroke="#43B9C3"
             strokeWidth="6"
           />
-          <g clip-path="url(#clip0_161_1240)">
+          <g clipPath="url(#clip0_161_1240)">
             <svg
               width="100%"
               height="100%"
