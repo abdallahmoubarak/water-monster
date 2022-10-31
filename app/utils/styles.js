@@ -1,5 +1,6 @@
 export const styles = {
   primaryColor: "#43b9c3",
+  secondaryColor: "#C34D43",
   grey: "#8f8f8f",
   boxshadow:
     "-webkit-box-shadow: 0 0px 8px 0 grey;box-shadow: 0 0px 8px 0 grey;",
