@@ -188,5 +188,5 @@ export default function NavBar({ active = "Containers", setActive }) {
 const navItems = [
   { name: "Statistics", img: statistics },
   { name: "Containers", img: containers },
-  { name: "Chats", img: chats },
+  { name: "Contacts", img: chats },
 ];
