@@ -16,18 +16,24 @@ export default function Button({ text = "click", onClick, dark, font }) {
           border: none;
           cursor: pointer;
           font-weight: 600;
-          width: 100%;
+          width: fit-content;
           border: 1px solid ${styles.primaryColor};
+          margin: auto;
+          display: block;
+          min-width: 12rem;
         }
         button:hover {
-          background: #0092d1;
+          color: white;
+          background: #33a9b3;
         }
         .dark {
           background: white;
-          color: ${styles.primaryColor};
+          color: ${styles.secondaryColor};
+          border: 1px solid ${styles.secondaryColor};
         }
         .dark:hover {
-          background: #a1cbe2;
+          color: white;
+          background: ${styles.secondaryColor};
         }
       `}</style>
     </>
