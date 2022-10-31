@@ -1,14 +1,18 @@
 import { styles } from "@/utils/styles";
 import Logo from "./SVG/Logo";
 
-export default function TopBar({ withImg }) {
+export default function TopBar({ withImg, setActive }) {
   return (
     <>
       <div className="top-bar">
         <div className="logo">
           <Logo />
         </div>
-        {withImg && <div className="profile-image"></div>}
+        {withImg && (
+          <div
+            className="profile-image"
+            onClick={() => setActive("Profile")}></div>
+        )}
       </div>
 
       <style jsx>{`
@@ -32,6 +36,7 @@ export default function TopBar({ withImg }) {
           -moz-border-radius: 50%;
           -ms-border-radius: 50%;
           -o-border-radius: 50%;
+          cursor: pointer;
         }
       `}</style>
     </>
