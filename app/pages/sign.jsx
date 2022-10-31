@@ -4,7 +4,7 @@ import Select from "@/components/Select";
 import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
 import { useState } from "react";
-import Layout from "./layout";
+import Layout from "../app/layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
@@ -81,18 +81,16 @@ export default function SignPage() {
           padding-bottom: 1rem;
         }
         .sign-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          ${styles.flexBothcenter};
+          ${styles.flexColumn};
           max-width: 26rem;
           margin: auto;
           padding: 1rem;
-          color: var(--primary-color);
+          color: ${styles.primaryColor};
         }
         .inputs-container {
           ${styles.flexBothcenter};
-          ${styles.flexColumn}
+          ${styles.flexColumn};
           gap: 0.8rem;
           width: 100%;
           padding: 1rem 0;
