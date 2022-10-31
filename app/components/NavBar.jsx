@@ -19,8 +19,12 @@ export default function NavBar({ active = "Containers", setActive }) {
               <span className="nav-text">{item.name}</span>
             </li>
           ))}
-          <div className="circule-back" id="circule-back"></div>
-          <div className="circule" id="circule"></div>
+          {Boolean(navItems.filter((item) => item.name === active)[0]) && (
+            <>
+              <div className="circule-back" id="circule-back"></div>
+              <div className="circule" id="circule"></div>
+            </>
+          )}
         </ul>
       </div>
       <style jsx>{`
