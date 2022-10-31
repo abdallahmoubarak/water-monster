@@ -3,7 +3,7 @@ export const styles = {
   secondaryColor: "#C34D43",
   grey: "#8f8f8f",
   transitionAll3s:
-    "transition: all 0.3s ease; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; -ms-transition: all 0.3s ease; -o-transition: all 0.3s ease;",
+    "transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out;",
   boxshadow:
     "-webkit-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);",
   boxshadowHover:

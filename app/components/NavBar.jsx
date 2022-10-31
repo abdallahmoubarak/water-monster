@@ -2,6 +2,7 @@ import statistics from "@/public/svg/statistics.svg";
 import containers from "@/public/svg/containers.svg";
 import chats from "@/public/svg/chats.svg";
 import Image from "next/image";
+import { styles } from "@/utils/styles";
 
 export default function NavBar({ active = "Containers", setActive }) {
   return (
@@ -48,30 +49,23 @@ export default function NavBar({ active = "Containers", setActive }) {
         }
 
         .nav-ul {
-          display: flex;
-          align-items: center;
+          ${styles.flexAligncenter};
           justify-content: space-evenly;
           position: relative;
         }
 
         .nav-li {
-          display: flex;
-          align-items: center;
-          flex-direction: column;
+          ${styles.flexBothcenter};
+          ${styles.flexColumn};
           cursor: pointer;
           position: relative;
-          justify-content: center;
           padding: 1rem;
         }
 
         .nav-icon {
           width: 2.2rem;
           height: 2.2rem;
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
         }
 
         .nav-ul li.active .nav-icon {
@@ -80,26 +74,20 @@ export default function NavBar({ active = "Containers", setActive }) {
           -moz-transform: translateY(-2.1rem);
           -ms-transform: translateY(-2.1rem);
           -o-transform: translateY(-2.1rem);
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
           z-index: 4;
         }
 
         .nav-ul li.active .nav-text {
           opacity: 1;
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
         }
 
         .nav-text {
           position: absolute;
           opacity: 0;
+          color: white;
+          font-weight: 500;
           transform: translateY(0.8rem);
           -webkit-transform: translateY(0.8rem);
           -moz-transform: translateY(0.8rem);
@@ -149,11 +137,7 @@ export default function NavBar({ active = "Containers", setActive }) {
           -moz-transform: translateX(calc(25vw - 3rem));
           -ms-transform: translateX(calc(25vw - 3rem));
           -o-transform: translateX(calc(25vw - 3rem));
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
         }
 
         .nav-ul li:nth-child(2).active ~ .circule {
@@ -162,11 +146,7 @@ export default function NavBar({ active = "Containers", setActive }) {
           -moz-transform: translateX(calc(50vw - 2.15rem));
           -ms-transform: translateX(calc(50vw - 2.15rem));
           -o-transform: translateX(calc(50vw - 2.15rem));
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
         }
 
         .nav-ul li:nth-child(3).active ~ .circule {
@@ -175,11 +155,7 @@ export default function NavBar({ active = "Containers", setActive }) {
           -moz-transform: translateX(calc(75vw - 1.05rem));
           -ms-transform: translateX(calc(75vw - 1.05rem));
           -o-transform: translateX(calc(75vw - 1.05rem));
-          transition: all 0.3s ease-out;
-          -webkit-transition: all 0.3s ease-out;
-          -moz-transition: all 0.3s ease-out;
-          -ms-transition: all 0.3s ease-out;
-          -o-transition: all 0.3s ease-out;
+          ${styles.transitionAll3s};
         }
       `}</style>
     </>
