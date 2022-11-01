@@ -5,7 +5,7 @@ import Input from "./Input";
 export default function RequestInstallation() {
   return (
     <>
-      <div className="title">Request Package Installation</div>
+      <div className="title">Info</div>
       <div className="input-container">
         <Input name={"Container name"} placeholder={"Roof Container"} />
         <Input name={"Address"} placeholder={"Street, building,"} />
@@ -19,7 +19,7 @@ export default function RequestInstallation() {
         .input-container {
           ${styles.flexColumn};
           gap: 0.6rem;
-          padding: 1.2rem 0;
+          padding: 0.6rem 0;
         }
       `}</style>
     </>
