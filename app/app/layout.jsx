@@ -12,8 +12,11 @@ export default function Layout({
   return (
     <div className="app">
       <TopBar withImg={withImg} setActive={setActive} />
+
       <div className="app-body">{children}</div>
+
       <div>{withNav && <NavBar active={active} setActive={setActive} />}</div>
+
       <style jsx>{`
         .app {
           ${styles.flexColumn};
@@ -21,8 +24,8 @@ export default function Layout({
           overflow: hidden;
         }
         .app-body {
-          height: calc(100vh - 10rem);
           overflow: auto;
+          ${withNav && "height: calc(100vh - 8rem)"};
         }
       `}</style>
     </div>

@@ -13,6 +13,14 @@ const pwa = withPWA({
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: { appDir: true },
+  webpack: (config) => {
+    if (!config.experiments) {
+      config.experiments = {};
+    }
+    config.experiments.topLevelAwait = true;
+    return config;
+  },
 };
 
-module.exports = { nextConfig, pwa };
+module.exports = nextConfig;

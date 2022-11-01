@@ -41,10 +41,10 @@ export default function NavBar({ active = "Containers", setActive }) {
         .circule-back {
           content: "";
           position: absolute;
-          top: -1.2rem;
+          top: -0.3rem;
           left: 0;
           width: 100%;
-          height: 1.2rem;
+          height: 0.3rem;
           background-color: white;
           z-index: 0;
         }
@@ -52,6 +52,7 @@ export default function NavBar({ active = "Containers", setActive }) {
         .nav-ul {
           ${styles.flexAligncenter};
           justify-content: space-evenly;
+          gap: 2rem;
           position: relative;
         }
 
@@ -132,11 +133,11 @@ export default function NavBar({ active = "Containers", setActive }) {
         }
 
         .nav-ul li:nth-child(1).active ~ .circule {
-          transform: translateX(calc(25vw - 3rem));
-          -webkit-transform: translateX(calc(25vw - 3rem));
-          -moz-transform: translateX(calc(25vw - 3rem));
-          -ms-transform: translateX(calc(25vw - 3rem));
-          -o-transform: translateX(calc(25vw - 3rem));
+          transform: translateX(calc(25vw - 4rem));
+          -webkit-transform: translateX(calc(25vw - 4rem));
+          -moz-transform: translateX(calc(25vw - 4rem));
+          -ms-transform: translateX(calc(25vw - 4rem));
+          -o-transform: translateX(calc(25vw - 4rem));
           ${styles.transitionAll3s};
         }
 
@@ -150,11 +151,11 @@ export default function NavBar({ active = "Containers", setActive }) {
         }
 
         .nav-ul li:nth-child(3).active ~ .circule {
-          transform: translateX(calc(75vw - 1.05rem));
-          -webkit-transform: translateX(calc(75vw - 1.05rem));
-          -moz-transform: translateX(calc(75vw - 1.05rem));
-          -ms-transform: translateX(calc(75vw - 1.05rem));
-          -o-transform: translateX(calc(75vw - 1.05rem));
+          transform: translateX(calc(75vw - 0.05rem));
+          -webkit-transform: translateX(calc(75vw - 0.05rem));
+          -moz-transform: translateX(calc(75vw - 0.05rem));
+          -ms-transform: translateX(calc(75vw - 0.05rem));
+          -o-transform: translateX(calc(75vw - 0.05rem));
           ${styles.transitionAll3s};
         }
       `}</style>

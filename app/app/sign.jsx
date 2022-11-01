@@ -3,8 +3,8 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
-import { useState } from "react";
-import Layout from "../app/layout";
+import { useEffect, useState } from "react";
+import Layout from "./layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
@@ -16,6 +16,14 @@ export default function SignPage() {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [msg, setMsg] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+
+  useEffect(() => {
+    setName(localStorage.getItem("name"));
+    setEmail(localStorage.getItem("email"));
+    setProfilePic(localStorage.getItem("profilePic"));
+  }, []);
+
   return (
     <>
       <Layout>
@@ -60,7 +68,9 @@ export default function SignPage() {
           <Or />
         </div>
         <div className="btn-container">
-          <button className="google-btn">
+          <button
+            className="google-btn"
+            onClick={() => signInWithGoogle(setName, setEmail, setProfilePic)}>
             <div>
               <Image src={googleLogo} alt="G" height={"30"} />
             </div>
