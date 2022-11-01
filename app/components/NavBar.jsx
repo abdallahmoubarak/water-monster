@@ -22,21 +22,22 @@ export default function NavBar({ active = "Containers", setActive }) {
           ))}
           {Boolean(navItems.filter((item) => item.name === active)[0]) && (
             <>
-              <div className="circule-back" id="circule-back"></div>
-              <div className="circule" id="circule"></div>
+              <div className="circule-back"></div>
+              <div className="circule"></div>
             </>
           )}
         </ul>
       </div>
       <style jsx>{`
         .nav-container {
-          background-color: var(--primary-color);
+          background: ${styles.primaryColor};
           color: white;
           position: fixed;
           bottom: 0;
           width: 100%;
           max-width: 100%;
         }
+
         .circule-back {
           content: "";
           position: absolute;
@@ -87,7 +88,6 @@ export default function NavBar({ active = "Containers", setActive }) {
           position: absolute;
           opacity: 0;
           color: white;
-          font-weight: 500;
           transform: translateY(0.8rem);
           -webkit-transform: translateY(0.8rem);
           -moz-transform: translateY(0.8rem);
@@ -100,7 +100,7 @@ export default function NavBar({ active = "Containers", setActive }) {
           top: -50%;
           width: 4rem;
           height: 4rem;
-          background: var(--primary-color);
+          background: ${styles.primaryColor};
           border-radius: 50%;
           border: 5px solid white;
           left: 0;
