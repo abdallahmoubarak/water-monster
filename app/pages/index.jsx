@@ -6,12 +6,13 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [enabled, setEnabled] = useState(true);
-  const { data: currentUser, isLoading } = useCurrentUser({ enabled });
+  // const { data: currentUser, isLoading } = useCurrentUser({ enabled });
 
-  useEffect(() => {
-    setEnabled(Boolean(localStorage.getItem("JWT")));
-  });
-
+  // useEffect(() => {
+  //   setEnabled(Boolean(localStorage.getItem("JWT")));
+  // });
+  const isLoading = false;
+  const currentUser = true;
   return (
     <>
       <Head>
@@ -21,8 +22,13 @@ export default function Home() {
         />
       </Head>
 
-      {isLoading && <div className="fill-back"></div>}
-      {currentUser ? <Page /> : <SignPage />}
+      {isLoading ? (
+        <div className="fill-back"></div>
+      ) : currentUser ? (
+        <Page />
+      ) : (
+        <SignPage />
+      )}
     </>
   );
 }

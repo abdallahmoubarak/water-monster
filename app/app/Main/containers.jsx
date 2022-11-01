@@ -65,7 +65,7 @@ export default function Containers() {
           max-width: 22rem;
           margin: auto;
           flex: 1 1 22rem;
-          padding: 1rem;
+          padding: 0.4rem 1rem;
           ${styles.borderRadius1rem};
           ${styles.boxshadow};
           ${styles.transitionAll3s};
@@ -80,7 +80,7 @@ export default function Containers() {
           font-size: 1.4rem;
           ${styles.flexAligncenter};
           ${styles.justifyBetween};
-          padding: 1rem 0;
+          padding: 0.6rem 0;
         }
         .state-led {
           width: 1.2rem;

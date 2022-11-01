@@ -5,9 +5,10 @@ import Input from "./Input";
 export default function RequestInstallation() {
   return (
     <>
-      <div className="title">Info</div>
+      <div className="title">Container Info</div>
       <div className="input-container">
         <Input name={"Container name"} placeholder={"Roof Container"} />
+        <Input name={"Size"} />
         <Input name={"Address"} placeholder={"Street, building,"} />
         <Input type={"date"} name={"Prefared date"} />
       </div>
