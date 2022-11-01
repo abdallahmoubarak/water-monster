@@ -1,3 +1,4 @@
+import { styles } from "@/utils/styles";
 import Image from "next/image";
 
 export default function UploadImage({
@@ -41,15 +42,11 @@ export default function UploadImage({
       </div>
       <style jsx="true">{`
         .upload-img-container {
-          width: 12rem;
-          height: 12rem;
+          width: 10rem;
+          height: 10rem;
           margin: auto;
-          background: #fbfbfb;
-          border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
+          background: ${styles.primaryColor};
+          ${styles.borderRadius50percent}
           cursor: pointer;
           position: relative;
           overflow: hidden;
@@ -73,7 +70,7 @@ export default function UploadImage({
           top: 0;
           width: 100%;
           height: 100%;
-          background-color: #eee;
+          background-color: ${styles.primaryColor};
           overflow: hidden;
           padding: 0;
           z-index: 1;

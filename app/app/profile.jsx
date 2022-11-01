@@ -12,7 +12,7 @@ export default function Profile({ currentUser }) {
   const [base64, setImg64] = useState("");
   return (
     <>
-      <div>
+      <div className="page">
         <UploadImage
           currentUser={currentUser}
           image={image}
@@ -30,6 +30,9 @@ export default function Profile({ currentUser }) {
         </div>
       </div>
       <style jsx>{`
+        .page {
+          padding: 0.6rem;
+        }
         .inputs-container {
           ${styles.flexBothcenter};
           ${styles.flexColumn};
