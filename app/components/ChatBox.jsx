@@ -2,9 +2,12 @@ import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
+import Call from "./Call";
 
 export default function ChatBox({ user, setPage }) {
   const [connected, setConnected] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [call, setCall] = useState(false);
 
   const sendMessage = async () => {
     if (value) {
@@ -22,38 +25,41 @@ export default function ChatBox({ user, setPage }) {
   return (
     <>
       <div className="chat-container">
-        <div className="chat-page">
-          <div className="chat-head">
-            {setPage && (
-              <div className="head-icon" onClick={() => setPage("Contacts")}>
-                <FaArrowLeft />
+        <Call call={call} setCall={setCall} />
+        {!call && (
+          <div className="chat-page">
+            <div className="chat-head">
+              {setPage && (
+                <div className="head-icon" onClick={() => setPage("Contacts")}>
+                  <FaArrowLeft />
+                </div>
+              )}
+              <div className="profile-img">
+                <Image src={user.img} alt="" width={48} height={48} />
               </div>
-            )}
-            <div className="profile-img">
-              <Image src={user.img} alt="" width={48} height={48} />
+              <div className="user-info">
+                <div className="user-name">{user.name}</div>
+                <div className="head-icon" onClick={() => setCall(true)}>
+                  <FaPhone />
+                </div>
+              </div>
             </div>
-            <div className="user-info">
-              <div className="user-name">{user.name}</div>
-              <div className="head-icon">
-                <FaPhone />
+            <div className="chat-body">{messages}</div>
+            <div className="chat-input-container">
+              <input
+                autoComplete="none"
+                className="chat-input"
+                placeholder="Message"
+              />
+              <div
+                className="chat-icon"
+                onClick={sendMessage}
+                disabled={!connected}>
+                <FaPaperPlane />
               </div>
             </div>
           </div>
-          <div className="chat-body">hi</div>
-          <div className="chat-input-container">
-            <input
-              autoComplete="none"
-              className="chat-input"
-              placeholder="Message"
-            />
-            <div
-              className="chat-icon"
-              onClick={sendMessage}
-              disabled={!connected}>
-              <FaPaperPlane />
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
       <style jsx>{`
@@ -62,6 +68,8 @@ export default function ChatBox({ user, setPage }) {
           box-shadow: 0px 0px 10px lightgray;
           ${styles.borderRadius1rem};
           padding: 0.6rem;
+          position: relative;
+          overflow: hidden;
         }
         .chat-page {
           ${styles.flexColumn};

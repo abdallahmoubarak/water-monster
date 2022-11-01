@@ -8,7 +8,7 @@ export default function ContactCard({ user, setChatUser, setPage }) {
         className={styles.contactCard}
         onClick={() => {
           setChatUser(user);
-          document.body.clientWidth < 800 && setPage("Chat");
+          document.body.clientWidth < 736 && setPage("Chat");
         }}>
         <div className={styles.contactImg}>
           <Image src={user.img} alt="" width={48} height={48} />

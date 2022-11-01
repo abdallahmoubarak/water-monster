@@ -35,8 +35,6 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
           gap: 0.3rem;
         }
         .contacts-wrapper {
-          height: inherit;
-          overflow: hidden;
         }
         .contacts-container {
           ${styles.flexColumn};
