@@ -12,59 +12,61 @@ export default function Containers() {
 
   return (
     <>
-      <div className="containers">
-        {containers?.map((container, i) => (
-          <div key={i} className="container-card">
-            <div className="flex">
-              <div>{container.name}</div>
-              <div className="stng">
-                <Image width={30} src={settings} alt="s" />
+      <div className="page">
+        <div className="containers">
+          {containers?.map((container, i) => (
+            <div key={i} className="container-card">
+              <div className="flex">
+                <div>{container.name}</div>
+                <div className="stng">
+                  <Image width={30} src={settings} alt="s" />
+                </div>
+              </div>
+              <div className="container-container">
+                <Container level={container.level} />
+              </div>
+              <div className="flex">
+                <div>Sensor State</div>
+                <div
+                  className={`state-led ${
+                    container.sensor_state && "led-active"
+                  }`}></div>
               </div>
             </div>
-            <div className="container-container">
-              <Container level={container.level} />
-            </div>
-            <div className="flex">
-              <div>Sensor State</div>
-              <div
-                className={`state-led ${
-                  container.sensor_state && "led-active"
-                }`}></div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="new-installation-btn">
-        <Button
-          text={requestOn ? "Cancel" : "Request New Installation"}
-          dark={true}
-          onClick={() => setRequestOn(!requestOn)}
-        />
-      </div>
-
-      {requestOn && (
-        <div className="container-card">
-          <RequestInstallation />
+          ))}
         </div>
-      )}
+        <div className="new-installation-btn">
+          <Button
+            text={requestOn ? "Cancel" : "New Installation"}
+            dark={true}
+            onClick={() => setRequestOn(!requestOn)}
+          />
+        </div>
+
+        {requestOn && (
+          <div className="container-card">
+            <RequestInstallation />
+          </div>
+        )}
+      </div>
 
       <style jsx>{`
+        .page {
+          padding: 0.6rem;
+        }
         .containers {
-          ${styles.flexAligncenter};
+          ${styles.flexBothcenter};
           flex-wrap: wrap;
           gap: 1rem;
-          padding: 1rem 0rem;
+          padding-bottom: 1rem;
         }
         .container-card {
           border: 1px solid lightgray;
-          max-width: 26rem;
+          max-width: 22rem;
           margin: auto;
-          padding: 1rem 2rem;
-          border-radius: 1rem;
-          -webkit-border-radius: 1rem;
-          -moz-border-radius: 1rem;
-          -ms-border-radius: 1rem;
-          -o-border-radius: 1rem;
+          flex: 1 1 22rem;
+          padding: 1rem;
+          ${styles.borderRadius1rem};
           ${styles.boxshadow};
           ${styles.transitionAll3s};
         }
@@ -83,18 +85,14 @@ export default function Containers() {
         .state-led {
           width: 1.2rem;
           height: 1.2rem;
-          border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
+          ${styles.borderRadius50percent};
           background: ${styles.secondaryColor};
         }
         .led-active {
           background: ${styles.primaryColor};
         }
         .new-installation-btn {
-          padding: 2rem;
+          padding: 2rem 0;
         }
 
         .stng {
