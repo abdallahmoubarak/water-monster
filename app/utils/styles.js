@@ -20,4 +20,8 @@ export const styles = {
     "-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;user-select: none;",
   justifyBetween:
     "-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;",
+  borderRadius1rem:
+    "border-radius: 1rem; -webkit-border-radius: 1rem; -moz-border-radius: 1rem; -ms-border-radius: 1rem;-o-border-radius: 1rem;",
+  borderRadius50percent:
+    "border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%;",
 };

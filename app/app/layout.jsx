@@ -23,7 +23,6 @@ export default function Layout({
         .app-body {
           height: calc(100vh - 10rem);
           overflow: auto;
-          padding: 0.6rem;
         }
       `}</style>
     </div>

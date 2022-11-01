@@ -10,9 +10,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   font-family: "Nunito";
-  font-weight: bold;
   scroll-behavior: smooth;
-  color: var(--gray-color);
 }
 *::-webkit-scrollbar {
   display: none;
