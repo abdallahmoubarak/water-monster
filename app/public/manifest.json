@@ -1,0 +1,47 @@
+{
+  "name": "Water Monster",
+  "short_name": "Water Monster",
+  "display": "standalone",
+  "theme_color": "#43b9c3",
+  "background_color": "#FFFFFF",
+  "description": "Keep your container under control",
+  "start_url": "/",
+  "orientation": "any",
+  "scope": "/",
+  "categories": ["business", "lifestyle", "social", "utilities"],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+
+    {
+      "src": "/icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "containers page",
+      "short_name": "business",
+      "description": "open containers page",
+      "url": "/",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
