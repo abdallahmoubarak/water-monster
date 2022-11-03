@@ -18,10 +18,6 @@ export const userDefs = gql`
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
   }
 
-  extend type User{
-    @auth(rules: [{ operations: [READ,CREATE], allow: {messages:{ id: "$jwt.sub" }} }])
-  }
-
   type AuthRes {
     user: User
     token: String!
@@ -30,5 +26,11 @@ export const userDefs = gql`
   type Mutation {
     signUp(name: String!, email: String!, password: String!): AuthRes!
     signIn(email: String!, password: String!): AuthRes!
+  }
+
+  type Query {
+    me: User
+      @cypher(statement: "MATCH (u:User { id: $auth.jwt.sub }) RETURN u")
+      @auth(rules: [{ isAuthenticated: true }])
   }
 `;
