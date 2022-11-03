@@ -172,6 +172,15 @@ export default function ChatBox({ user, setPage }) {
           bottom: 0rem;
           right: 0.3rem;
         }
+        @media only screen and (max-width: 46rem) {
+          .chat-container {
+            border-radius: 0rem;
+            -webkit-border-radius: 0rem;
+            -moz-border-radius: 0rem;
+            -ms-border-radius: 0rem;
+            -o-border-radius: 0rem;
+          }
+        }
       `}</style>
     </>
   );
