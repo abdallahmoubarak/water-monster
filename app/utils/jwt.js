@@ -32,3 +32,15 @@ export const hashPassword = (plainText) => {
     });
   });
 };
+
+export const decodeJWT = (token) => {
+  return new Promise((resolve, reject) => {
+    jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET, (err, decoded) => {
+      if (err) return reject(err);
+
+      const { sub } = decoded;
+
+      return resolve({ sub });
+    });
+  });
+};
