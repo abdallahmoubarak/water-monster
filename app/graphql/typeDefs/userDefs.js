@@ -27,10 +27,4 @@ export const userDefs = gql`
     signUp(name: String!, email: String!, password: String!): AuthRes!
     signIn(email: String!, password: String!): AuthRes!
   }
-
-  type Query {
-    me: User
-      @cypher(statement: "MATCH (u:User { id: $auth.jwt.sub }) RETURN u")
-      @auth(rules: [{ isAuthenticated: true }])
-  }
 `;

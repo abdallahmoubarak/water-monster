@@ -8,8 +8,4 @@ export const messageDefs = gql`
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
   }
-
-  extend type Message{
-    @auth(rules: [{ operations: [READ], where: { user: "$jwt.sub" } }])
-  }
 `;
