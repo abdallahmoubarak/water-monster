@@ -11,6 +11,16 @@ export const createJWT = (data) => {
   });
 };
 
+export const comparePassword = (plainText, hash) => {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(plainText, hash, (err, result) => {
+      if (err) return reject(err);
+
+      return resolve(result);
+    });
+  });
+};
+
 const saltRounds = 10;
 
 export const hashPassword = (plainText) => {
