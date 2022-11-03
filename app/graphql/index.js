@@ -16,8 +16,7 @@ export const driver = neo4j.driver(
   ),
 );
 
-const ogm = new OGM({ typeDefs, driver });
-ogm.init();
+export const ogm = new OGM({ typeDefs, driver });
 export const User = ogm.model("User");
 
 const neoSchema = new Neo4jGraphQL({ typeDefs, resolvers, driver });

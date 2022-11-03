@@ -1,4 +1,4 @@
-import { server } from "../../graphql";
+import { ogm, server } from "../../graphql";
 
 const startServer = server.start();
 
@@ -14,6 +14,7 @@ export default async function handler(req, res) {
     return false;
   }
 
+  await ogm.init();
   await startServer;
   await server.createHandler({ path: "/api/graphql" })(req, res);
 }
