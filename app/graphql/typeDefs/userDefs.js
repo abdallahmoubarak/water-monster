@@ -5,7 +5,7 @@ export const userDefs = gql`
     id: ID! @id
     name: String!
     email: String!
-    password: String!
+    password: String! @auth(rules: [{ allow: { id: "$jwt.sub" } }])
     phone: String
     profile_url: String
     language: String
@@ -13,7 +13,22 @@ export const userDefs = gql`
     palet_number: String
     messages: [Message!]! @relationship(type: "SENT", direction: OUT)
     containers: [Container!]! @relationship(type: "OWNS", direction: OUT)
+    wallet: Wallet @relationship(type: "OWNED_BY", direction: IN)
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
+  }
+
+  extend type User{
+    @auth(rules: [{ operations: [READ,CREATE], allow: {messages:{ id: "$jwt.sub" }} }])
+  }
+
+  type AuthRes {
+    user: User
+    token: String!
+  }
+
+  type Mutation {
+    signUp(name: String!, email: String!, password: String!): AuthRes!
+    signIn(email: String!, password: String!): AuthRes!
   }
 `;

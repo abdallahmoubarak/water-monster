@@ -11,10 +11,9 @@ export const resolvers = {
       const { users } = await User.create({
         input: [{ name, email, password: hash }],
       });
-      console.log(users);
-      const jwt = await createJWT({ sub: users[0].id });
+      const token = await createJWT({ sub: users[0].id });
 
-      return jwt;
+      return { user: users[0], token };
     },
 
     signIn: async (_root, { email, password }) => {
@@ -23,8 +22,9 @@ export const resolvers = {
       const correctPassword = await comparePassword(password, user.password);
       if (!correctPassword)
         throw new Error("Email or password is not correct!");
-      const jwt = await createJWT({ sub: user.id });
-      return jwt;
+      const token = await createJWT({ sub: user.id });
+
+      return { user, token };
     },
   },
 };
