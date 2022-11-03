@@ -1,10 +1,10 @@
-const { createJWT, comparePassword, hashPassword } = require("@/utils/jwt");
+import { createJWT, comparePassword, hashPassword } from "@/utils/jwt";
 
 import { User } from "./index";
 
 export const resolvers = {
   Mutation: {
-    signUp: async (_root, { name, email, password }) => {
+    signUp: async (_source, { name, email, password }) => {
       const [existing] = await User.find({ where: { email } });
       if (existing) throw new Error(`User with email ${email} already exists!`);
       const hash = await hashPassword(password);
@@ -16,7 +16,7 @@ export const resolvers = {
       return { user: users[0], token };
     },
 
-    signIn: async (_root, { email, password }) => {
+    signIn: async (_source, { email, password }) => {
       const [user] = await User.find({ where: { email } });
       if (!user) throw new Error("Email or password is not correct!");
       const correctPassword = await comparePassword(password, user.password);
