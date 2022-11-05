@@ -6,7 +6,7 @@ import { styles } from "@/utils/styles";
 import { useState } from "react";
 import RequestInstallation from "@/components/RequestInstallation";
 
-export default function Containers() {
+export default function Containers({ setPage }) {
   const [request, setRequest] = useState();
   const [requestOn, setRequestOn] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Containers() {
             <div key={i} className="container-card">
               <div className="flex">
                 <div>{container.name}</div>
-                <div className="stng">
+                <div className="stng" onClick={() => setPage("Setting")}>
                   <Image width={30} src={settings} alt="s" />
                 </div>
               </div>
@@ -43,11 +43,7 @@ export default function Containers() {
           />
         </div>
 
-        {requestOn && (
-          <div className="container-card">
-            <RequestInstallation />
-          </div>
-        )}
+        {requestOn && <RequestInstallation />}
       </div>
 
       <style jsx>{`
@@ -63,7 +59,6 @@ export default function Containers() {
         .container-card {
           border: 1px solid lightgray;
           max-width: 22rem;
-          margin: auto;
           flex: 1 1 22rem;
           padding: 0.4rem 1rem;
           ${styles.borderRadius1rem};
