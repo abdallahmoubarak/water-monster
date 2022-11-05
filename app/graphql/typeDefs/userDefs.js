@@ -5,7 +5,7 @@ export const userDefs = gql`
     id: ID! @id
     name: String!
     email: String!
-    password: String! @auth(rules: [{ allow: { id: "$jwt.sub" } }])
+    password: String! @auth(rules: [{ allow: { id: "$jwt.sub" } }]) @private
     type: String!
     phone: String
     profile_url: String
