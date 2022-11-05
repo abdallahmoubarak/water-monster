@@ -8,7 +8,7 @@ import neo4j from "neo4j-driver";
 import { OGM } from "@neo4j/graphql-ogm";
 import "ts-tiny-invariant";
 
-export const driver = neo4j.driver(
+const driver = neo4j.driver(
   process.env.NEXT_PUBLIC_NEO4J_URI,
   neo4j.auth.basic(
     process.env.NEXT_PUBLIC_NEO4J_USER,
@@ -18,19 +18,28 @@ export const driver = neo4j.driver(
 
 export const ogm = new OGM({ typeDefs, driver });
 export const User = ogm.model("User");
+export const Wallet = ogm.model("Wallet");
 
-const neoSchema = new Neo4jGraphQL({ typeDefs, resolvers, driver });
+const neoSchema = new Neo4jGraphQL({
+  typeDefs,
+  resolvers,
+  driver,
+  introspection: true,
+  plugins: {
+    auth: new Neo4jGraphQLAuthJWTPlugin({
+      secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+    }),
+  },
+});
 
 export const server = new ApolloServer({
   schema: await neoSchema.getSchema(),
-  context: ({ req }) => ({ req }),
   playground: true,
-  plugins: [
-    ApolloServerPluginLandingPageGraphQLPlayground,
-    {
-      auth: new Neo4jGraphQLAuthJWTPlugin({
-        secret: process.env.NEXT_PUBLIC_JWT_SECRET,
-      }),
-    },
-  ],
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+  context: async (ctx) => {
+    return {
+      driver,
+      ...ctx,
+    };
+  },
 });

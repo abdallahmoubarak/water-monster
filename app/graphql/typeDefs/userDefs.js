@@ -40,6 +40,5 @@ export const userDefs = gql`
     me: User
       @cypher(statement: "MATCH (u:User { id: $auth.jwt.sub }) RETURN u")
       @auth(rules: [{ isAuthenticated: true }])
-    myId: String
   }
 `;

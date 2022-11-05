@@ -35,9 +35,4 @@ export const resolvers = {
       return { user, token };
     },
   },
-  Query: {
-    myId(_source, _args, context) {
-      return context.auth.jwt.sub;
-    },
-  },
 };
