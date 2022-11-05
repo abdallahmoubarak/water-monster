@@ -5,7 +5,8 @@ import Statistics from "./Main/statistics";
 import Contacts from "./Main/contacts";
 import Profile from "./profile";
 import Head from "next/head";
-import Chat from "./chat";
+import Chat from "./Secoundary/chat";
+import ContainerSetting from "./Secoundary/containerSetting";
 
 export default function Page() {
   const [page, setPage] = useState("Containers");
@@ -20,7 +21,7 @@ export default function Page() {
       {layoutPages.includes(page) && (
         <Layout withImg={true} withNav={true} active={page} setActive={setPage}>
           {page === "Statistics" && <Statistics />}
-          {page === "Containers" && <Containers />}
+          {page === "Containers" && <Containers setPage={setPage} />}
           {page === "Contacts" && (
             <Contacts
               setPage={setPage}
@@ -32,6 +33,7 @@ export default function Page() {
         </Layout>
       )}
       {page === "Chat" && <Chat setPage={setPage} user={chatUser} />}
+      {page === "Setting" && <ContainerSetting setPage={setPage} />}
     </>
   );
 }
