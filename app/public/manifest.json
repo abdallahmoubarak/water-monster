@@ -6,7 +6,7 @@
   "background_color": "#FFFFFF",
   "description": "Keep your container under control",
   "start_url": "/",
-  "orientation": "any",
+  "orientation": "portrait",
   "scope": "/",
   "categories": ["business", "lifestyle", "social", "utilities"],
   "icons": [
