@@ -7,6 +7,7 @@ export const containerDefs = gql`
     size: Int
     location: Point
     current_level: Int
+    pending: String
     sensor_state: Boolean
     private_mode: Boolean
     filling_mode: Boolean
