@@ -10,7 +10,7 @@ export default function Button({ text = "click", onClick, dark, font }) {
         button {
           background: ${styles.primaryColor};
           color: white;
-          padding: 0.6rem 3rem;
+          padding: 0.6rem 2rem;
           border-radius: 30rem;
           font-size: ${font || "1.2rem"};
           border: none;
@@ -20,7 +20,7 @@ export default function Button({ text = "click", onClick, dark, font }) {
           border: 1px solid ${styles.primaryColor};
           margin: auto;
           display: block;
-          min-width: 12rem;
+          min-width: 10rem;
         }
         button:hover {
           color: white;
