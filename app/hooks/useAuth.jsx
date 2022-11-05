@@ -1,10 +1,10 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { gql } from "graphql-request";
 import { client } from "pages/_app";
 
 const signUp = async ({ type, name, email, password }) => {
-  const signUp = gql`
+  const signUpMutation = gql`
     mutation (
       $name: String!
       $email: String!
@@ -28,7 +28,7 @@ const signUp = async ({ type, name, email, password }) => {
     password,
     type,
   };
-  const res = await graphQLClient.request(signUp, variables);
+  const res = await graphQLClient.request(signUpMutation, variables);
   return res.signUp;
 };
 
@@ -43,5 +43,30 @@ export const useSignUp = (setMsg) => {
     onError: (err) => {
       setMsg(err.message);
     },
+  });
+};
+
+const getUser = async () => {
+  const me = gql`
+    query {
+      me {
+        id
+        name
+        email
+        type
+      }
+    }
+  `;
+  const res = await graphQLClient.request(me);
+  console.log(res.me);
+  return res.me;
+};
+
+export const useCurrentUser = ({ enabled }) => {
+  return useQuery({
+    queryKey: ["User"],
+    queryFn: () => getUser(),
+    refetchOnWindowFocus: false,
+    enabled,
   });
 };

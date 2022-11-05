@@ -35,7 +35,7 @@ const neoSchema = new Neo4jGraphQL({
 export const server = new ApolloServer({
   schema: await neoSchema.getSchema(),
   playground: true,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   context: async (ctx) => {
     return {
       driver,
