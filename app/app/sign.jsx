@@ -3,12 +3,12 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "./layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
-import { useSignUp } from "@/hooks/useAuth";
+import { useSignIn, useSignUp } from "@/hooks/useAuth";
 import { validSign } from "@/utils/signValidation";
 
 export default function SignPage() {
@@ -21,6 +21,7 @@ export default function SignPage() {
   const [profilePic, setProfilePic] = useState("");
 
   const { mutate: signUp } = useSignUp();
+  const { mutate: signIn } = useSignIn();
 
   // useEffect(() => {
   //   setName(localStorage.getItem("name"));

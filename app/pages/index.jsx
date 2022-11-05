@@ -1,17 +1,14 @@
 import SignPage from "@/app/sign";
 import Page from "@/app/home";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function Home() {
-  const [currentUser, setCurrentUser] = useState(false);
-  // const { data: currentUser, isLoading } = useCurrentUser({ enabled });
-
-  useEffect(() => {
-    localStorage.getItem("User") &&
-      setCurrentUser(localStorage.getItem("User"));
-  }, []);
-  const isLoading = false;
+  const { data: currentUser, isLoading } = useCurrentUser({
+    enabled: Boolean(
+      typeof window !== "undefined" && localStorage.getItem("User"),
+    ),
+  });
 
   return (
     <>
