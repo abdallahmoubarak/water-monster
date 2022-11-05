@@ -97,7 +97,6 @@ const getUser = async () => {
     }
   `;
   const res = await graphQLClient.request(me);
-  console.log(res.me);
   return res.me;
 };
 

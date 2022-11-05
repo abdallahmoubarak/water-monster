@@ -1,7 +1,7 @@
 import { GraphQLClient } from "graphql-request";
 import { client } from "pages/_app";
 
-const endpoint = "http://localhost:3000/api/graphql";
+const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
 
 export const graphQLClient = new GraphQLClient(endpoint, {
   headers: {
