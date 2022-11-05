@@ -41,10 +41,10 @@ export default function NavBar({ active = "Containers", setActive }) {
         .circule-back {
           content: "";
           position: absolute;
-          top: -0.3rem;
+          top: -0.4rem;
           left: 0;
           width: 100%;
-          height: 0.3rem;
+          height: 0.4rem;
           background-color: white;
           z-index: 0;
         }
