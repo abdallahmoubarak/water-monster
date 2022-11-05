@@ -6,7 +6,7 @@ import { useCurrentUser } from "@/hooks/useAuth";
 export default function Home() {
   const { data: currentUser, isLoading } = useCurrentUser({
     enabled: Boolean(
-      typeof window !== "undefined" && localStorage.getItem("User"),
+      typeof window !== "undefined" && !localStorage.getItem("JWT"),
     ),
   });
 
