@@ -22,6 +22,8 @@ export const styles = {
     "-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;",
   borderRadius1rem:
     "border-radius: 1rem; -webkit-border-radius: 1rem; -moz-border-radius: 1rem; -ms-border-radius: 1rem;-o-border-radius: 1rem;",
+  borderRadiusp3rem:
+    "border-radius: .3rem; -webkit-border-radius: .3rem; -moz-border-radius: .3rem; -ms-border-radius: .3rem;-o-border-radius: .3rem;",
   borderRadius50percent:
     "border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%;",
 };
