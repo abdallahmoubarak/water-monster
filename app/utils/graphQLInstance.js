@@ -10,3 +10,12 @@ export const graphQLClient = new GraphQLClient(endpoint, {
     "Content-Type": "application/json",
   },
 });
+
+export const authGraphQLClient = new GraphQLClient(endpoint, {
+  headers: {
+    // authorization: Boolean(localStorage.getItem("JWT"))
+    //   ? `Bearer ${localStorage.getItem("JWT")}`
+    //   : undefined,
+    "Content-Type": "application/json",
+  },
+});

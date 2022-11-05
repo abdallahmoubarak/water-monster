@@ -8,21 +8,36 @@ import Layout from "./layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
+import { useSignUp } from "@/hooks/useAuth";
+import { validSign } from "@/utils/signValidation";
 
 export default function SignPage() {
   const [signup, setSignUp] = useState(true);
-  const [selected, setSelected] = useState("Personal");
+  const [selected, setSelected] = useState("Client");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [msg, setMsg] = useState("");
   const [profilePic, setProfilePic] = useState("");
 
-  useEffect(() => {
-    setName(localStorage.getItem("name"));
-    setEmail(localStorage.getItem("email"));
-    setProfilePic(localStorage.getItem("profilePic"));
-  }, []);
+  const { mutate: signUp } = useSignUp();
+
+  // useEffect(() => {
+  //   setName(localStorage.getItem("name"));
+  //   setEmail(localStorage.getItem("email"));
+  //   setProfilePic(localStorage.getItem("profilePic"));
+  // }, []);
+
+  const handleSignClick = (signType) => {
+    setMsg("");
+    let type = selected;
+    if (!validSign(signType, email, password, name, type))
+      return setMsg("Inputs are not valid");
+
+    signType === "signin"
+      ? signIn({ email, password })
+      : signUp({ type, name, email, password });
+  };
 
   return (
     <>
