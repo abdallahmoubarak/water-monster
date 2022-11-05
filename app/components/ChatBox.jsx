@@ -35,10 +35,10 @@ export default function ChatBox({ user, setPage }) {
                 </div>
               )}
               <div className="profile-img">
-                <Image src={user.img} alt="" width={48} height={48} />
+                <Image src={user?.img} alt="" width={48} height={48} />
               </div>
               <div className="user-info">
-                <div className="user-name">{user.name}</div>
+                <div className="user-name">{user?.name}</div>
                 <div className="head-icon" onClick={() => setCall(true)}>
                   <FaPhone />
                 </div>
