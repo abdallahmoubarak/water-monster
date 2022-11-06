@@ -14,6 +14,7 @@ export const userDefs = gql`
     palet_number: String
     messages: [Message!]! @relationship(type: "SENT", direction: OUT)
     containers: [Container!]! @relationship(type: "OWNS", direction: OUT)
+    requests: [Request!]! @relationship(type: "DONE_BY", direction: IN)
     wallet: Wallet @relationship(type: "OWNED_BY", direction: IN)
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
