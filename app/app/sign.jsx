@@ -19,6 +19,7 @@ export default function SignPage() {
   const [password, setPass] = useState("");
   const [msg, setMsg] = useState("");
   const [profilePic, setProfilePic] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { mutate: signUp } = useSignUp();
   const { mutate: signIn } = useSignIn();
@@ -30,14 +31,17 @@ export default function SignPage() {
   // }, []);
 
   const handleSignClick = (signType) => {
-    setMsg("");
-    let type = selected;
-    if (!validSign(signType, email, password, name, type))
-      return setMsg("Inputs are not valid");
+    if (!loading) {
+      setLoading(true);
+      setMsg("");
+      let type = selected;
+      if (!validSign(signType, email, password, name, type))
+        return setMsg("Inputs are not valid");
 
-    signType === "signin"
-      ? signIn({ email, password })
-      : signUp({ type, name, email, password });
+      signType === "signin"
+        ? signIn({ email, password })
+        : signUp({ type, name, email, password });
+    }
   };
 
   return (
@@ -77,6 +81,7 @@ export default function SignPage() {
 
           <Button
             text={signup ? "Sign Up" : "Sign In"}
+            loading={loading}
             onClick={() => handleSignClick(signup ? "signup" : "signin")}
           />
         </div>
@@ -90,13 +95,13 @@ export default function SignPage() {
             <div>
               <Image src={googleLogo} alt="G" height={"30"} />
             </div>
-            <div>Sign In with google</div>
+            <div>Continue with google</div>
           </button>
           <button className="google-btn">
             <div>
               <Image src={metaLogo} alt="M" height={"30"} />
             </div>
-            <div>Sign In with Metamask</div>
+            <div>Continue with Metamask</div>
           </button>
         </div>
       </Layout>

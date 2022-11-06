@@ -10,7 +10,7 @@ export default function Home() {
   const [auth, setAuth] = useState(false);
   const { data: currentUser, isLoading } = useCurrentUser({ enabled: auth });
 
-  useEffect(() => setAuth(Boolean(localStorage.getItem("JWT"))), []);
+  useEffect(() => setAuth(Boolean(!localStorage.getItem("JWT"))), []);
 
   return (
     <>
@@ -20,18 +20,15 @@ export default function Home() {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
-
-      {currentUser ? (
-        <Page currentUser={currentUser} />
-      ) : isLoading ? (
+      {isLoading && (
         <div className="fallback">
           <div className="logo-container">
             <AnimatedLogo />
           </div>
         </div>
-      ) : (
-        <SignPage />
       )}
+
+      {currentUser ? <Page currentUser={currentUser} /> : <SignPage />}
       <style jsx>{`
         .fallback {
           ${styles.flexBothcenter};

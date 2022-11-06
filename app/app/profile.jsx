@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import UploadImage from "@/components/UploadImage";
 import { styles } from "@/utils/styles";
+import { client } from "pages/_app";
 import { useState } from "react";
 
 export default function Profile({ currentUser }) {
@@ -25,7 +26,16 @@ export default function Profile({ currentUser }) {
             <Input name="Email" value={email} setValue={setEmail} />
             <Input name="Phone number" value={phone} setValue={setPhone} />
             <Button text="Save" />
-            <Button text="Logout" dark={true} />
+            <Button
+              text="Logout"
+              dark={true}
+              onClick={() => {
+                localStorage.removeItem("JWT");
+                localStorage.removeItem("User");
+                client.setQueryData(["JWT"], null);
+                client.setQueryData(["User"], null);
+              }}
+            />
           </div>
         </div>
       </div>
