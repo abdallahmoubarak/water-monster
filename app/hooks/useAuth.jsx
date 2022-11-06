@@ -1,12 +1,14 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { me, signInMutation, signUpMutation } from "./gql/auth.gql";
+import { meQuery, signInMutation, signUpMutation } from "./gql/auth.gql";
 import { client } from "pages/_app";
+
+/*********************** useSignUp hook ***********************/
 
 const signUp = async ({ type, name, email, password }) => {
   const variables = { name, email, password, type };
   const res = await graphQLClient.request(signUpMutation, variables);
-  return res.signUp;
+  return res?.signUp;
 };
 
 export const useSignUp = (setMsg) => {
@@ -21,12 +23,12 @@ export const useSignUp = (setMsg) => {
   });
 };
 
-/*               signIn hook             */
+/************************ useSignIn hook ************************/
 
 const signIn = async ({ email, password }) => {
   const variables = { email, password };
   const res = await graphQLClient.request(signInMutation, variables);
-  return res.signIn;
+  return res?.signIn;
 };
 
 export const useSignIn = (setMsg) => {
@@ -41,11 +43,11 @@ export const useSignIn = (setMsg) => {
   });
 };
 
-/*         get current user using jwt         */
+/****************** get current user using jwt *******************/
 
 const getUser = async () => {
-  const res = await graphQLClient.request(me);
-  return res.me;
+  const res = await graphQLClient.request(meQuery);
+  return res?.me;
 };
 
 export const useCurrentUser = ({ enabled }) => {

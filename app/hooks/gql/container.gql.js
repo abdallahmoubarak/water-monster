@@ -20,7 +20,7 @@ export const userContainerQuery = gql`
   }
 `;
 
-export const addContainer = gql`
+export const createContainerMutation = gql`
   mutation ($id: ID!, $name: String!, $size: Int!) {
     updateUsers(
       where: { id: $id }
@@ -33,6 +33,7 @@ export const addContainer = gql`
           size
           sensor_state
           private_mode
+          filling_mode
         }
       }
     }

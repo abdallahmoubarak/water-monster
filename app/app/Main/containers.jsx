@@ -18,7 +18,7 @@ export default function Containers({ setPage, currentUser }) {
           {containers?.map((container, i) => (
             <div key={i} className="container-card">
               <div className="flex">
-                <div>{container?.name}</div>
+                <div>{container?.name} Container</div>
                 <div className="stng" onClick={() => setPage("Setting")}>
                   <Image width={30} src={settings} alt="s" />
                 </div>

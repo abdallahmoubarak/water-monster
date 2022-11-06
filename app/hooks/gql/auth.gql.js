@@ -33,7 +33,7 @@ export const signInMutation = gql`
   }
 `;
 
-export const me = gql`
+export const meQuery = gql`
   query {
     me {
       id
