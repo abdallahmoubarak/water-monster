@@ -1,11 +1,14 @@
 import { styles } from "@/utils/styles";
 
-export default function Switch({ title, description, on, setOn }) {
+export default function Switch({ icon, title, description, on, setOn }) {
   return (
     <>
       <div>
         <div className="switch-container">
-          <div className="title">{title}</div>
+          <div className="title">
+            <div>{icon}</div>
+            <div>{title}</div>
+          </div>
           <div className="switch" onClick={() => setOn(!on)}>
             <div className="circul"></div>
           </div>
@@ -24,6 +27,8 @@ export default function Switch({ title, description, on, setOn }) {
         .title {
           color: ${styles.primaryColor};
           font-size: 1.2rem;
+          ${styles.flexAligncenter};
+          gap: 0.3rem;
         }
         .switch {
           width: 3rem;
