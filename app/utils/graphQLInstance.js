@@ -1,12 +1,13 @@
 import { GraphQLClient } from "graphql-request";
-import { client } from "pages/_app";
 
 const endpoint = process.env.NEXT_PUBLIC_ENDPOINT;
 
 export const graphQLClient = new GraphQLClient(endpoint, {
   headers: {
-    authorization: Boolean(client.getQueryData(["JWT"]))
-      ? `Bearer ${client.getQueryData(["JWT"])}`
+    authorization: Boolean(
+      typeof window !== "undefined" && localStorage.getItem("JWT"),
+    )
+      ? `Bearer ${typeof window !== "undefined" && localStorage.getItem("JWT")}`
       : undefined,
     "Content-Type": "application/json",
   },
