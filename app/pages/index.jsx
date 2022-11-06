@@ -21,14 +21,14 @@ export default function Home() {
         />
       </Head>
 
-      {isLoading ? (
+      {currentUser ? (
+        <Page currentUser={currentUser} />
+      ) : isLoading ? (
         <div className="fallback">
           <div className="logo-container">
             <AnimatedLogo />
           </div>
         </div>
-      ) : currentUser ? (
-        <Page currentUser={currentUser} />
       ) : (
         <SignPage />
       )}
