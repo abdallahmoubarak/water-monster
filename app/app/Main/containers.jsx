@@ -7,7 +7,6 @@ import { useState } from "react";
 import RequestInstallation from "@/components/RequestInstallation";
 
 export default function Containers({ setPage }) {
-  const [request, setRequest] = useState();
   const [requestOn, setRequestOn] = useState(false);
 
   return (
@@ -17,13 +16,13 @@ export default function Containers({ setPage }) {
           {containers?.map((container, i) => (
             <div key={i} className="container-card">
               <div className="flex">
-                <div>{container.name}</div>
+                <div>{container?.name}</div>
                 <div className="stng" onClick={() => setPage("Setting")}>
                   <Image width={30} src={settings} alt="s" />
                 </div>
               </div>
               <div className="container-container">
-                <Container level={container.level} />
+                <Container level={container?.level} />
               </div>
               <div className="flex">
                 <div>Sensor State</div>
@@ -35,6 +34,9 @@ export default function Containers({ setPage }) {
             </div>
           ))}
         </div>
+
+        {requestOn && <RequestInstallation />}
+
         <div className="new-installation-btn">
           <Button
             text={requestOn ? "Cancel" : "New Installation"}
@@ -42,13 +44,11 @@ export default function Containers({ setPage }) {
             onClick={() => setRequestOn(!requestOn)}
           />
         </div>
-
-        {requestOn && <RequestInstallation />}
       </div>
 
       <style jsx>{`
         .page {
-          padding: 0.6rem;
+          padding: 1rem;
         }
         .containers {
           ${styles.flexBothcenter};
@@ -101,6 +101,5 @@ export default function Containers({ setPage }) {
 }
 
 const containers = [
-  { id: "2", name: "Roof Container", sensor_state: true, level: 200 },
-  { id: "3", name: "Street Container", sensor_state: false, level: 20 },
+  { id: "2", name: "Roof Container", sensor_state: true, level: 80 },
 ];
