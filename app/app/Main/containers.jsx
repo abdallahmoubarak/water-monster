@@ -5,9 +5,11 @@ import settings from "@/public/svg/settings.svg";
 import { styles } from "@/utils/styles";
 import { useState } from "react";
 import RequestInstallation from "@/components/RequestInstallation";
+import { useUserContainers } from "@/hooks/useContainer";
 
-export default function Containers({ setPage }) {
+export default function Containers({ setPage, currentUser }) {
   const [requestOn, setRequestOn] = useState(false);
+  const { data: containers, isLoading } = useUserContainers(currentUser.id);
 
   return (
     <>

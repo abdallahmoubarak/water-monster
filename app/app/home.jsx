@@ -8,7 +8,7 @@ import Head from "next/head";
 import Chat from "./Secoundary/chat";
 import ContainerSetting from "./Secoundary/containerSetting";
 
-export default function Page() {
+export default function Page({ currentUser }) {
   const [page, setPage] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
 
@@ -21,7 +21,9 @@ export default function Page() {
       {layoutPages.includes(page) && (
         <Layout withImg={true} withNav={true} active={page} setActive={setPage}>
           {page === "Statistics" && <Statistics />}
-          {page === "Containers" && <Containers setPage={setPage} />}
+          {page === "Containers" && (
+            <Containers setPage={setPage} currentUser={currentUser} />
+          )}
           {page === "Contacts" && (
             <Contacts
               setPage={setPage}

@@ -8,11 +8,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [auth, setAuth] = useState(false);
-  const {
-    data: currentUser,
-    isLoading,
-    isFetching,
-  } = useCurrentUser({ enabled: auth });
+  const { data: currentUser, isLoading } = useCurrentUser({ enabled: auth });
 
   useEffect(() => setAuth(Boolean(localStorage.getItem("JWT"))), []);
 
@@ -32,7 +28,7 @@ export default function Home() {
           </div>
         </div>
       ) : currentUser ? (
-        <Page />
+        <Page currentUser={currentUser} />
       ) : (
         <SignPage />
       )}

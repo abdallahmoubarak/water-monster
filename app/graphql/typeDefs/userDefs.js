@@ -19,7 +19,7 @@ export const userDefs = gql`
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
   }
 
-  # extend type User @exclude(operations: [CREATE, DELETE])
+  extend type User @exclude(operations: [CREATE, DELETE])
 
   type AuthRes @exclude {
     user: User
