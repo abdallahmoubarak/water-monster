@@ -13,9 +13,10 @@ export default function UploadImage({
         <div>
           <label htmlFor="upload-img-input" className="upload-img-label">
             <Image
-              className="upload-img-img"
-              src={image || currentUser?.profile_url}
+              src={image || currentUser?.profile_url || ""}
               alt=""
+              width="160"
+              height="160"
             />
           </label>
           <input
@@ -50,12 +51,6 @@ export default function UploadImage({
           cursor: pointer;
           position: relative;
           overflow: hidden;
-        }
-        .upload-img-img {
-          position: relative;
-          margin: auto;
-          width: 100%;
-          padding: 0;
         }
 
         .upload-img-input {

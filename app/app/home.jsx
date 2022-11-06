@@ -31,7 +31,7 @@ export default function Page({ currentUser }) {
               setChatUser={setChatUser}
             />
           )}
-          {page === "Profile" && <Profile />}
+          {page === "Profile" && <Profile currentUser={currentUser} />}
         </Layout>
       )}
       {page === "Chat" && <Chat setPage={setPage} user={chatUser} />}
