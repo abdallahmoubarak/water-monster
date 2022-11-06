@@ -1,5 +1,3 @@
-import { styles } from "@/utils/styles";
-
 export default function AnimatedLogo() {
   return (
     <>

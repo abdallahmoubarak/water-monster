@@ -1,19 +1,29 @@
 import { styles } from "@/utils/styles";
+import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 
 export default function RequestInstallation() {
+  const [name, setName] = useState("Roof");
+  const [size, setSize] = useState(2000);
+  const [address, setAddress] = useState("");
+  const [date, setDate] = useState("");
   return (
     <>
       <div className="section">
-        <div className="section-title">Information</div>
+        <div className="section-title">Request new container </div>
         <div className="input-container">
-          <Input name={"Container name"} />
-          <Input name={"Size"} />
-          <Input name={"Address"} />
-          <Input type={"date"} name={"Prefared date"} />
+          <Input name={"Container name"} value={name} setValue={setName} />
+          <Input name={"Size"} value={size} setValue={setSize} />
+          <Input name={"Address"} value={address} setValue={setAddress} />
+          <Input
+            type={"date"}
+            name={"Prefared date"}
+            value={date}
+            setValue={setDate}
+          />
         </div>
-        <Button text="Accept" />
+        <Button text="Request now" />
       </div>
       <style jsx>{`
         .input-container {
@@ -27,9 +37,11 @@ export default function RequestInstallation() {
           padding: 1rem;
           ${styles.flexColumn};
           gap: 1rem;
+          width: 100%;
+          max-width: 26rem;
+          margin: auto;
         }
         .section-title {
-          color: ${styles.primaryColor};
           font-size: 1.4rem;
         }
       `}</style>

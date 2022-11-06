@@ -67,7 +67,6 @@ export default function ChatBox({ user, setPage }) {
           height: 100%;
           box-shadow: 0px 0px 10px lightgray;
           ${styles.borderRadius1rem};
-          padding: 0.6rem;
           position: relative;
           overflow: hidden;
         }
@@ -81,7 +80,10 @@ export default function ChatBox({ user, setPage }) {
           ${styles.flexAligncenter};
           ${styles.userSelect};
           width: 100%;
-          gap: 1rem;
+          gap: 0.6rem;
+          background: ${styles.primaryColor};
+          color: white;
+          padding: 0.6rem;
         }
         .profile-img {
           ${styles.flexBothcenter};
@@ -89,6 +91,7 @@ export default function ChatBox({ user, setPage }) {
           min-width: 3rem;
           height: 3rem;
           ${styles.borderRadius50percent};
+          border: 3px solid white;
         }
 
         .user-info {
@@ -105,7 +108,7 @@ export default function ChatBox({ user, setPage }) {
           width: 100%;
           overflow-y: auto;
           flex: 1 1 100%;
-          padding: 0.4rem 0.6rem;
+          padding: 0.6rem;
           gap: 0.5rem;
           ${styles.flexColumn};
         }
@@ -115,6 +118,7 @@ export default function ChatBox({ user, setPage }) {
           position: relative;
           width: 100%;
           gap: 0.3rem;
+          padding: 0.6rem;
         }
 
         .chat-input {
@@ -138,7 +142,7 @@ export default function ChatBox({ user, setPage }) {
         }
         .head-icon {
           font-size: 1.3rem;
-          color: ${styles.primaryColor};
+          color: white;
           padding: 0.6rem;
           cursor: pointer;
           ${styles.flexBothcenter};

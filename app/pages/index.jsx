@@ -4,17 +4,17 @@ import Head from "next/head";
 import { useCurrentUser } from "@/hooks/useAuth";
 import { styles } from "@/utils/styles";
 import AnimatedLogo from "@/components/SVG/AnimatedLogo";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [auth, setAuth] = useState(false);
   const {
     data: currentUser,
     isLoading,
     isFetching,
-  } = useCurrentUser({
-    enabled: Boolean(
-      typeof window !== "undefined" && localStorage.getItem("JWT"),
-    ),
-  });
+  } = useCurrentUser({ enabled: auth });
+
+  useEffect(() => setAuth(Boolean(localStorage.getItem("JWT"))), []);
 
   return (
     <>
@@ -25,9 +25,9 @@ export default function Home() {
         />
       </Head>
 
-      {isLoading && isFetching ? (
+      {isLoading ? (
         <div className="fallback">
-          <div className="Logo-container">
+          <div className="logo-container">
             <AnimatedLogo />
           </div>
         </div>
@@ -43,7 +43,7 @@ export default function Home() {
           height: 100vh;
           width: 100vw;
         }
-        .Logo-container {
+        .logo-container {
           max-width: 8rem;
           margin: 0 auto;
         }

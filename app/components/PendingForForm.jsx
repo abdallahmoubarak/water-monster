@@ -4,7 +4,8 @@ import Input from "@/components/Input";
 import { useState } from "react";
 import { styles } from "@/utils/styles";
 
-export default function PendingForForm({ name, setName, pending }) {
+export default function PendingForForm({ pending }) {
+  const [name, setName] = useState("Roof");
   const [size, setSize] = useState(2000);
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");

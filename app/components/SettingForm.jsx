@@ -1,11 +1,13 @@
-import { MdPendingActions } from "react-icons/md";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useState } from "react";
 import { styles } from "@/utils/styles";
 import Switch from "./Switch";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { BiWater } from "react-icons/bi";
 
-export default function SettingForm({ name = "Roof", setName }) {
+export default function SettingForm() {
+  const [name, setName] = useState("Roof");
   const [size, setSize] = useState(2000);
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
@@ -18,6 +20,7 @@ export default function SettingForm({ name = "Roof", setName }) {
         <div className="section">
           <div className="section-title">Controll</div>
           <Switch
+            icon={<FaRegEyeSlash />}
             title={"Private Mode"}
             on={privateOn}
             setOn={setPrivateOn}
@@ -28,6 +31,7 @@ export default function SettingForm({ name = "Roof", setName }) {
             }
           />
           <Switch
+            icon={<BiWater />}
             title={"Filling Mode"}
             on={auto}
             setOn={setAuto}
@@ -59,9 +63,11 @@ export default function SettingForm({ name = "Roof", setName }) {
           padding: 1rem;
           ${styles.flexColumn};
           gap: 1rem;
+          width: 100%;
+          max-width: 26rem;
+          margin: auto;
         }
         .section-title {
-          color: ${styles.primaryColor};
           font-size: 1.4rem;
         }
         .btn-container {
