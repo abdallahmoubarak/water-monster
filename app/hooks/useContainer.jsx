@@ -1,28 +1,8 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { gql } from "graphql-request";
-import { client } from "pages/_app";
+import { userContainerQuery } from "./gql/container.gql";
 
 const getUserContainers = async (id) => {
-  const userContainerQuery = gql`
-    query ($id: ID!) {
-      users(where: { id: $id }) {
-        containers {
-          id
-          name
-          size
-          sensor_state
-          private_mode
-          filling_mode
-          pending
-          location {
-            longitude
-            latitude
-          }
-        }
-      }
-    }
-  `;
   const variables = {
     id,
   };
@@ -36,3 +16,5 @@ export const useUserContainers = (id) => {
     queryFn: () => getUserContainers(id),
   });
 };
+
+/*            request a container               */
