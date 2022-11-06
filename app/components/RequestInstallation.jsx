@@ -3,11 +3,16 @@ import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 
-export default function RequestInstallation() {
-  const [name, setName] = useState("Roof");
-  const [size, setSize] = useState(2000);
+export default function RequestInstallation({ currentUser }) {
+  const [name, setName] = useState("");
+  const [size, setSize] = useState();
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
+
+  const handleRequest = () => {
+    console.log({ id: currentUser.id, name, size, address, date });
+  };
+
   return (
     <>
       <div className="section">
@@ -23,7 +28,7 @@ export default function RequestInstallation() {
             setValue={setDate}
           />
         </div>
-        <Button text="Request now" />
+        <Button text="Request now" onClick={handleRequest} />
       </div>
       <style jsx>{`
         .input-container {

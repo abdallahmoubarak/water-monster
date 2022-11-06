@@ -6,7 +6,8 @@ export const containerDefs = gql`
     name: String
     size: Int
     location: Point
-    current_level: Int
+    address: String
+    water_level: Int
     pending: String
     sensor_state: Boolean
     private_mode: Boolean

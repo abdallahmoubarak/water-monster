@@ -21,10 +21,14 @@ export const userContainerQuery = gql`
 `;
 
 export const createContainerMutation = gql`
-  mutation ($id: ID!, $name: String!, $size: Int!) {
+  mutation ($id: ID!, $name: String!, $size: Int!, $address: String!) {
     updateUsers(
       where: { id: $id }
-      update: { containers: { create: { node: { name: $name, size: $size } } } }
+      update: {
+        containers: {
+          create: { node: { name: $name, size: $size, address: $address } }
+        }
+      }
     ) {
       users {
         containers {
