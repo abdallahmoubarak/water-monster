@@ -7,10 +7,10 @@ import AnimatedLogo from "@/components/SVG/AnimatedLogo";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [auth, setAuth] = useState(false);
-  const { data: currentUser, isLoading } = useCurrentUser({ enabled: auth });
+  const [enabled, setEnabled] = useState(true);
+  const { data: currentUser, isLoading } = useCurrentUser({ enabled });
 
-  useEffect(() => setAuth(Boolean(!localStorage.getItem("JWT"))), []);
+  useEffect(() => setEnabled(Boolean(localStorage.getItem("JWT"))), []);
 
   return (
     <>
