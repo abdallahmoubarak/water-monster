@@ -4,9 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
+.gitignore
 
 # testing
 /coverage
+pages/test.jsx
 
 # next.js
 /.next/
