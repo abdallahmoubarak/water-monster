@@ -1,10 +1,8 @@
-import PendingForForm from "@/components/PendingForForm";
 import SettingForm from "@/components/SettingForm";
 import { styles } from "@/utils/styles";
 import { FaArrowLeft } from "react-icons/fa";
 
-export default function ContainerSetting({ setPage }) {
-  const pending = null;
+export default function ContainerSetting({ setPage, containerId }) {
   return (
     <>
       <div className="setting-page-container">
@@ -15,7 +13,7 @@ export default function ContainerSetting({ setPage }) {
           <div className="setting-title">Container Setting</div>
         </div>
         <div className="setting-body">
-          {pending ? <PendingForForm pending={pending} /> : <SettingForm />}
+          <SettingForm containerId={containerId} />
         </div>
       </div>
       <style jsx>{`

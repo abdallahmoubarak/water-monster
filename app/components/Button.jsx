@@ -34,7 +34,7 @@ export default function Button({
           border: 1px solid ${styles.primaryColor};
           margin: auto;
           display: block;
-          min-width: 10rem;
+          min-width: 8rem;
         }
         button:hover {
           color: white;

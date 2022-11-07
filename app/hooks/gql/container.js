@@ -14,6 +14,7 @@ export const userContainerQuery = gql`
         installation_request {
           title
           state
+          date
         }
       }
     }
@@ -27,6 +28,7 @@ export const createContainerMutation = gql`
     $size: String!
     $title: String!
     $state: String!
+    $date: Date!
     $address: String!
   ) {
     updateUsers(
@@ -39,7 +41,7 @@ export const createContainerMutation = gql`
               size: $size
               address: $address
               installation_request: {
-                create: { node: { title: $title, state: $state } }
+                create: { node: { title: $title, state: $state, date: $date } }
               }
             }
           }
@@ -58,6 +60,7 @@ export const createContainerMutation = gql`
           installation_request {
             title
             state
+            date
           }
         }
       }

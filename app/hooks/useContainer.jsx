@@ -20,12 +20,13 @@ export const useUserContainers = (id) => {
 
 /************************* create a container *************************/
 
-const createContainer = async ({ id, name, size, address }) => {
+const createContainer = async ({ id, name, size, address, date }) => {
   const variables = {
     id,
     name,
     size,
     address,
+    date,
     title: "Installation",
     state: "approval",
   };

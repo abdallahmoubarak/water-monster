@@ -9,8 +9,14 @@ import Chat from "./Secoundary/chat";
 import ContainerSetting from "./Secoundary/containerSetting";
 
 export default function Page({ currentUser }) {
-  const [page, setPage] = useState("Containers");
+  const [page, setPageName] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
+  const [pageId, setPageId] = useState("");
+
+  const setPage = (name, id) => {
+    setPageName(name);
+    setPageId(id);
+  };
 
   return (
     <>
@@ -35,7 +41,9 @@ export default function Page({ currentUser }) {
         </Layout>
       )}
       {page === "Chat" && <Chat setPage={setPage} user={chatUser} />}
-      {page === "Setting" && <ContainerSetting setPage={setPage} />}
+      {page === "Setting" && (
+        <ContainerSetting setPage={setPage} containerId={pageId} />
+      )}
     </>
   );
 }

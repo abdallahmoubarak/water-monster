@@ -9,7 +9,9 @@ export default function Container({ container, setPage }) {
       <div className="container-card">
         <div className="flex">
           <div>{container?.name} Container</div>
-          <div className="stng" onClick={() => setPage("Setting")}>
+          <div
+            className="stng"
+            onClick={() => setPage("Setting", container.id)}>
             <Image width={30} src={settings} alt="s" />
           </div>
         </div>
