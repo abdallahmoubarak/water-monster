@@ -1,10 +1,7 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { client } from "pages/_app";
-import {
-  createContainerMutation,
-  userContainerQuery,
-} from "./gql/container.gql";
+import { createContainerMutation, userContainerQuery } from "./gql/container";
 
 /*********************** getting user containers ***********************/
 
