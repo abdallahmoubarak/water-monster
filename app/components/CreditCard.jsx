@@ -112,23 +112,40 @@ export default function CreditCard() {
           margin: auto;
           height: 13rem;
         }
-
         .flip {
           width: 100%;
           height: 100%;
+          -webkit-transition: 0.7s;
+          -o-transition: 0.7s;
           transition: 0.7s;
+          -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+          -webkit-animation: flip 2.5s ease;
           animation: flip 2.5s ease;
+        }
+        @-webkit-keyframes flip {
+          0%,
+          100% {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+          }
+          50% {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+          }
         }
         @keyframes flip {
           0%,
           100% {
+            -webkit-transform: rotateY(0deg);
             transform: rotateY(0deg);
           }
           50% {
+            -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
           }
         }
+
         .front,
         .back {
           position: absolute;
@@ -136,13 +153,24 @@ export default function CreditCard() {
           height: 100%;
           ${styles.borderRadius1rem};
           color: #fff;
+          -webkit-box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.3);
           box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.3);
+          -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+          background-image: -webkit-gradient(
+            linear,
+            left top,
+            right top,
+            from(#111),
+            to(#555)
+          );
+          background-image: -o-linear-gradient(left, #111, #555);
           background-image: linear-gradient(to right, #111, #555);
           overflow: hidden;
         }
 
         .front {
+          -webkit-transform: translateZ(0);
           transform: translateZ(0);
         }
         .front-content {
@@ -154,17 +182,30 @@ export default function CreditCard() {
           position: absolute;
           right: 0;
           height: inherit;
+          background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#10729f),
+            to(#1895c3)
+          );
+          background-image: -o-linear-gradient(top, #10729f, #1895c3);
           background-image: linear-gradient(to bottom, #10729f, #1895c3);
+          -webkit-box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.5);
           box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.5);
         }
 
         .strip-bottom {
           width: 12rem;
+          -webkit-transform: skewX(-15deg) translateX(50px);
+          -ms-transform: skewX(-15deg) translateX(50px);
           transform: skewX(-15deg) translateX(50px);
         }
 
         .strip-top {
           width: 11rem;
+          -webkit-transform: skewX(20deg) translateX(50px);
+          -ms-transform: skewX(20deg) translateX(50px);
           transform: skewX(20deg) translateX(50px);
         }
 
@@ -185,17 +226,27 @@ export default function CreditCard() {
         .investor {
           text-transform: uppercase;
         }
+
         .chip-container {
           padding: 0.5rem 0rem;
           ${styles.flexAligncenter};
           gap: 0.6rem;
         }
+
         .chip {
           ${styles.flexBothcenter};
           position: relative;
           width: 2.2rem;
           height: 1.7rem;
           border-radius: 0.3rem;
+          background-image: -webkit-gradient(
+            linear,
+            right top,
+            left bottom,
+            from(#ffecc7),
+            to(#d0b978)
+          );
+          background-image: -o-linear-gradient(top right, #ffecc7, #d0b978);
           background-image: linear-gradient(to bottom left, #ffecc7, #d0b978);
           overflow: hidden;
         }
@@ -229,6 +280,14 @@ export default function CreditCard() {
           height: 1.1rem;
           border: 1px solid #333;
           border-radius: 0.1rem;
+          background-image: -webkit-gradient(
+            linear,
+            right top,
+            left bottom,
+            from(#efdbab),
+            to(#e1cb94)
+          );
+          background-image: -o-linear-gradient(top right, #efdbab, #e1cb94);
           background-image: linear-gradient(to bottom left, #efdbab, #e1cb94);
           z-index: 1;
         }
@@ -237,6 +296,7 @@ export default function CreditCard() {
           position: relative;
           width: 1rem;
         }
+
         .number-container {
           padding: 0.4rem 0;
           position: relative;
@@ -259,12 +319,14 @@ export default function CreditCard() {
           font-size: 0.6rem;
           color: rgba(255, 255, 255, 0.8);
         }
+
         .card-footer {
           position: relative;
 
           ${styles.flexAligncenter};
           ${styles.justifyBetween};
         }
+
         .card-holder {
           text-transform: uppercase;
           font-family: "cc font", monospace;
@@ -273,20 +335,24 @@ export default function CreditCard() {
         .visa {
           ${styles.flexAligncenter}
         }
+
         .visa-logo {
           width: 4rem;
           height: 2rem;
         }
 
         .card {
+          -webkit-perspective: 1000;
           perspective: 1000;
         }
 
         .card:hover .flip {
+          -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
         }
 
         .back {
+          -webkit-transform: rotateY(180deg) translateZ(0);
           transform: rotateY(180deg) translateZ(0);
           background: #bbb;
           padding: 1.6rem 0rem;
@@ -304,6 +370,7 @@ export default function CreditCard() {
           color: black;
           padding: 0 1.6rem;
         }
+
         .ccv div {
           background: white;
           padding: 0.2rem;
@@ -323,6 +390,7 @@ export default function CreditCard() {
           font-size: 0.6rem;
           text-align: justify;
         }
+
         p {
           color: #222;
         }
