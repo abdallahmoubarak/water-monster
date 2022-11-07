@@ -18,7 +18,12 @@ export default function Containers({ setPage, currentUser }) {
           ))}
         </div>
 
-        {requestOn && <RequestInstallation currentUser={currentUser} />}
+        {requestOn && (
+          <RequestInstallation
+            currentUser={currentUser}
+            close={() => setRequestOn(false)}
+          />
+        )}
 
         <div className="new-installation-btn">
           <Button

@@ -1,16 +1,24 @@
+import { useCreateContainer } from "@/hooks/useContainer";
 import { styles } from "@/utils/styles";
 import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 
-export default function RequestInstallation({ currentUser }) {
+export default function RequestInstallation({ currentUser, close }) {
   const [name, setName] = useState("");
-  const [size, setSize] = useState();
+  const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
 
+  const { mutate: createContainer } = useCreateContainer();
+
   const handleRequest = () => {
-    console.log({ id: currentUser.id, name, size, address, date });
+    createContainer({ id: currentUser.id, name, size, address, date });
+    setName("");
+    setSize("");
+    setAddress("");
+    setDate("");
+    close();
   };
 
   return (

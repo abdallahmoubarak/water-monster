@@ -10,10 +10,10 @@ export const userContainerQuery = gql`
         sensor_state
         private_mode
         filling_mode
-        pending
-        location {
-          longitude
-          latitude
+        water_level
+        installation_request {
+          title
+          state
         }
       }
     }
@@ -21,12 +21,28 @@ export const userContainerQuery = gql`
 `;
 
 export const createContainerMutation = gql`
-  mutation ($id: ID!, $name: String!, $size: Int!, $address: String!) {
+  mutation (
+    $id: ID!
+    $name: String!
+    $size: String!
+    $title: String!
+    $state: String!
+    $address: String!
+  ) {
     updateUsers(
       where: { id: $id }
       update: {
         containers: {
-          create: { node: { name: $name, size: $size, address: $address } }
+          create: {
+            node: {
+              name: $name
+              size: $size
+              address: $address
+              installation_request: {
+                create: { node: { title: $title, state: $state } }
+              }
+            }
+          }
         }
       }
     ) {
@@ -38,6 +54,11 @@ export const createContainerMutation = gql`
           sensor_state
           private_mode
           filling_mode
+          water_level
+          installation_request {
+            title
+            state
+          }
         }
       }
     }

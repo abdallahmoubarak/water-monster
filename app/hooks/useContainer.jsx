@@ -1,5 +1,6 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { client } from "pages/_app";
 import {
   createContainerMutation,
   userContainerQuery,
@@ -20,19 +21,25 @@ export const useUserContainers = (id) => {
   });
 };
 
-/************************* add a container *************************/
+/************************* create a container *************************/
 
 const createContainer = async ({ id, name, size, address }) => {
-  const variables = { id, name, size, address };
+  const variables = {
+    id,
+    name,
+    size,
+    address,
+    title: "Installation",
+    state: "approval",
+  };
   const res = await graphQLClient.request(createContainerMutation, variables);
-  return res?.users?.containers;
+  console.log(res?.updateUsers?.users[0]?.containers);
+  return res?.updateUsers?.users[0]?.containers;
 };
 
 export const useCreateContainer = () => {
   return useMutation(createContainer, {
-    onSuccess: (res) => {
-      client.setQueryData(["Containers"], res);
-    },
+    onSuccess: (res) => client.setQueryData(["Containers"], res),
     onError: (err) => console.log(err.message),
   });
 };
