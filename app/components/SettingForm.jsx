@@ -7,7 +7,7 @@ import { client } from "pages/_app";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
 import { MdPendingActions } from "react-icons/md";
-import { useUpdateContainer } from "@/hooks/useContainer";
+import { useDeleteContainer, useUpdateContainer } from "@/hooks/useContainer";
 
 export default function SettingForm({ containerId, setPage }) {
   const [container, setContainer] = useState();
@@ -18,11 +18,16 @@ export default function SettingForm({ containerId, setPage }) {
   const [privateOn, setPrivateOn] = useState(true);
   const [auto, setAuto] = useState(true);
   const [state, setState] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: updateContainer } = useUpdateContainer({
     setPage,
-    setLoading,
+    setIsLoading,
+  });
+
+  const { mutate: deleteContainer } = useDeleteContainer({
+    setPage,
+    setIsLoading,
   });
 
   useEffect(() => {
@@ -41,7 +46,7 @@ export default function SettingForm({ containerId, setPage }) {
 
   const handleUpdate = () => {
     updateContainer({ id: container.id, name, size });
-    setLoading(true);
+    setIsLoading(true);
   };
 
   return (
@@ -85,9 +90,17 @@ export default function SettingForm({ containerId, setPage }) {
           <Input name={"Address"} value={address} disabled={true} />
           <div className="btn-container">
             {state !== "installation" && (
-              <Button text="Save" onClick={handleUpdate} loading={loading} />
+              <Button
+                text="Save"
+                onClick={handleUpdate}
+                isLoading={isLoading}
+              />
             )}
-            <Button text="Delete" dark={true} />
+            <Button
+              text="Delete"
+              dark={true}
+              onClick={() => deleteContainer(container.id)}
+            />
           </div>
         </div>
       </div>

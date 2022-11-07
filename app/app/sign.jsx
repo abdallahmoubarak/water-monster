@@ -19,10 +19,10 @@ export default function SignPage() {
   const [password, setPass] = useState("");
   const [msg, setMsg] = useState("");
   const [profilePic, setProfilePic] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { mutate: signUp } = useSignUp();
-  const { mutate: signIn } = useSignIn();
+  const { mutate: signUp } = useSignUp({ setMsg, setIsLoading });
+  const { mutate: signIn } = useSignIn({ setMsg, setIsLoading });
 
   // useEffect(() => {
   //   setName(localStorage.getItem("name"));
@@ -31,8 +31,8 @@ export default function SignPage() {
   // }, []);
 
   const handleSignClick = (signType) => {
-    if (!loading) {
-      setLoading(true);
+    if (!isLoading) {
+      setIsLoading(true);
       setMsg("");
       let type = selected;
       if (!validSign(signType, email, password, name, type))
@@ -81,7 +81,7 @@ export default function SignPage() {
 
           <Button
             text={signup ? "Sign Up" : "Sign In"}
-            loading={loading}
+            isLoading={isLoading}
             onClick={() => handleSignClick(signup ? "signup" : "signin")}
           />
         </div>

@@ -91,3 +91,15 @@ export const updateContainerMutation = gql`
     }
   }
 `;
+
+export const deleteContainerMutation = gql`
+  mutation ($container_id: ID!) {
+    deleteContainers(
+      where: { id: $container_id }
+      delete: { installation_request: { where: {} } }
+    ) {
+      nodesDeleted
+      relationshipsDeleted
+    }
+  }
+`;

@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { client } from "pages/_app";
 import {
   createContainerMutation,
+  deleteContainerMutation,
   updateContainerMutation,
   userContainerQuery,
 } from "./gql/container";
@@ -53,9 +54,25 @@ const updateContainer = async ({ id, name, size }) => {
   return res?.updateContainers?.containers;
 };
 
-export const useUpdateContainer = ({ setPage, setLoading }) => {
+export const useUpdateContainer = ({ setPage, setIsLoading }) => {
   return useMutation(updateContainer, {
     onSuccess: () => setPage("Containers"),
-    onError: () => setLoading(false),
+    onError: () => setIsLoading(false),
+  });
+};
+
+/************************* delete a container *************************/
+
+const deleteContainer = async (id) => {
+  const variables = { container_id: id };
+  const res = await graphQLClient.request(deleteContainerMutation, variables);
+  console.log(res);
+  return res;
+};
+
+export const useDeleteContainer = ({ setPage, setIsLoading }) => {
+  return useMutation(deleteContainer, {
+    onSuccess: () => setPage("Containers"),
+    onError: () => setIsLoading(false),
   });
 };

@@ -11,7 +11,7 @@ const signUp = async ({ type, name, email, password }) => {
   return res?.signUp;
 };
 
-export const useSignUp = (setMsg) => {
+export const useSignUp = ({ setMsg, setIsLoading }) => {
   return useMutation(signUp, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
@@ -19,7 +19,10 @@ export const useSignUp = (setMsg) => {
       client.setQueryData(["JWT"], res?.token);
       client.setQueryData(["User"], res?.user);
     },
-    onError: (err) => setMsg(err.message),
+    onError: (err) => {
+      setMsg(err.message);
+      setIsLoading(false);
+    },
   });
 };
 
@@ -31,7 +34,7 @@ const signIn = async ({ email, password }) => {
   return res?.signIn;
 };
 
-export const useSignIn = (setMsg) => {
+export const useSignIn = ({ setMsg, setIsLoading }) => {
   return useMutation(signIn, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
@@ -39,7 +42,10 @@ export const useSignIn = (setMsg) => {
       client.setQueryData(["JWT"], res?.token);
       client.setQueryData(["User"], res?.user);
     },
-    onError: (err) => setMsg(err.message),
+    onError: (err) => {
+      setMsg(err.message);
+      setIsLoading(false);
+    },
   });
 };
 

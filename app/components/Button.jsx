@@ -7,12 +7,12 @@ export default function Button({
   onClick,
   dark,
   font,
-  loading,
+  isLoading,
 }) {
   return (
     <>
       <button onClick={onClick} className={dark ? "dark" : ""}>
-        {loading ? (
+        {isLoading ? (
           <div className="loading">
             <Image src={Loading} height={50} width={50} alt={""} />
           </div>
