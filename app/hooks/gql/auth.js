@@ -13,7 +13,9 @@ export const signUpMutation = gql`
         id
         name
         email
+        phone
         type
+        profile_url
       }
     }
   }
@@ -27,6 +29,8 @@ export const signInMutation = gql`
         id
         name
         email
+        phone
+        type
         profile_url
       }
     }
@@ -39,7 +43,9 @@ export const meQuery = gql`
       id
       name
       email
+      phone
       type
+      profile_url
     }
   }
 `;

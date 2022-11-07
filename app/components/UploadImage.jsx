@@ -14,6 +14,7 @@ export default function UploadImage({
           <label htmlFor="upload-img-input" className="upload-img-label">
             <Image
               src={image || currentUser?.profile_url || ""}
+              loader={() => image || currentUser?.profile_url || ""}
               alt=""
               width="160"
               height="160"

@@ -14,6 +14,9 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: { appDir: true },
+  images: {
+    domains: ["hello.com"],
+  },
   webpack: (config) => {
     if (!config.experiments) {
       config.experiments = {};

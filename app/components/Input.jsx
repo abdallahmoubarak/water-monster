@@ -6,6 +6,7 @@ export default function Input({
   value,
   setValue,
   type,
+  onBlur,
   onKeyPress,
   accept,
   disabled,
@@ -31,6 +32,7 @@ export default function Input({
               value={value}
               type={type || "text"}
               onChange={(e) => setValue(e.target.value)}
+              onBlur={onBlur && onBlur}
               onKeyPress={onKeyPress && onKeyPress}
               accept={accept && accept}
             />
