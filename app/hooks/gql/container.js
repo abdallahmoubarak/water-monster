@@ -11,6 +11,7 @@ export const userContainerQuery = gql`
         private_mode
         filling_mode
         water_level
+        address
         installation_request {
           title
           state
@@ -57,6 +58,7 @@ export const createContainerMutation = gql`
           private_mode
           filling_mode
           water_level
+          address
           installation_request {
             title
             state
@@ -82,6 +84,7 @@ export const updateContainerMutation = gql`
         private_mode
         filling_mode
         water_level
+        address
         installation_request {
           title
           state
