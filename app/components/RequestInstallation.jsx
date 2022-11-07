@@ -47,15 +47,15 @@ export default function RequestInstallation({ currentUser, close }) {
         .section {
           ${styles.boxshadow};
           ${styles.borderRadius1rem};
-          padding: 1rem;
           ${styles.flexColumn};
           gap: 1rem;
+          padding: 1rem;
           width: 100%;
           max-width: 26rem;
           margin: auto;
         }
         .section-title {
-          font-size: 1.4rem;
+          ${styles.fontSize1p4rem};
         }
       `}</style>
     </>

@@ -49,7 +49,6 @@ export default function Profile({ currentUser }) {
           gap: 0.8rem;
           max-width: 26rem;
           margin: auto;
-
           width: 100%;
           padding: 1rem 0;
         }

@@ -30,7 +30,7 @@ export default function ContainerSetting({ setPage, containerId }) {
           padding: 0.6rem;
         }
         .setting-title {
-          font-size: 1.4rem;
+          ${styles.fontSize1p4rem};
           font-weight: bold;
         }
         .back-icon {

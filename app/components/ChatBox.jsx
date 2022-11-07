@@ -101,7 +101,7 @@ export default function ChatBox({ user, setPage }) {
           width: 100%;
         }
         .user-name {
-          font-size: 1.2rem;
+          ${styles.fontSize1p2rem};
         }
 
         .chat-body {
@@ -123,7 +123,7 @@ export default function ChatBox({ user, setPage }) {
 
         .chat-input {
           width: 100%;
-          font-size: 1.2rem;
+          ${styles.fontSize1p2rem};
           padding: 0.6rem 1rem;
           border: 1px solid gray;
           flex: 1 1 100%;
@@ -170,7 +170,7 @@ export default function ChatBox({ user, setPage }) {
         }
 
         .msg-time {
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
           color: gray;
           position: absolute;
           bottom: 0rem;

@@ -132,7 +132,7 @@ export default function SignPage() {
           padding: 0.2rem;
         }
         .invalid-msg {
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
           text-align: left;
           min-height: 1rem;
           width: 100%;
@@ -175,11 +175,7 @@ export default function SignPage() {
         @media only screen and (min-width: 600px) {
           .sign-container {
             margin-top: 2rem;
-            border-radius: 1rem;
-            -webkit-border-radius: 1rem;
-            -moz-border-radius: 1rem;
-            -ms-border-radius: 1rem;
-            -o-border-radius: 1rem;
+            ${styles.borderRadius1rem};
             ${styles.boxshadow};
             ${styles.transitionAll3s};
           }

@@ -122,7 +122,7 @@ export default function SettingForm({ containerId, setPage }) {
           margin: auto;
         }
         .section-title {
-          font-size: 1.4rem;
+          ${styles.fontSize1p4rem};
         }
         .state {
           ${styles.flexAligncenter};

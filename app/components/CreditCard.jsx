@@ -134,7 +134,7 @@ export default function CreditCard() {
           position: absolute;
           width: 100%;
           height: 100%;
-          border-radius: 1rem;
+          ${styles.borderRadius1rem};
           color: #fff;
           box-shadow: 0 1px 10px 1px rgba(0, 0, 0, 0.3);
           backface-visibility: hidden;
@@ -245,7 +245,7 @@ export default function CreditCard() {
         .card-number {
           ${styles.flexAligncenter};
           ${styles.justifyBetween};
-          font-size: 1.4rem;
+          ${styles.fontSize1p4rem};
           font-family: "cc font", monospace;
         }
 
@@ -312,7 +312,7 @@ export default function CreditCard() {
 
         label {
           display: block;
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
           padding: 0 0.2rem;
           padding-top: 0.3rem;
           text-transform: uppercase;

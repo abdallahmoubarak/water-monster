@@ -26,7 +26,7 @@ export default function Switch({ icon, title, description, on, setOn }) {
         }
         .title {
           color: ${styles.primaryColor};
-          font-size: 1.2rem;
+          ${styles.fontSize1p2rem};
           ${styles.flexAligncenter};
           gap: 0.3rem;
         }
@@ -48,7 +48,7 @@ export default function Switch({ icon, title, description, on, setOn }) {
         }
         .description {
           color: gray;
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
           padding: 0rem 0.3rem;
         }
       `}</style>

@@ -41,7 +41,7 @@ export default function Container({ container, setPage }) {
           ${styles.transitionAll3s};
         }
         .flex {
-          font-size: 1.4rem;
+          ${styles.fontSize1p4rem};
           ${styles.flexAligncenter};
           ${styles.justifyBetween};
           padding: 0.6rem 0;
