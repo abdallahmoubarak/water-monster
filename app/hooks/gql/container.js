@@ -67,3 +67,27 @@ export const createContainerMutation = gql`
     }
   }
 `;
+
+export const updateContainerMutation = gql`
+  mutation ($container_id: ID!, $name: String!, $size: String!) {
+    updateContainers(
+      where: { id: $container_id }
+      update: { name: $name, size: $size }
+    ) {
+      containers {
+        id
+        name
+        size
+        sensor_state
+        private_mode
+        filling_mode
+        water_level
+        installation_request {
+          title
+          state
+          date
+        }
+      }
+    }
+  }
+`;

@@ -7,8 +7,10 @@ import { client } from "pages/_app";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
 import { MdPendingActions } from "react-icons/md";
+import { useUpdateContainer } from "@/hooks/useContainer";
 
-export default function SettingForm({ containerId }) {
+export default function SettingForm({ containerId, setPage }) {
+  const [container, setContainer] = useState();
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
@@ -16,19 +18,31 @@ export default function SettingForm({ containerId }) {
   const [privateOn, setPrivateOn] = useState(true);
   const [auto, setAuto] = useState(true);
   const [state, setState] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { mutate: updateContainer } = useUpdateContainer({
+    setPage,
+    setLoading,
+  });
 
   useEffect(() => {
-    const container = client
-      .getQueryData(["Containers"])
-      .filter((item) => item.id === containerId)[0];
-    setName(container.name);
-    setSize(container.size);
-    setAddress(container.address);
-    setDate(container.date);
-    setPrivateOn(container.private_mode);
-    setAuto(container.filling_mode);
-    setState(container.installation_request?.state);
+    const cnt = client
+      ?.getQueryData(["Containers"])
+      ?.filter((item) => item.id === containerId)[0];
+    setContainer(cnt);
+    setName(cnt.name);
+    setSize(cnt.size);
+    setAddress(cnt.address);
+    setDate(cnt.date);
+    setPrivateOn(cnt.private_mode);
+    setAuto(cnt.filling_mode);
+    setState(cnt.installation_request?.state);
   }, []);
+
+  const handleUpdate = () => {
+    updateContainer({ id: container.id, name, size });
+    setLoading(true);
+  };
 
   return (
     <>
@@ -70,8 +84,10 @@ export default function SettingForm({ containerId }) {
           <Input name={"Size"} value={size} setValue={setSize} />
           <Input name={"Address"} value={address} disabled={true} />
           <div className="btn-container">
-            {state !== "installation" && <Button text="Save" />}
-            <Button text="Cancel" dark={true} />
+            {state !== "installation" && (
+              <Button text="Save" onClick={handleUpdate} loading={loading} />
+            )}
+            <Button text="Delete" dark={true} />
           </div>
         </div>
       </div>

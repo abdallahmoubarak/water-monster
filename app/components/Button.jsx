@@ -14,7 +14,7 @@ export default function Button({
       <button onClick={onClick} className={dark ? "dark" : ""}>
         {loading ? (
           <div className="loading">
-            <Image src={Loading} height={50} width={50} />
+            <Image src={Loading} height={50} width={50} alt={""} />
           </div>
         ) : (
           text

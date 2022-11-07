@@ -13,7 +13,7 @@ export default function ContainerSetting({ setPage, containerId }) {
           <div className="setting-title">Container Setting</div>
         </div>
         <div className="setting-body">
-          <SettingForm containerId={containerId} />
+          <SettingForm containerId={containerId} setPage={setPage} />
         </div>
       </div>
       <style jsx>{`
