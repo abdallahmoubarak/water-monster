@@ -8,8 +8,10 @@ export default function Input({
   type,
   onBlur,
   onKeyPress,
+  onFocus,
   accept,
   disabled,
+  limit = 40,
 }) {
   const id = useId();
   return (
@@ -31,10 +33,13 @@ export default function Input({
               placeholder={name}
               value={value}
               type={type || "text"}
-              onChange={(e) => setValue(e.target.value)}
+              onChange={(e) =>
+                e.target.value.length < limit && setValue(e.target.value)
+              }
               onBlur={onBlur && onBlur}
               onKeyPress={onKeyPress && onKeyPress}
               accept={accept && accept}
+              onFocus={onFocus && onFocus}
             />
             <label className={styles.label} htmlFor={id}>
               {name}

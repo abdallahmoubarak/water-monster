@@ -10,6 +10,7 @@ import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
 import { useSignIn, useSignUp } from "@/hooks/useAuth";
 import { validSign } from "@/utils/signValidation";
+import InputsContainer from "@/components/InputsContainer";
 
 export default function SignPage() {
   const [signup, setSignUp] = useState(true);
@@ -49,7 +50,7 @@ export default function SignPage() {
       <Layout>
         <div className="sign-container">
           <h1>{signup ? "Sign Up" : "Sign In"}</h1>
-          <div className="inputs-container">
+          <InputsContainer>
             {signup && <Input name="Name" value={name} setValue={setName} />}
             <Input name="Email" value={email} setValue={setEmail} />
             <Input
@@ -68,7 +69,7 @@ export default function SignPage() {
               />
             )}
             <div className="invalid-msg">{msg}</div>
-          </div>
+          </InputsContainer>
 
           <div
             className="switch"
@@ -118,13 +119,6 @@ export default function SignPage() {
           margin: auto;
           padding: 1rem;
           color: ${styles.primaryColor};
-        }
-        .inputs-container {
-          ${styles.flexBothcenter};
-          ${styles.flexColumn};
-          gap: 0.8rem;
-          width: 100%;
-          padding: 1rem 0;
         }
         .switch {
           cursor: pointer;

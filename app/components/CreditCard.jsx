@@ -3,19 +3,26 @@ import { useEffect, useState } from "react";
 
 export default function CreditCard({
   name = "Your name",
-  number = "XXXXXXXXXXXXXXXX",
-  date = "XXXX",
+  number,
+  date,
+  ccv,
+  flip,
 }) {
-  const [n, setN] = useState(number);
-  const [d, setD] = useState(number);
+  const [n, setNumber] = useState(number);
+  const [d, setDate] = useState(date);
+  const [c, setCcv] = useState(ccv);
 
   useEffect(() => {
-    setN(number + Array(17 - number.length).join("X"));
+    setNumber(number + Array(17 - number.length).join("X"));
   }, [number]);
 
   useEffect(() => {
-    setD(date + Array(5 - date.length).join("X"));
+    setDate(date + Array(5 - date.length).join("X"));
   }, [date]);
+
+  useEffect(() => {
+    setCcv(ccv + Array(4 - ccv.length).join("X"));
+  }, [ccv]);
 
   return (
     <>
@@ -104,7 +111,7 @@ export default function CreditCard({
               <div className="strip-black"></div>
               <div className="ccv">
                 <label>ccv</label>
-                <div>123</div>
+                <div>{c}</div>
               </div>
               <div className="terms">
                 <p>
@@ -336,7 +343,6 @@ export default function CreditCard({
 
         .card-footer {
           position: relative;
-
           ${styles.flexAligncenter};
           ${styles.justifyBetween};
         }
@@ -363,6 +369,11 @@ export default function CreditCard({
         .card:hover .flip {
           -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+        }
+
+        .flip {
+          ${flip &&
+          "-webkit-transform: rotateY(180deg);transform: rotateY(180deg);"}
         }
 
         .back {

@@ -1,9 +1,9 @@
 import Button from "@/components/Button";
 import Field from "@/components/Field";
 import Input from "@/components/Input";
+import InputsContainer from "@/components/InputsContainer";
 import UploadImage from "@/components/UploadImage";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
-import { styles } from "@/utils/styles";
 import { client } from "pages/_app";
 import { useState } from "react";
 import Layout from "./sLayout";
@@ -32,7 +32,7 @@ export default function Profile({ currentUser, setPage }) {
           setImg64={setImg64}
         />
         <div className="sign-container">
-          <div className="inputs-container">
+          <InputsContainer>
             <Input
               name="Name"
               value={name}
@@ -60,20 +60,9 @@ export default function Profile({ currentUser, setPage }) {
                 client.setQueryData(["User"], null);
               }}
             />
-          </div>
+          </InputsContainer>
         </div>
       </Layout>
-      <style jsx>{`
-        .inputs-container {
-          ${styles.flexBothcenter};
-          ${styles.flexColumn};
-          gap: 0.8rem;
-          max-width: 26rem;
-          margin: auto;
-          width: 100%;
-          padding: 1rem 0;
-        }
-      `}</style>
     </>
   );
 }
