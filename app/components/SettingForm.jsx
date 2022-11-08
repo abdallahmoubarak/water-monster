@@ -8,6 +8,7 @@ import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
 import { MdPendingActions } from "react-icons/md";
 import { useDeleteContainer, useUpdateContainer } from "@/hooks/useContainer";
+import Box from "./Box";
 
 export default function SettingForm({ containerId, setPage }) {
   const [container, setContainer] = useState();
@@ -51,10 +52,9 @@ export default function SettingForm({ containerId, setPage }) {
 
   return (
     <>
-      <div className="input-container">
+      <div className="setting-container">
         {state === "done" && (
-          <div className="section">
-            <div className="section-title">Controll</div>
+          <Box title={"Controll"}>
             <Switch
               icon={<FaRegEyeSlash />}
               title={"Private Mode"}
@@ -74,17 +74,16 @@ export default function SettingForm({ containerId, setPage }) {
               description={auto ? "Automatically" : "Manual"}
             />
             {!auto && <Button text={"Request Fillment"} dark={true} />}
-          </div>
+          </Box>
         )}
 
         {/* Information section  */}
 
-        <div className="section">
+        <Box title={"Inforamation"}>
           <div className="state">
             <MdPendingActions />
             <div>Pending for {state}...</div>
           </div>
-          <div className="section-title">Inforamation</div>
           <Input name="Container name" value={name} setValue={setName} />
           <Input name={"Size"} value={size} setValue={setSize} />
           <Input name={"Address"} value={address} disabled={true} />
@@ -102,32 +101,18 @@ export default function SettingForm({ containerId, setPage }) {
               onClick={() => deleteContainer(container.id)}
             />
           </div>
-        </div>
+        </Box>
       </div>
 
       <style jsx>{`
-        .input-container {
+        .setting-container {
           ${styles.flexColumn};
           gap: 1rem;
-        }
-        .section {
-          ${styles.boxshadow};
-          ${styles.borderRadius1rem};
-          padding: 1rem;
-          ${styles.flexColumn};
-          gap: 1rem;
-          width: 100%;
-          max-width: 26rem;
-          margin: auto;
-        }
-        .section-title {
-          ${styles.fontSize1p4rem};
         }
         .state {
           ${styles.flexAligncenter};
           gap: 0.3rem;
           color: ${styles.secondaryColor};
-          padding-top: 1rem;
         }
         .btn-container {
           ${styles.flexAligncenter};
