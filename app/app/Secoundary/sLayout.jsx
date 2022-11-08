@@ -24,6 +24,7 @@ export default function Layout({ children, onClick, title }) {
         .page {
           position: relative;
           overflow: auto;
+          padding: 0.8rem;
         }
         .page-header {
           ${styles.flexAligncenter};

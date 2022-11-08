@@ -3,10 +3,11 @@ import { useState } from "react";
 import Containers from "./Main/containers";
 import Statistics from "./Main/statistics";
 import Contacts from "./Main/contacts";
-import Profile from "./profile";
+import Profile from "./Secoundary/profile";
 import Head from "next/head";
 import Chat from "./Secoundary/chat";
 import ContainerSetting from "./Secoundary/containerSetting";
+import Wallet from "./Secoundary/wallet";
 
 export default function Page({ currentUser }) {
   const [page, setPageName] = useState("Containers");
@@ -37,15 +38,20 @@ export default function Page({ currentUser }) {
               setChatUser={setChatUser}
             />
           )}
-          {page === "Profile" && <Profile currentUser={currentUser} />}
         </Layout>
+      )}
+      {page === "Profile" && (
+        <Profile setPage={setPage} currentUser={currentUser} />
       )}
       {page === "Chat" && <Chat setPage={setPage} user={chatUser} />}
       {page === "Setting" && (
         <ContainerSetting setPage={setPage} containerId={pageId} />
       )}
+      {page === "Wallet" && (
+        <Wallet setPage={setPage} currentUser={currentUser} />
+      )}
     </>
   );
 }
 
-const layoutPages = ["Statistics", "Containers", "Contacts", "Profile"];
+const layoutPages = ["Statistics", "Containers", "Contacts"];

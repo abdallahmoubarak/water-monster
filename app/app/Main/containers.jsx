@@ -38,7 +38,7 @@ export default function Containers({ setPage, currentUser }) {
 
       <style jsx>{`
         .page {
-          padding: 1rem;
+          padding: 0.8rem;
         }
         .containers {
           ${styles.flexBothcenter};

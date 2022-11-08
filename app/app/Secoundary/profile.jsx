@@ -6,8 +6,9 @@ import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
 import { styles } from "@/utils/styles";
 import { client } from "pages/_app";
 import { useState } from "react";
+import Layout from "./sLayout";
 
-export default function Profile({ currentUser }) {
+export default function Profile({ currentUser, setPage }) {
   const [name, setName] = useState(currentUser?.name || "");
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
@@ -23,7 +24,7 @@ export default function Profile({ currentUser }) {
 
   return (
     <>
-      <div className="page">
+      <Layout title={"Profile"} onClick={() => setPage("Containers")}>
         <UploadImage
           currentUser={currentUser}
           image={image}
@@ -45,7 +46,7 @@ export default function Profile({ currentUser }) {
               onBlur={() => updatePhone({ id: currentUser.id, phone })}
             />
             <Field title={"Wallet balance"} value={formatter.format(10000)} />
-            <Button text="Recharge" />
+            <Button text="Recharge" onClick={() => setPage("Wallet")} />
             <Field title={"Language"} value={"En"} />
             <Field title={"Email"} value={currentUser.email} />
 
@@ -61,11 +62,8 @@ export default function Profile({ currentUser }) {
             />
           </div>
         </div>
-      </div>
+      </Layout>
       <style jsx>{`
-        .page {
-          padding: 0.6rem;
-        }
         .inputs-container {
           ${styles.flexBothcenter};
           ${styles.flexColumn};

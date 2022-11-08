@@ -109,7 +109,6 @@ export default function SettingForm({ containerId, setPage }) {
         .input-container {
           ${styles.flexColumn};
           gap: 1rem;
-          padding: 0.6rem 0;
         }
         .section {
           ${styles.boxshadow};
