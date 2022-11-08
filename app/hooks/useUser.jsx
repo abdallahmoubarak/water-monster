@@ -8,7 +8,7 @@ import { client } from "pages/_app";
 const updateName = async ({ id, name }) => {
   const variables = { id, name };
   const res = await graphQLClient.request(updateNameMutation, variables);
-  return res?.updateName;
+  return res?.updateUsers?.users[0];
 };
 
 export const useUpdateName = () => {
@@ -26,7 +26,7 @@ export const useUpdateName = () => {
 const updatePhone = async ({ id, phone }) => {
   const variables = { id, phone };
   const res = await graphQLClient.request(updatePhoneMutation, variables);
-  return res?.updatePhone;
+  return res?.updateUsers?.users[0];
 };
 
 export const useUpdatePhone = () => {

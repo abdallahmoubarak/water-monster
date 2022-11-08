@@ -8,6 +8,7 @@ import Head from "next/head";
 import Chat from "./Secoundary/chat";
 import ContainerSetting from "./Secoundary/containerSetting";
 import Wallet from "./Secoundary/wallet";
+import MapPage from "./Main/mapPage";
 
 export default function Page({ currentUser }) {
   const [page, setPageName] = useState("Containers");
@@ -29,8 +30,16 @@ export default function Page({ currentUser }) {
         <Layout withImg={true} withNav={true} active={page} setActive={setPage}>
           {page === "Statistics" && <Statistics />}
           {page === "Containers" && (
-            <Containers setPage={setPage} currentUser={currentUser} />
+            <>
+              {currentUser?.type === "Provider" && (
+                <Containers setPage={setPage} currentUser={currentUser} />
+              )}
+              {currentUser?.type === "Client" && (
+                <MapPage setPage={setPage} currentUser={currentUser} />
+              )}
+            </>
           )}
+
           {page === "Contacts" && (
             <Contacts
               setPage={setPage}

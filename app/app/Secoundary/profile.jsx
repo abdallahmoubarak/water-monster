@@ -35,13 +35,19 @@ export default function Profile({ currentUser, setPage }) {
                 name="Name"
                 value={name}
                 setValue={setName}
-                onBlur={() => updateName({ id: currentUser.id, name })}
+                onBlur={() =>
+                  currentUser?.name !== name &&
+                  updateName({ id: currentUser.id, name })
+                }
               />
               <Input
                 name="Phone number"
                 value={phone}
                 setValue={setPhone}
-                onBlur={() => updatePhone({ id: currentUser.id, phone })}
+                onBlur={() =>
+                  currentUser?.phone !== phone &&
+                  updatePhone({ id: currentUser.id, phone })
+                }
               />
               <Field
                 title={"Wallet balance"}
