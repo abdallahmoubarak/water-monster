@@ -1,4 +1,4 @@
-export default function AnimatedLogo() {
+export default function AnimatedLogo({ speed = 6 }) {
   return (
     <>
       <svg
@@ -47,8 +47,8 @@ export default function AnimatedLogo() {
 
       <style jsx>{`
         .slider {
-          -webkit-animation: animate 6s ease-in-out infinite;
-          animation: animate 6s ease-in-out infinite;
+          -webkit-animation: animate ${speed}s ease-in-out infinite;
+          animation: animate ${speed}s ease-in-out infinite;
         }
         @-webkit-keyframes animate {
           0% {

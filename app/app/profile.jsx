@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import Field from "@/components/Field";
 import Input from "@/components/Input";
 import UploadImage from "@/components/UploadImage";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
@@ -8,13 +9,17 @@ import { useState } from "react";
 
 export default function Profile({ currentUser }) {
   const [name, setName] = useState(currentUser?.name || "");
-  const [email, setEmail] = useState(currentUser?.email || "");
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
   const [base64, setImg64] = useState("");
 
   const { mutate: updateName } = useUpdateName();
   const { mutate: updatePhone } = useUpdatePhone();
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "LBP",
+  });
 
   return (
     <>
@@ -39,13 +44,11 @@ export default function Profile({ currentUser }) {
               setValue={setPhone}
               onBlur={() => updatePhone({ id: currentUser.id, phone })}
             />
-            <Input
-              name="Email"
-              value={email}
-              setValue={setEmail}
-              disabled={true}
-            />
-            <Button text="Activate your wallet" />
+            <Field title={"Wallet balance"} value={formatter.format(10000)} />
+            <Button text="Recharge" />
+            <Field title={"Language"} value={"En"} />
+            <Field title={"Email"} value={currentUser.email} />
+
             <Button
               text="Logout"
               dark={true}
