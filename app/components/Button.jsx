@@ -6,7 +6,7 @@ export default function Button({
   text = "click",
   onClick,
   dark,
-  font,
+  font = "1.2rem",
   isLoading,
 }) {
   return (
@@ -26,10 +26,10 @@ export default function Button({
           color: white;
           padding: 0.6rem 2rem;
           border-radius: 30rem;
-          font-size: ${font || "1.2rem"};
+          font-size: ${font};
           border: none;
           cursor: pointer;
-          font-weight: 600;
+          font-weight: 500;
           width: fit-content;
           border: 1px solid ${styles.primaryColor};
           margin: auto;

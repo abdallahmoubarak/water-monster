@@ -1,12 +1,16 @@
 import ChatBox from "@/components/ChatBox";
-import Layout from "./sLayout";
 
 export default function Chat({ setPage, user }) {
   return (
     <>
-      <Layout>
+      <div className="page">
         <ChatBox setPage={setPage} user={user} />
-      </Layout>
+      </div>
+      <style jsx>{`
+        .page {
+          height: 100vh;
+        }
+      `}</style>
     </>
   );
 }
