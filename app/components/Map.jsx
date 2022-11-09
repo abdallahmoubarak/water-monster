@@ -8,7 +8,7 @@ import { BiTargetLock } from "react-icons/bi";
 import { FaRoute } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
 
-export default function Location() {
+export default function Map() {
   const currentLocation = [
     parseFloat(localStorage.getItem("lat")),
     parseFloat(localStorage.getItem("long")),
@@ -40,8 +40,9 @@ export default function Location() {
             setZoom(zoom);
           }}>
           <ZoomControl />
-          {containersLoc.map((container) => (
+          {containersLoc.map((container, i) => (
             <Marker
+              key={i}
               width={50}
               anchor={container.location}
               onClick={() => {
@@ -50,8 +51,8 @@ export default function Location() {
               }}
             />
           ))}
-          {containersLoc.map((container) => (
-            <Marker width={50} anchor={container.location}>
+          {containersLoc.map((container, i) => (
+            <Marker key={i} width={50} anchor={container.location}>
               <img
                 className="marker-img"
                 src="/svg/containermarker.svg"
@@ -60,8 +61,8 @@ export default function Location() {
               />
             </Marker>
           ))}
-          {containersLoc.map((container) => (
-            <Overlay anchor={container.location} offset={[80, 155]}>
+          {containersLoc.map((container, i) => (
+            <Overlay key={i} anchor={container.location} offset={[80, 155]}>
               <Pop
                 level={container.water_level}
                 dist={container.location}
