@@ -1,3 +1,4 @@
+"use client";
 import { getGeoLocation } from "@/utils/getGeoLocation";
 import { styles } from "@/utils/styles";
 import { useRouter } from "next/router";
@@ -8,7 +9,7 @@ import { BiTargetLock } from "react-icons/bi";
 import { FaRoute } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
 
-export default function Map() {
+export default function MyMap() {
   const currentLocation = [
     parseFloat(localStorage.getItem("lat")),
     parseFloat(localStorage.getItem("long")),
