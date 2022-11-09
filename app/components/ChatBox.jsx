@@ -1,10 +1,13 @@
+"use client";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Call from "./Call";
 import img from "@/public/icons/icon-256x256.png";
 import Message from "./Message";
+import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
+import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function ChatBox({ user, setPage }) {
   const inputRef = useRef(null);
@@ -13,9 +16,23 @@ export default function ChatBox({ user, setPage }) {
   const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
 
+  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const { mutate: createMessage } = useCreateMessage();
+  const { data: msgs } = useGetMessages({
+    me: currentUser?.id,
+    other: user.id,
+    enabled: Boolean(currentUser?.id) && Boolean(user.id),
+  });
+
+  useEffect(() => msgs && setMessages(msgs), [msgs]);
+
   const sendMessage = async () => {
     if (value) {
-      setMessages([...messages, { content: value, createdAt: new Date() }]);
+      createMessage({ content: value, to: user.id, from: currentUser?.id });
+      setMessages([
+        ...messages,
+        { content: value, createdAt: new Date(), id: currentUser?.id },
+      ]);
       // const message = { content: value, user };
       // const res = await fetch("/api/chat", {
       //   method: "POST",
@@ -57,7 +74,7 @@ export default function ChatBox({ user, setPage }) {
             </div>
             <div className="chat-body">
               {messages?.map((message, i) => (
-                <Message message={message} user={user} key={i} />
+                <Message message={message} currentUser={currentUser} key={i} />
               ))}
             </div>
             <div className="chat-input-container">

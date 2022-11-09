@@ -12,6 +12,8 @@ export const userDefs = gql`
     language: String
     location: Point
     palet_number: String
+    sent_messages: [Message!]! @relationship(type: "FROM", direction: OUT)
+    received_messages: [Message!]! @relationship(type: "TO", direction: IN)
     containers: [Container!]! @relationship(type: "OWNS", direction: OUT)
     requests: [Request!]! @relationship(type: "DONE_BY", direction: IN)
     wallet: Wallet @relationship(type: "OWNED_BY", direction: IN)

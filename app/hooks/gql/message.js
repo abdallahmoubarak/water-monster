@@ -15,3 +15,18 @@ export const createMessageMutation = gql`
     }
   }
 `;
+
+export const getMessagesQuery = gql`
+  query ($me: ID!, $other: ID!) {
+    users(where: { id: $me }) {
+      sent_messages(where: { to: { id: $other } }) {
+        content
+        createdAt
+      }
+      received_messages(where: { from: { id: $other } }) {
+        content
+        createdAt
+      }
+    }
+  }
+`;
