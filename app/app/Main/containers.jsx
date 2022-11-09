@@ -4,7 +4,7 @@ import { useState } from "react";
 import RequestInstallation from "@/components/RequestInstallation";
 import Container from "@/components/Container";
 import { useUserContainers } from "@/hooks/useContainer";
-import Loading from "@/components/Loading";
+import ContainerLoader from "@/components/ContainerLoader";
 
 export default function Containers({ setPage, currentUser }) {
   const [requestOn, setRequestOn] = useState(false);
@@ -13,7 +13,7 @@ export default function Containers({ setPage, currentUser }) {
   return (
     <>
       <div className="page">
-        {isLoading && <Loading />}
+        {isLoading && <ContainerLoader />}
         <div className="containers">
           {containers?.map((container, i) => (
             <Container key={i} container={container} setPage={setPage} />
