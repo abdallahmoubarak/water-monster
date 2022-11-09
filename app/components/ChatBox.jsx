@@ -4,6 +4,7 @@ import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
 import { useRef, useState } from "react";
 import Call from "./Call";
 import img from "@/public/icons/icon-256x256.png";
+import Message from "./Message";
 
 export default function ChatBox({ user, setPage }) {
   const inputRef = useRef(null);
@@ -14,7 +15,7 @@ export default function ChatBox({ user, setPage }) {
 
   const sendMessage = async () => {
     if (value) {
-      setMessages([...messages, { content: value }]);
+      setMessages([...messages, { content: value, createdAt: new Date() }]);
       // const message = { content: value, user };
       // const res = await fetch("/api/chat", {
       //   method: "POST",
@@ -56,7 +57,7 @@ export default function ChatBox({ user, setPage }) {
             </div>
             <div className="chat-body">
               {messages?.map((message, i) => (
-                <div key={i}>{message.content}</div>
+                <Message message={message} user={user} key={i} />
               ))}
             </div>
             <div className="chat-input-container">
@@ -127,7 +128,7 @@ export default function ChatBox({ user, setPage }) {
           overflow-y: auto;
           flex: 1 1 100%;
           padding: 0.6rem;
-          gap: 0.5rem;
+          gap: 0.2rem;
           ${styles.flexColumn};
         }
 
