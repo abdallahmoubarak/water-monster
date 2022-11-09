@@ -43,7 +43,7 @@ export default function SettingForm({ containerId, setPage }) {
     setPrivateOn(cnt.private_mode);
     setAuto(cnt.filling_mode);
     setState(cnt.installation_request?.state);
-  }, []);
+  }, [containerId]);
 
   const handleUpdate = () => {
     updateContainer({ id: container.id, name, size });
