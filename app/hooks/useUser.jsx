@@ -1,6 +1,10 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { updateNameMutation, updatePhoneMutation } from "./gql/user";
+import {
+  getAdminQuery,
+  updateNameMutation,
+  updatePhoneMutation,
+} from "./gql/user";
 import { client } from "pages/_app";
 
 /*********************** use update name hook ***********************/
@@ -35,6 +39,21 @@ export const useUpdatePhone = () => {
       localStorage.setItem("User", res?.user);
       client.setQueryData(["User"], res?.user);
     },
+    onError: (err) => console.log(err),
+  });
+};
+
+/*********************** use get Admin hook ***********************/
+
+const getAdmin = async () => {
+  const res = await graphQLClient.request(getAdminQuery);
+  return res?.users;
+};
+
+export const useGetAdmin = () => {
+  return useQuery({
+    queryFn: () => getAdmin(),
+    queryKey: ["Admin"],
     onError: (err) => console.log(err),
   });
 };

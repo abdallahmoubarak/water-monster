@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "@/styles/Contact.module.css";
+import img from "@/public/icons/icon-256x256.png";
 
 export default function ContactCard({ user, setChatUser, setPage }) {
   return (
@@ -11,7 +12,15 @@ export default function ContactCard({ user, setChatUser, setPage }) {
           document.body.clientWidth < 736 && setPage("Chat");
         }}>
         <div className={styles.contactImg}>
-          <Image src={user.img} alt="" width={48} height={48} />
+          <Image
+            src={img}
+            loader={() => {
+              user.profile_url || img;
+            }}
+            alt=""
+            width={48}
+            height={48}
+          />
         </div>
         <div className={styles.contactBody}>
           <div className={styles.middle}>

@@ -182,4 +182,4 @@ export default function SignPage() {
     </>
   );
 }
-const options = ["Client", "Service Provider"];
+const options = ["Client", "Provider"];

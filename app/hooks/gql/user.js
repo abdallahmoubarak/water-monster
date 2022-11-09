@@ -44,3 +44,13 @@ export const updateProfileUrlMutation = gql`
     }
   }
 `;
+
+export const getAdminQuery = gql`
+  query {
+    users(where: { type: "Admin" }) {
+      id
+      name
+      profile_url
+    }
+  }
+`;
