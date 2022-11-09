@@ -31,10 +31,10 @@ export default function Page({ currentUser }) {
           {page === "Statistics" && <Statistics />}
           {page === "Containers" && (
             <>
-              {currentUser?.type === "Provider" && (
+              {currentUser?.type === "Client" && (
                 <Containers setPage={setPage} currentUser={currentUser} />
               )}
-              {currentUser?.type === "Client" && (
+              {currentUser?.type === "Provider" && (
                 <MapPage setPage={setPage} currentUser={currentUser} />
               )}
             </>

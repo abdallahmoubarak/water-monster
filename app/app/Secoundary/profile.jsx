@@ -53,7 +53,10 @@ export default function Profile({ currentUser, setPage }) {
                 title={"Wallet balance"}
                 value={formatter.format(13000000)}
               />
-              <Button text="Recharge" onClick={() => setPage("Wallet")} />
+              <Button
+                text={currentUser.type === "Client" ? "Recharge" : "Withdraw"}
+                onClick={() => setPage("Wallet")}
+              />
               <Field title={"Language"} value={"En"} />
               <Field title={"Email"} value={currentUser.email} />
 
