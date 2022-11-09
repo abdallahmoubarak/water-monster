@@ -1,23 +1,28 @@
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Call from "./Call";
+import img from "@/public/icons/icon-256x256.png";
 
 export default function ChatBox({ user, setPage }) {
+  const inputRef = useRef(null);
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
 
   const sendMessage = async () => {
     if (value) {
-      const message = { content: value, user };
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(message),
-      });
-      res.ok && setValue("");
+      setMessages([...messages, { content: value }]);
+      // const message = { content: value, user };
+      // const res = await fetch("/api/chat", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(message),
+      // });
+      // res.ok && setValue("");
+      setValue("");
     }
     inputRef?.current?.focus();
   };
@@ -25,7 +30,7 @@ export default function ChatBox({ user, setPage }) {
   return (
     <>
       <div className="chat-container">
-        <Call call={call} setCall={setCall} />
+        <Call call={call} setCall={setCall} user={user} />
         {!call && (
           <div className="chat-page">
             <div className="chat-head">
@@ -35,7 +40,12 @@ export default function ChatBox({ user, setPage }) {
                 </div>
               )}
               <div className="profile-img">
-                <Image src={user?.img} alt="" width={48} height={48} />
+                <Image
+                  src={user?.profile_url || img}
+                  alt=""
+                  width={48}
+                  height={48}
+                />
               </div>
               <div className="user-info">
                 <div className="user-name">{user?.name}</div>
@@ -44,12 +54,20 @@ export default function ChatBox({ user, setPage }) {
                 </div>
               </div>
             </div>
-            <div className="chat-body">{messages}</div>
+            <div className="chat-body">
+              {messages?.map((message, i) => (
+                <div key={i}>{message.content}</div>
+              ))}
+            </div>
             <div className="chat-input-container">
               <input
+                ref={inputRef}
                 autoComplete="none"
                 className="chat-input"
                 placeholder="Message"
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
               <div
                 className="chat-icon"

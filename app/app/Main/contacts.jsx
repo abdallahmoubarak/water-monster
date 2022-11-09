@@ -5,13 +5,14 @@ import ChatBox from "@/components/ChatBox";
 import { useGetAdmin } from "@/hooks/useUser";
 
 export default function Contacts({ setPage, chatUser, setChatUser }) {
-  const [contacts, setContacts] = useState();
+  const [contacts, setContacts] = useState([]);
 
   const { data: admin } = useGetAdmin({ enabled: true });
 
   useEffect(() => {
-    setContacts(admin);
-  }, []);
+    admin && setContacts(admin);
+    admin && setChatUser(admin[0]);
+  }, [admin]);
 
   return (
     <>
@@ -48,6 +49,7 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
           overflow: auto;
           padding: 1rem;
           height: 100%;
+          min-width: 18rem;
         }
         .chat-wrapper {
           padding: 1rem 0rem;
