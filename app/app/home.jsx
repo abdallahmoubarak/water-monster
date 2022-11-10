@@ -3,13 +3,22 @@ import { useState } from "react";
 import Containers from "./Main/containers";
 import Statistics from "./Main/statistics";
 import Contacts from "./Main/contacts";
-import Profile from "./profile";
+import Profile from "./Secoundary/profile";
 import Head from "next/head";
-import Chat from "./chat";
+import Chat from "./Secoundary/chat";
+import ContainerSetting from "./Secoundary/containerSetting";
+import Wallet from "./Secoundary/wallet";
+import MapPage from "./Main/mapPage";
 
-export default function Page() {
-  const [page, setPage] = useState("Containers");
+export default function Page({ currentUser }) {
+  const [page, setPageName] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
+  const [pageId, setPageId] = useState("");
+
+  const setPage = (name, id) => {
+    setPageName(name);
+    setPageId(id);
+  };
 
   return (
     <>
@@ -20,7 +29,17 @@ export default function Page() {
       {layoutPages.includes(page) && (
         <Layout withImg={true} withNav={true} active={page} setActive={setPage}>
           {page === "Statistics" && <Statistics />}
-          {page === "Containers" && <Containers />}
+          {page === "Containers" && (
+            <>
+              {currentUser?.type === "Client" && (
+                <Containers setPage={setPage} currentUser={currentUser} />
+              )}
+              {currentUser?.type === "Provider" && (
+                <MapPage setPage={setPage} currentUser={currentUser} />
+              )}
+            </>
+          )}
+
           {page === "Contacts" && (
             <Contacts
               setPage={setPage}
@@ -28,12 +47,20 @@ export default function Page() {
               setChatUser={setChatUser}
             />
           )}
-          {page === "Profile" && <Profile />}
         </Layout>
       )}
+      {page === "Profile" && (
+        <Profile setPage={setPage} currentUser={currentUser} />
+      )}
       {page === "Chat" && <Chat setPage={setPage} user={chatUser} />}
+      {page === "Setting" && (
+        <ContainerSetting setPage={setPage} containerId={pageId} />
+      )}
+      {page === "Wallet" && (
+        <Wallet setPage={setPage} currentUser={currentUser} />
+      )}
     </>
   );
 }
 
-const layoutPages = ["Statistics", "Containers", "Contacts", "Profile"];
+const layoutPages = ["Statistics", "Containers", "Contacts"];

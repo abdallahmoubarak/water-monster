@@ -3,33 +3,54 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "./layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
 import Image from "next/image";
+import { useSignIn, useSignUp } from "@/hooks/useAuth";
+import { validSign } from "@/utils/signValidation";
+import InputsContainer from "@/components/InputsContainer";
 
 export default function SignPage() {
   const [signup, setSignUp] = useState(true);
-  const [selected, setSelected] = useState("Personal");
+  const [selected, setSelected] = useState("Client");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
   const [msg, setMsg] = useState("");
   const [profilePic, setProfilePic] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setName(localStorage.getItem("name"));
-    setEmail(localStorage.getItem("email"));
-    setProfilePic(localStorage.getItem("profilePic"));
-  }, []);
+  const { mutate: signUp } = useSignUp({ setMsg, setIsLoading });
+  const { mutate: signIn } = useSignIn({ setMsg, setIsLoading });
+
+  // useEffect(() => {
+  //   setName(localStorage.getItem("name"));
+  //   setEmail(localStorage.getItem("email"));
+  //   setProfilePic(localStorage.getItem("profilePic"));
+  // }, []);
+
+  const handleSignClick = (signType) => {
+    if (!isLoading) {
+      setIsLoading(true);
+      setMsg("");
+      let type = selected;
+      if (!validSign(signType, email, password, name, type))
+        return setMsg("Inputs are not valid");
+
+      signType === "signin"
+        ? signIn({ email, password })
+        : signUp({ type, name, email, password });
+    }
+  };
 
   return (
     <>
       <Layout>
         <div className="sign-container">
           <h1>{signup ? "Sign Up" : "Sign In"}</h1>
-          <div className="inputs-container">
+          <InputsContainer>
             {signup && <Input name="Name" value={name} setValue={setName} />}
             <Input name="Email" value={email} setValue={setEmail} />
             <Input
@@ -48,7 +69,7 @@ export default function SignPage() {
               />
             )}
             <div className="invalid-msg">{msg}</div>
-          </div>
+          </InputsContainer>
 
           <div
             className="switch"
@@ -61,6 +82,7 @@ export default function SignPage() {
 
           <Button
             text={signup ? "Sign Up" : "Sign In"}
+            isLoading={isLoading}
             onClick={() => handleSignClick(signup ? "signup" : "signin")}
           />
         </div>
@@ -74,13 +96,13 @@ export default function SignPage() {
             <div>
               <Image src={googleLogo} alt="G" height={"30"} />
             </div>
-            <div>Sign In with google</div>
+            <div>Continue with google</div>
           </button>
           <button className="google-btn">
             <div>
               <Image src={metaLogo} alt="M" height={"30"} />
             </div>
-            <div>Sign In with Metamask</div>
+            <div>Continue with Metamask</div>
           </button>
         </div>
       </Layout>
@@ -98,20 +120,13 @@ export default function SignPage() {
           padding: 1rem;
           color: ${styles.primaryColor};
         }
-        .inputs-container {
-          ${styles.flexBothcenter};
-          ${styles.flexColumn};
-          gap: 0.8rem;
-          width: 100%;
-          padding: 1rem 0;
-        }
         .switch {
           cursor: pointer;
           text-decoration: underline;
           padding: 0.2rem;
         }
         .invalid-msg {
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
           text-align: left;
           min-height: 1rem;
           width: 100%;
@@ -154,11 +169,7 @@ export default function SignPage() {
         @media only screen and (min-width: 600px) {
           .sign-container {
             margin-top: 2rem;
-            border-radius: 1rem;
-            -webkit-border-radius: 1rem;
-            -moz-border-radius: 1rem;
-            -ms-border-radius: 1rem;
-            -o-border-radius: 1rem;
+            ${styles.borderRadius1rem};
             ${styles.boxshadow};
             ${styles.transitionAll3s};
           }
@@ -171,4 +182,4 @@ export default function SignPage() {
     </>
   );
 }
-const options = ["Client", "Service Provider"];
+const options = ["Client", "Provider"];

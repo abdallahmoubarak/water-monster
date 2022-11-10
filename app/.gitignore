@@ -5,10 +5,10 @@
 /node_modules
 /.pnp
 .pnp.js
-pages/test.jsx
 
 # testing
 /coverage
+pages/test.jsx
 
 # next.js
 /.next/

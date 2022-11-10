@@ -1,23 +1,50 @@
+"use client";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Call from "./Call";
+import img from "@/public/icons/icon-256x256.png";
+import Message from "./Message";
+import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
+import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function ChatBox({ user, setPage }) {
+  const inputRef = useRef(null);
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
+
+  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const { mutate: createMessage } = useCreateMessage();
+  const { data: msgs } = useGetMessages({
+    me: currentUser?.id,
+    other: user.id,
+    enabled: Boolean(currentUser?.id) && Boolean(user.id),
+  });
+
+  useEffect(() => msgs && setMessages(msgs), [msgs]);
 
   const sendMessage = async () => {
     if (value) {
-      const message = { content: value, user };
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(message),
-      });
-      res.ok && setValue("");
+      createMessage({ content: value, to: user.id, from: currentUser?.id });
+      setMessages([
+        ...messages,
+        {
+          content: value,
+          createdAt: new Date(),
+          from: { id: currentUser?.id },
+        },
+      ]);
+      // const message = { content: value, user };
+      // const res = await fetch("/api/chat", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(message),
+      // });
+      // res.ok && setValue("");
+      setValue("");
     }
     inputRef?.current?.focus();
   };
@@ -25,7 +52,7 @@ export default function ChatBox({ user, setPage }) {
   return (
     <>
       <div className="chat-container">
-        <Call call={call} setCall={setCall} />
+        <Call call={call} setCall={setCall} user={user} />
         {!call && (
           <div className="chat-page">
             <div className="chat-head">
@@ -35,21 +62,34 @@ export default function ChatBox({ user, setPage }) {
                 </div>
               )}
               <div className="profile-img">
-                <Image src={user.img} alt="" width={48} height={48} />
+                <Image
+                  src={user?.profile_url || img}
+                  alt=""
+                  width={48}
+                  height={48}
+                />
               </div>
               <div className="user-info">
-                <div className="user-name">{user.name}</div>
+                <div className="user-name">{user?.name}</div>
                 <div className="head-icon" onClick={() => setCall(true)}>
                   <FaPhone />
                 </div>
               </div>
             </div>
-            <div className="chat-body">{messages}</div>
+            <div className="chat-body">
+              {messages?.map((message, i) => (
+                <Message message={message} currentUser={currentUser} key={i} />
+              ))}
+            </div>
             <div className="chat-input-container">
               <input
+                ref={inputRef}
                 autoComplete="none"
                 className="chat-input"
                 placeholder="Message"
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
               <div
                 className="chat-icon"
@@ -67,13 +107,11 @@ export default function ChatBox({ user, setPage }) {
           height: 100%;
           box-shadow: 0px 0px 10px lightgray;
           ${styles.borderRadius1rem};
-          padding: 0.6rem;
           position: relative;
           overflow: hidden;
         }
         .chat-page {
           ${styles.flexColumn};
-          gap: 0.6rem;
           height: 100%;
         }
 
@@ -81,7 +119,10 @@ export default function ChatBox({ user, setPage }) {
           ${styles.flexAligncenter};
           ${styles.userSelect};
           width: 100%;
-          gap: 1rem;
+          gap: 0.6rem;
+          background: ${styles.primaryColor};
+          color: white;
+          padding: 0.6rem;
         }
         .profile-img {
           ${styles.flexBothcenter};
@@ -89,6 +130,7 @@ export default function ChatBox({ user, setPage }) {
           min-width: 3rem;
           height: 3rem;
           ${styles.borderRadius50percent};
+          border: 3px solid white;
         }
 
         .user-info {
@@ -98,16 +140,17 @@ export default function ChatBox({ user, setPage }) {
           width: 100%;
         }
         .user-name {
-          font-size: 1.2rem;
+          ${styles.fontSize1p2rem};
         }
 
         .chat-body {
           width: 100%;
           overflow-y: auto;
           flex: 1 1 100%;
-          padding: 0.4rem 0.6rem;
-          gap: 0.5rem;
+          padding: 0.6rem;
+          gap: 0.2rem;
           ${styles.flexColumn};
+          ${styles.offWhiteBG}
         }
 
         .chat-input-container {
@@ -115,11 +158,13 @@ export default function ChatBox({ user, setPage }) {
           position: relative;
           width: 100%;
           gap: 0.3rem;
+          padding: 0.6rem;
+          ${styles.offWhiteBG}
         }
 
         .chat-input {
           width: 100%;
-          font-size: 1.2rem;
+          ${styles.fontSize1p2rem};
           padding: 0.6rem 1rem;
           border: 1px solid gray;
           flex: 1 1 100%;
@@ -138,39 +183,20 @@ export default function ChatBox({ user, setPage }) {
         }
         .head-icon {
           font-size: 1.3rem;
-          color: ${styles.primaryColor};
+          color: white;
           padding: 0.6rem;
           cursor: pointer;
           ${styles.flexBothcenter};
         }
 
-        .msg-container {
-          background: #e4f0f5;
-          padding: 0.6rem;
-          max-width: 80%;
-          min-width: 60%;
-          width: fit-content;
-          padding-bottom: 0.8rem;
-          border-radius: 0.4rem;
-          overflow-wrap: break-word;
-          -webkit-hyphens: manual;
-          -ms-hyphens: manual;
-          hyphens: manual;
-          position: relative;
-          border: 1px solid #eee;
-        }
-
-        .me {
-          background: #f5ffe4;
-          align-self: flex-end;
-        }
-
-        .msg-time {
-          font-size: 0.8rem;
-          color: gray;
-          position: absolute;
-          bottom: 0rem;
-          right: 0.3rem;
+        @media only screen and (max-width: 46rem) {
+          .chat-container {
+            border-radius: 0rem;
+            -webkit-border-radius: 0rem;
+            -moz-border-radius: 0rem;
+            -ms-border-radius: 0rem;
+            -o-border-radius: 0rem;
+          }
         }
       `}</style>
     </>

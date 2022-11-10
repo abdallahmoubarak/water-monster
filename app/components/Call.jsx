@@ -1,7 +1,7 @@
 import { styles } from "@/utils/styles";
 import { FaPhone, FaUser } from "react-icons/fa";
 
-export default function Call({ call, setCall }) {
+export default function Call({ call, setCall, user }) {
   return (
     <>
       <div className={`callpage ${call && "inner"}`}>
@@ -10,9 +10,9 @@ export default function Call({ call, setCall }) {
             <FaUser />
           </div>
 
-          <div className="target-user-name">Abdallah Mobarak</div>
+          <div className="target-user-name">{user?.name}</div>
 
-          <div>Ringing...</div>
+          <div>{!user?.onCall ? "Ringing..." : "00:00"}</div>
         </div>
         <div className="call-icon" onClick={() => setCall(false)}>
           <FaPhone />

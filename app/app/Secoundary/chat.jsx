@@ -8,7 +8,6 @@ export default function Chat({ setPage, user }) {
       </div>
       <style jsx>{`
         .page {
-          padding: 0.6rem;
           height: 100vh;
         }
       `}</style>

@@ -1,19 +1,59 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
-import { useQuery } from "@tanstack/react-query";
-import { gql } from "graphql-request";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { meQuery, signInMutation, signUpMutation } from "./gql/auth";
+import { client } from "pages/_app";
+
+/*********************** useSignUp hook ***********************/
+
+const signUp = async ({ type, name, email, password }) => {
+  const variables = { name, email, password, type };
+  const res = await graphQLClient.request(signUpMutation, variables);
+  return res?.signUp;
+};
+
+export const useSignUp = ({ setMsg, setIsLoading }) => {
+  return useMutation(signUp, {
+    onSuccess: (res) => {
+      localStorage.setItem("JWT", res?.token);
+      localStorage.setItem("User", res?.user);
+      client.setQueryData(["JWT"], res?.token);
+      client.setQueryData(["User"], res?.user);
+    },
+    onError: (err) => {
+      setMsg(err.message);
+      setIsLoading(false);
+    },
+  });
+};
+
+/************************ useSignIn hook ************************/
+
+const signIn = async ({ email, password }) => {
+  const variables = { email, password };
+  const res = await graphQLClient.request(signInMutation, variables);
+  return res?.signIn;
+};
+
+export const useSignIn = ({ setMsg, setIsLoading }) => {
+  return useMutation(signIn, {
+    onSuccess: (res) => {
+      localStorage.setItem("JWT", res?.token);
+      localStorage.setItem("User", res?.user);
+      client.setQueryData(["JWT"], res?.token);
+      client.setQueryData(["User"], res?.user);
+    },
+    onError: (err) => {
+      setMsg(err.message);
+      setIsLoading(false);
+    },
+  });
+};
+
+/****************** get current user using jwt *******************/
 
 const getUser = async () => {
-  const UserQuery = gql`
-    query {
-      users {
-        id
-        name
-      }
-    }
-  `;
-  const a = await graphQLClient.request(UserQuery);
-  console.log(a.users[0]);
-  return a.users[0];
+  const res = await graphQLClient.request(meQuery);
+  return res?.me;
 };
 
 export const useCurrentUser = ({ enabled }) => {

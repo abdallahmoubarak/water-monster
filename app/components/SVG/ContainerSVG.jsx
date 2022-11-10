@@ -1,4 +1,4 @@
-export default function Container({ level = 1 }) {
+export default function ContainerSVG({ level = 1 }) {
   return (
     <>
       <svg
@@ -20,7 +20,7 @@ export default function Container({ level = 1 }) {
             <svg
               width="100%"
               height="100%"
-              y={200 - level}
+              y={200 - level * 3.1}
               viewBox="0 0 326 80">
               <path
                 className="wave1"
@@ -39,7 +39,7 @@ export default function Container({ level = 1 }) {
               x="710"
               y="409"
               width="1019"
-              height={level}
+              height={level * 3.1}
               transform="rotate(-180 710 409)"
               fill="#80D9FF"
             />

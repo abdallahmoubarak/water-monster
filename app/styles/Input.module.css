@@ -74,18 +74,22 @@
   padding-left: 1rem;
   padding-top: 1.6rem;
   border: none;
+  border: 1px solid lightgray;
   border-radius: 0.4rem;
   -webkit-border-radius: 0.4rem;
   -moz-border-radius: 0.4rem;
   -ms-border-radius: 0.4rem;
   -o-border-radius: 0.4rem;
   outline: none;
+  min-height: 3.6rem !important;
   background: transparent;
 }
 .labelDisabled {
+  position: absolute;
   font-size: 0.8rem;
   color: var(--primary-color);
   top: 0.2rem;
+  padding: 0.2rem 1.1rem;
   transition: all 0.1s ease-in;
   -webkit-transition: all 0.1s ease-in;
   -moz-transition: all 0.1s ease-in;

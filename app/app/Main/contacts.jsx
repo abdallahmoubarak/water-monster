@@ -1,11 +1,18 @@
 import ContactCard from "@/components/ContactCard";
-import { useState } from "react";
-import img from "@/public/icons/icon-256x256.png";
+import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
+import { useGetAdmin } from "@/hooks/useUser";
 
 export default function Contacts({ setPage, chatUser, setChatUser }) {
-  const [contacts, setContacts] = useState(contx);
+  const [contacts, setContacts] = useState([]);
+
+  const { data: admin } = useGetAdmin({ enabled: true });
+
+  useEffect(() => {
+    admin && setContacts(admin);
+    admin && setChatUser(admin[0]);
+  }, [admin]);
 
   return (
     <>
@@ -42,6 +49,7 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
           overflow: auto;
           padding: 1rem;
           height: 100%;
+          min-width: 18rem;
         }
         .chat-wrapper {
           padding: 1rem 0rem;
@@ -60,19 +68,3 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
     </>
   );
 }
-
-const contx = [
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Water Monster", img: img },
-  { name: "Ali", img: img },
-  { name: "Water Monster ss", img: img },
-  { name: "Water Monster Last", img: img },
-];

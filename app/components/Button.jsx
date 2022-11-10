@@ -1,26 +1,40 @@
 import { styles } from "@/utils/styles";
+import Loading from "@/public/svg/Loading.svg";
+import Image from "next/image";
 
-export default function Button({ text = "click", onClick, dark, font }) {
+export default function Button({
+  text = "click",
+  onClick,
+  dark,
+  font = "1.2rem",
+  isLoading,
+}) {
   return (
     <>
       <button onClick={onClick} className={dark ? "dark" : ""}>
-        {text}
+        {isLoading ? (
+          <div className="loading">
+            <Image src={Loading} height={50} width={50} alt={""} />
+          </div>
+        ) : (
+          text
+        )}
       </button>
       <style jsx="true">{`
         button {
           background: ${styles.primaryColor};
           color: white;
-          padding: 0.6rem 3rem;
+          padding: 0.6rem 2rem;
           border-radius: 30rem;
-          font-size: ${font || "1.2rem"};
+          font-size: ${font};
           border: none;
           cursor: pointer;
-          font-weight: 600;
+          font-weight: 500;
           width: fit-content;
           border: 1px solid ${styles.primaryColor};
           margin: auto;
           display: block;
-          min-width: 12rem;
+          min-width: 8rem;
         }
         button:hover {
           color: white;
@@ -34,6 +48,12 @@ export default function Button({ text = "click", onClick, dark, font }) {
         .dark:hover {
           color: white;
           background: ${styles.secondaryColor};
+        }
+        .loading {
+          width: 1rem;
+          height: 1.6rem;
+          margin: auto;
+          ${styles.flexBothcenter};
         }
       `}</style>
     </>

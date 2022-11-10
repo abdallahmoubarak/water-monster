@@ -2,6 +2,10 @@ export const styles = {
   primaryColor: "#43b9c3",
   secondaryColor: "#C34D43",
   grey: "#8f8f8f",
+  offWhiteBG: "background: #fefcf7;",
+  fontSizep8rem: "font-size:0.8rem;",
+  fontSize1p2rem: "font-size:1.2rem;",
+  fontSize1p4rem: "font-size:1.4rem;",
   transitionAll3s:
     "transition: all 0.3s ease-in-out; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out;",
   boxshadow:
@@ -22,6 +26,8 @@ export const styles = {
     "-webkit-box-pack: justify;-ms-flex-pack: justify;justify-content: space-between;",
   borderRadius1rem:
     "border-radius: 1rem; -webkit-border-radius: 1rem; -moz-border-radius: 1rem; -ms-border-radius: 1rem;-o-border-radius: 1rem;",
+  borderRadiusp3rem:
+    "border-radius: .3rem; -webkit-border-radius: .3rem; -moz-border-radius: .3rem; -ms-border-radius: .3rem;-o-border-radius: .3rem;",
   borderRadius50percent:
     "border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%;",
 };
