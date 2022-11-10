@@ -108,7 +108,6 @@ export default function ChatBox({ user, setPage }) {
         }
         .chat-page {
           ${styles.flexColumn};
-          gap: 0.6rem;
           height: 100%;
         }
 
@@ -147,6 +146,7 @@ export default function ChatBox({ user, setPage }) {
           padding: 0.6rem;
           gap: 0.2rem;
           ${styles.flexColumn};
+          ${styles.offWhiteBG}
         }
 
         .chat-input-container {
@@ -155,6 +155,7 @@ export default function ChatBox({ user, setPage }) {
           width: 100%;
           gap: 0.3rem;
           padding: 0.6rem;
+          ${styles.offWhiteBG}
         }
 
         .chat-input {
@@ -184,34 +185,6 @@ export default function ChatBox({ user, setPage }) {
           ${styles.flexBothcenter};
         }
 
-        .msg-container {
-          background: #e4f0f5;
-          padding: 0.6rem;
-          max-width: 80%;
-          min-width: 60%;
-          width: fit-content;
-          padding-bottom: 0.8rem;
-          border-radius: 0.4rem;
-          overflow-wrap: break-word;
-          -webkit-hyphens: manual;
-          -ms-hyphens: manual;
-          hyphens: manual;
-          position: relative;
-          border: 1px solid #eee;
-        }
-
-        .me {
-          background: #f5ffe4;
-          align-self: flex-end;
-        }
-
-        .msg-time {
-          ${styles.fontSizep8rem};
-          color: gray;
-          position: absolute;
-          bottom: 0rem;
-          right: 0.3rem;
-        }
         @media only screen and (max-width: 46rem) {
           .chat-container {
             border-radius: 0rem;

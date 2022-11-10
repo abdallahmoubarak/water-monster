@@ -17,23 +17,33 @@ export default function Message({ message }) {
       <style jsx>{`
         .bubble {
           ${styles.borderRadius1rem};
+          ${styles.borderRadius1rem};
           padding: 0.4rem 1rem;
           max-width: 60%;
-          ${styles.borderRadius1rem};
+          overflow-wrap: break-word;
+          -webkit-hyphens: manual;
+          -ms-hyphens: manual;
+          hyphens: manual;
+          position: relative;
+          border: 1px solid lightgray;
         }
         .content {
           padding-bottom: 0.2rem;
         }
         .other {
           align-self: flex-start;
-          background-color: #f6f8fa;
+          background: #e4f0f5;
+          background: white;
           border-top-left-radius: 0.1em;
         }
         .me {
           align-self: flex-end;
+          background: #e4f0f5;
           background: #f6f8fa;
+          background: #f5ffe4;
           border-top-right-radius: 0.1em;
         }
+
         .time {
           font-size: 0.7rem;
           color: ${styles.primaryColor};

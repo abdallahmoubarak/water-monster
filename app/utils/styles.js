@@ -2,6 +2,7 @@ export const styles = {
   primaryColor: "#43b9c3",
   secondaryColor: "#C34D43",
   grey: "#8f8f8f",
+  offWhiteBG: "background: #fefcf7;",
   fontSizep8rem: "font-size:0.8rem;",
   fontSize1p2rem: "font-size:1.2rem;",
   fontSize1p4rem: "font-size:1.4rem;",
