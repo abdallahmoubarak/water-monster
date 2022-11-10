@@ -9,7 +9,7 @@ export default function Message({ message }) {
     <>
       <div
         className={`bubble first ${
-          message?.id === currentUser?.id ? "me" : "other"
+          message?.from?.id === currentUser?.id ? "me" : "other"
         }`}>
         <div className="content">{message?.content}</div>
         <div className="time">{timeChanger(message?.createdAt)}</div>

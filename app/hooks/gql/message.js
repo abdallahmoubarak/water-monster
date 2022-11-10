@@ -18,14 +18,19 @@ export const createMessageMutation = gql`
 
 export const getMessagesQuery = gql`
   query ($me: ID!, $other: ID!) {
-    users(where: { id: $me }) {
-      sent_messages(where: { to: { id: $other } }) {
-        content
-        createdAt
+    messages(
+      where: {
+        OR: [
+          { from: { id: $me }, to: { id: $other } }
+          { to: { id: $me }, from: { id: $other } }
+        ]
       }
-      received_messages(where: { from: { id: $other } }) {
-        content
-        createdAt
+      options: { sort: { createdAt: ASC } }
+    ) {
+      content
+      createdAt
+      from {
+        id
       }
     }
   }

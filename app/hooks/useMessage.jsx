@@ -23,19 +23,7 @@ export const useCreateMessage = () => {
 const getMessages = async ({ me, other }) => {
   const variables = { me, other };
   const res = await graphQLClient.request(getMessagesQuery, variables);
-  const sentMessages = res?.users[0]?.sent_messages.map((msg) => ({
-    ...msg,
-    id: me,
-  }));
-  const receivedMessages = res?.users[0]?.received_messages.map((msg) => ({
-    ...msg,
-    id: other,
-  }));
-  return [...sentMessages, ...receivedMessages].sort((a, b) => {
-    var c = new Date(a.createdAt);
-    var d = new Date(b.createdAt);
-    return c - d;
-  });
+  return res?.messages;
 };
 
 export const useGetMessages = ({ me, other, enabled }) => {

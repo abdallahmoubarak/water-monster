@@ -31,7 +31,11 @@ export default function ChatBox({ user, setPage }) {
       createMessage({ content: value, to: user.id, from: currentUser?.id });
       setMessages([
         ...messages,
-        { content: value, createdAt: new Date(), id: currentUser?.id },
+        {
+          content: value,
+          createdAt: new Date(),
+          from: { id: currentUser?.id },
+        },
       ]);
       // const message = { content: value, user };
       // const res = await fetch("/api/chat", {
