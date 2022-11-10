@@ -15,7 +15,7 @@ export const messageDefs = gql`
         {
           OR: [
             { allow: { from: { id: "$jwt.sub" } } }
-            { allow: { to: { id: "$jwt.sub" } } }
+            { operations: [READ], allow: { to: { id: "$jwt.sub" } } }
           ]
         }
       ]

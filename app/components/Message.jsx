@@ -26,6 +26,7 @@ export default function Message({ message }) {
           hyphens: manual;
           position: relative;
           border: 1px solid lightgray;
+          ${styles.userSelect};
         }
         .content {
           padding-bottom: 0.2rem;
