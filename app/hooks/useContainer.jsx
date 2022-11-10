@@ -13,7 +13,7 @@ import {
 const getUserContainers = async (id) => {
   const variables = { id };
   const res = await graphQLClient.request(userContainerQuery, variables);
-  return res.users[0].containers;
+  return res?.containers;
 };
 
 export const useUserContainers = (id) => {

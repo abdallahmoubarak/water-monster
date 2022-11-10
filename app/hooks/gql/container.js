@@ -2,21 +2,18 @@ import { gql } from "graphql-request";
 
 export const userContainerQuery = gql`
   query ($id: ID!) {
-    users(where: { id: $id }) {
-      containers {
-        id
-        name
-        size
-        sensor_state
-        private_mode
-        filling_mode
-        water_level
-        address
-        installation_request {
-          title
-          state
-          date
-        }
+    containers(where: { user: { id: $id } }) {
+      name
+      size
+      sensor_state
+      private_mode
+      filling_mode
+      water_level
+      address
+      installation_request {
+        title
+        state
+        date
       }
     }
   }
