@@ -54,3 +54,22 @@ export const getAdminQuery = gql`
     }
   }
 `;
+
+export const getContactsQuery = gql`
+  query ($me: ID!) {
+    users(
+      where: {
+        OR: [
+          { sent_messages_SOME: { to: { id: $me } } }
+          { received_messages_SOME: { from: { id: $me } } }
+        ]
+        type_NOT: "Admin"
+      }
+    ) {
+      id
+      name
+      profile_url
+      type
+    }
+  }
+`;

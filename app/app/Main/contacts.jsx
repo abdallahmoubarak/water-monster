@@ -2,17 +2,21 @@ import ContactCard from "@/components/ContactCard";
 import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
-import { useGetAdmin } from "@/hooks/useUser";
+import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
+import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function Contacts({ setPage, chatUser, setChatUser }) {
   const [contacts, setContacts] = useState([]);
 
+  const { data: currentUser } = useCurrentUser({ enabled: false });
   const { data: admin } = useGetAdmin({ enabled: true });
+  const { data: users } = useGetContacts({ id: currentUser.id });
 
   useEffect(() => {
     admin && setContacts(admin);
     admin && setChatUser(admin[0]);
-  }, [admin]);
+    users && admin && setContacts([...admin, ...users]);
+  }, [admin, users]);
 
   return (
     <>
