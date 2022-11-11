@@ -1,8 +1,24 @@
 import Image from "next/image";
 import styles from "@/styles/Contact.module.css";
 import img from "@/public/icons/icon-256x256.png";
+import { useCurrentUser } from "@/hooks/useAuth";
+import { useGetMessages } from "@/hooks/useMessage";
+import { useEffect, useState } from "react";
+import { timeChanger } from "@/utils/time";
 
 export default function ContactCard({ user, setChatUser, setPage }) {
+  const [lastmsg, setLastMsg] = useState("last message");
+  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const { data: msgs } = useGetMessages({
+    me: currentUser?.id,
+    other: user.id,
+    enabled: Boolean(currentUser?.id) && Boolean(user.id),
+  });
+
+  useEffect(() => {
+    msgs && setLastMsg(msgs[msgs.length - 1]);
+  }, [msgs]);
+
   return (
     <>
       <div
@@ -16,11 +32,13 @@ export default function ContactCard({ user, setChatUser, setPage }) {
         </div>
         <div className={styles.contactBody}>
           <div className={styles.middle}>
-            <div className={styles.contactTitle}>{user.name}</div>
-            <div className={styles.contactText}>{"last message"}</div>
+            <div className={styles.contactTitle}>{user?.name}</div>
+            <div className={styles.contactText}>{lastmsg?.content}</div>
           </div>
           <div>
-            <span className={styles.time}>12:19 PM</span>
+            <span className={styles.time}>
+              {lastmsg?.createdAt && timeChanger(lastmsg?.createdAt)}
+            </span>
           </div>
         </div>
       </div>

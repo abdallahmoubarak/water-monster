@@ -21,7 +21,7 @@ export default function ChatBox({ user, setPage }) {
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,
     other: user.id,
-    enabled: Boolean(currentUser?.id) && Boolean(user.id),
+    enabled: false,
   });
 
   useEffect(() => msgs && setMessages(msgs), [msgs]);
