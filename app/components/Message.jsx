@@ -1,13 +1,20 @@
 import { useCurrentUser } from "@/hooks/useAuth";
 import { styles } from "@/utils/styles";
 import { timeChanger } from "@/utils/time";
+import { useEffect, useRef } from "react";
 
 export default function Message({ message }) {
   const { data: currentUser } = useCurrentUser({ enabled: false });
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
 
   return (
     <>
       <div
+        ref={scrollRef}
         className={`bubble first ${
           message?.from?.id === currentUser?.id ? "me" : "other"
         }`}>

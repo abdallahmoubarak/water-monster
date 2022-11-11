@@ -78,7 +78,7 @@ export default function ChatBox({ user, setPage }) {
             </div>
             <div className="chat-body">
               {messages?.map((message, i) => (
-                <Message message={message} currentUser={currentUser} key={i} />
+                <Message key={i} message={message} currentUser={currentUser} />
               ))}
             </div>
             <div className="chat-input-container">
