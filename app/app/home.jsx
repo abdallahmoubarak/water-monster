@@ -10,6 +10,7 @@ import ContainerSetting from "./Secoundary/containerSetting";
 import Wallet from "./Secoundary/wallet";
 import MapPage from "./Main/mapPage";
 import SocketIOClient from "socket.io-client";
+import Admin from "./Admin";
 
 export default function Page({ currentUser }) {
   const [page, setPageName] = useState("Containers");
@@ -50,6 +51,10 @@ export default function Page({ currentUser }) {
 
     if (socket) return () => socket?.disconnect();
   }, [currentUser, socket]);
+
+  useEffect(() => {
+    currentUser.type === "Admin" && setPage("Admin");
+  }, [currentUser]);
 
   return (
     <>
@@ -94,6 +99,7 @@ export default function Page({ currentUser }) {
       {page === "Wallet" && (
         <Wallet setPage={setPage} currentUser={currentUser} />
       )}
+      {page === "Admin" && <Admin />}
     </>
   );
 }
