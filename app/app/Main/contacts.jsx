@@ -5,6 +5,7 @@ import ChatBox from "@/components/ChatBox";
 import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
 import { useCurrentUser } from "@/hooks/useAuth";
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 
 export default function Contacts({
   setPage,
@@ -16,7 +17,7 @@ export default function Contacts({
   const [contacts, setContacts] = useState([]);
 
   const { data: currentUser } = useCurrentUser({ enabled: false });
-  const { data: admin } = useGetAdmin({ enabled: true });
+  const { data: admin, isLoading } = useGetAdmin({ enabled: true });
   const { data: users } = useGetContacts({ id: currentUser.id });
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function Contacts({
     <>
       <div className="contact-page-container">
         <div className="contacts-wrapper">
+          {isLoading && <Loading />}
           <div className="contacts-container">
             {contacts?.map((contact, i) => (
               <ContactCard
