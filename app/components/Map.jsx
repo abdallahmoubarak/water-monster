@@ -4,16 +4,20 @@ import { styles } from "@/utils/styles";
 import { useRouter } from "next/router";
 import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps";
 import { osm } from "pigeon-maps/providers";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BiTargetLock } from "react-icons/bi";
 import { FaRoute } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
+import Image from "next/image";
 
 export default function MyMap() {
-  const currentLocation = [
-    parseFloat(localStorage.getItem("lat")),
-    parseFloat(localStorage.getItem("long")),
-  ];
+  const currentLocation = useMemo(
+    () => [
+      parseFloat(localStorage.getItem("lat")),
+      parseFloat(localStorage.getItem("long")),
+    ],
+    [],
+  );
   const [center, setCenter] = useState(currentLocation);
   const [zoom, setZoom] = useState(17);
 
@@ -54,9 +58,12 @@ export default function MyMap() {
           ))}
           {containersLoc.map((container, i) => (
             <Marker key={i} width={50} anchor={container.location}>
-              <img
+              <Image
                 className="marker-img"
-                src="/svg/containermarker.svg"
+                src={"/svg/containermarker.svg"}
+                loader={() => {
+                  "/svg/containermarker.svg";
+                }}
                 alt=""
                 width={50}
               />
@@ -82,9 +89,12 @@ export default function MyMap() {
             }}
           />
           <Marker width={50} anchor={currentLocation}>
-            <img
+            <Image
               className="marker-img"
-              src="/svg/tankmarker.svg"
+              src={"/svg/tankmarker.svg"}
+              loader={() => {
+                "/svg/tankmarker.svg";
+              }}
               alt=""
               width={50}
             />

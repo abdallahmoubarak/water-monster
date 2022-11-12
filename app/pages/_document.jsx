@@ -35,12 +35,6 @@ export default class extends Document {
             sizes="180x180"
             href="/icons/apple-touch-icon.png"
           />
-
-          <style jsx>{`
-            #__next {
-              height: 100%;
-            }
-          `}</style>
         </Head>
         <body>
           <Main />

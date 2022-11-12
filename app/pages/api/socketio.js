@@ -1,10 +1,5 @@
 import { Server } from "socket.io";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
 let onlineUsers = [];
 const addUser = (userId, socketId) => {
   !onlineUsers.some((user) => user.userId === userId) &&
@@ -17,7 +12,7 @@ const getUser = (userId) => {
   return onlineUsers.find((user) => user.userId === userId);
 };
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   if (!res.socket.server.io) {
     console.log("New Socket.io server...");
     const httpServer = res.socket.server;
@@ -53,4 +48,4 @@ export default async (req, res) => {
     res.socket.server.io = io;
   }
   res.end();
-};
+}
