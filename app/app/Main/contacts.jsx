@@ -61,7 +61,7 @@ export default function Contacts({
           overflow: auto;
           padding: 1rem;
           height: 100%;
-          min-width: 18rem;
+          min-width: 22rem;
         }
         .chat-wrapper {
           padding: 1rem 0rem;
