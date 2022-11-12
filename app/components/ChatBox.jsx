@@ -1,4 +1,3 @@
-"use client";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
@@ -9,9 +8,8 @@ import Message from "./Message";
 import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
 import { useCurrentUser } from "@/hooks/useAuth";
 
-export default function ChatBox({ user, setPage }) {
+export default function ChatBox({ user, setPage, socket }) {
   const inputRef = useRef(null);
-  const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState([]);
   const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
@@ -26,6 +24,30 @@ export default function ChatBox({ user, setPage }) {
 
   useEffect(() => msgs && setMessages(msgs), [msgs]);
 
+  useEffect(() => {
+    socket?.on(
+      "getMessage",
+      ({ senderId, content }) =>
+        user.id === senderId &&
+        setMessages((messages) => [
+          ...messages,
+          {
+            content,
+            createdAt: new Date(),
+            from: { id: senderId },
+          },
+        ]),
+    );
+  }, [socket]);
+
+  const handleSendOnSocket = ({ user, content }) => {
+    socket.emit("sendMessage", {
+      senderId: currentUser?.id,
+      receiverId: user.id,
+      content,
+    });
+  };
+
   const sendMessage = async () => {
     if (value) {
       createMessage({ content: value, to: user.id, from: currentUser?.id });
@@ -37,13 +59,7 @@ export default function ChatBox({ user, setPage }) {
           from: { id: currentUser?.id },
         },
       ]);
-      // const message = { content: value, user };
-      // const res = await fetch("/api/chat", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(message),
-      // });
-      // res.ok && setValue("");
+      handleSendOnSocket({ user, content: value });
       setValue("");
     }
     inputRef?.current?.focus();
@@ -91,10 +107,7 @@ export default function ChatBox({ user, setPage }) {
                 value={value}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
-              <div
-                className="chat-icon"
-                onClick={sendMessage}
-                disabled={!connected}>
+              <div className="chat-icon" onClick={sendMessage}>
                 <FaPaperPlane />
               </div>
             </div>

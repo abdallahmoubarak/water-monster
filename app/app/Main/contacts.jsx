@@ -4,8 +4,15 @@ import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
 import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
 import { useCurrentUser } from "@/hooks/useAuth";
+import Button from "@/components/Button";
 
-export default function Contacts({ setPage, chatUser, setChatUser }) {
+export default function Contacts({
+  setPage,
+  chatUser,
+  setChatUser,
+  onlineUsers,
+  socket,
+}) {
   const [contacts, setContacts] = useState([]);
 
   const { data: currentUser } = useCurrentUser({ enabled: false });
@@ -29,12 +36,13 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
                 user={contact}
                 setChatUser={setChatUser}
                 setPage={setPage}
+                onlineUsers={onlineUsers}
               />
             ))}
           </div>
         </div>
         <div className="chat-wrapper">
-          <ChatBox user={chatUser} />
+          <ChatBox user={chatUser} socket={socket} />
         </div>
       </div>
       <style jsx>{`

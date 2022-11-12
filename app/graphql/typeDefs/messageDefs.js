@@ -9,15 +9,15 @@ export const messageDefs = gql`
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
   }
-  extend type Message
-    @auth(
-      rules: [
-        {
-          OR: [
-            { allow: { from: { id: "$jwt.sub" } } }
-            { operations: [READ], allow: { to: { id: "$jwt.sub" } } }
-          ]
-        }
-      ]
-    )
+  # extend type Message
+  #   @auth(
+  #     rules: [
+  #       {
+  #         OR: [
+  #           { allow: { from: { id: "$jwt.sub" } } }
+  #           { operations: [READ], allow: { to: { id: "$jwt.sub" } } }
+  #         ]
+  #       }
+  #     ]
+  #   )
 `;

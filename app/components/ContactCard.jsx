@@ -6,7 +6,12 @@ import { useGetMessages } from "@/hooks/useMessage";
 import { useEffect, useState } from "react";
 import { timeChanger } from "@/utils/time";
 
-export default function ContactCard({ user, setChatUser, setPage }) {
+export default function ContactCard({
+  user,
+  setChatUser,
+  setPage,
+  onlineUsers,
+}) {
   const [lastmsg, setLastMsg] = useState("last message");
   const { data: currentUser } = useCurrentUser({ enabled: false });
   const { data: msgs } = useGetMessages({
@@ -35,10 +40,13 @@ export default function ContactCard({ user, setChatUser, setPage }) {
             <div className={styles.contactTitle}>{user?.name}</div>
             <div className={styles.contactText}>{lastmsg?.content}</div>
           </div>
-          <div>
-            <span className={styles.time}>
-              {lastmsg?.createdAt && timeChanger(lastmsg?.createdAt)}
-            </span>
+          <div className={styles.time}>
+            <div>
+              {!!onlineUsers.filter((u) => u?.userId === user?.id)[0]
+                ? "Online"
+                : "Offline"}
+            </div>
+            <div>{lastmsg?.createdAt && timeChanger(lastmsg?.createdAt)}</div>
           </div>
         </div>
       </div>

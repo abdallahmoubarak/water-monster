@@ -11,7 +11,7 @@ const pwa = withPWA({
 });
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   experimental: { appDir: true },
   images: {
