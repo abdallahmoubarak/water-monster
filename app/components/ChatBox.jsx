@@ -38,7 +38,7 @@ export default function ChatBox({ user, setPage, socket }) {
           },
         ]),
     );
-  }, [socket]);
+  }, [socket, user.id]);
 
   const handleSendOnSocket = ({ user, content }) => {
     socket.emit("sendMessage", {

@@ -61,11 +61,9 @@ export default function MyMap() {
               <Image
                 className="marker-img"
                 src={"/svg/containermarker.svg"}
-                loader={() => {
-                  "/svg/containermarker.svg";
-                }}
                 alt=""
                 width={50}
+                height={60}
               />
             </Marker>
           ))}
@@ -92,11 +90,9 @@ export default function MyMap() {
             <Image
               className="marker-img"
               src={"/svg/tankmarker.svg"}
-              loader={() => {
-                "/svg/tankmarker.svg";
-              }}
               alt=""
               width={50}
+              height={60}
             />
           </Marker>
         </Map>
