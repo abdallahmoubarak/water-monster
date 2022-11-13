@@ -99,7 +99,7 @@ export default function Page({ currentUser }) {
       {page === "Wallet" && (
         <Wallet setPage={setPage} currentUser={currentUser} />
       )}
-      {page === "Admin" && <Admin />}
+      {page === "Admin" && <Admin onlineUsers={onlineUsers} socket={socket} />}
     </>
   );
 }

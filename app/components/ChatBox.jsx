@@ -18,7 +18,7 @@ export default function ChatBox({ user, setPage, socket }) {
   const { mutate: createMessage } = useCreateMessage();
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,
-    other: user.id,
+    other: user?.id,
     enabled: false,
   });
 
@@ -28,7 +28,7 @@ export default function ChatBox({ user, setPage, socket }) {
     socket?.on(
       "getMessage",
       ({ senderId, content }) =>
-        user.id === senderId &&
+        user?.id === senderId &&
         setMessages((messages) => [
           ...messages,
           {
@@ -38,7 +38,7 @@ export default function ChatBox({ user, setPage, socket }) {
           },
         ]),
     );
-  }, [socket, user.id]);
+  }, [socket, user?.id]);
 
   const handleSendOnSocket = ({ user, content }) => {
     socket.emit("sendMessage", {
@@ -50,7 +50,7 @@ export default function ChatBox({ user, setPage, socket }) {
 
   const sendMessage = async () => {
     if (value) {
-      createMessage({ content: value, to: user.id, from: currentUser?.id });
+      createMessage({ content: value, to: user?.id, from: currentUser?.id });
       setMessages([
         ...messages,
         {

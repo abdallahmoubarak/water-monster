@@ -42,7 +42,7 @@ export default function ContactCard({
           </div>
           <div className={styles.time}>
             <div>
-              {!!onlineUsers.filter((u) => u?.userId === user?.id)[0]
+              {!!onlineUsers?.filter((u) => u?.userId === user?.id)[0]
                 ? "Online"
                 : "Offline"}
             </div>

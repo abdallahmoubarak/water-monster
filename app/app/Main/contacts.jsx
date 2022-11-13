@@ -4,7 +4,6 @@ import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
 import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
 import { useCurrentUser } from "@/hooks/useAuth";
-import Button from "@/components/Button";
 import Loading from "@/components/Loading";
 
 export default function Contacts({
