@@ -15,7 +15,10 @@ export const userDefs = gql`
     sent_messages: [Message!]! @relationship(type: "FROM", direction: OUT)
     received_messages: [Message!]! @relationship(type: "TO", direction: IN)
     containers: [Container!]! @relationship(type: "OWNS", direction: OUT)
-    requests: [Request!]! @relationship(type: "DONE_BY", direction: IN)
+    created_requests: [Request!]!
+      @relationship(type: "CREATED_BY", direction: IN)
+    provided_requests: [Request!]!
+      @relationship(type: "PROVIDED_BY", direction: IN)
     wallet: Wallet @relationship(type: "OWNED_BY", direction: IN)
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])

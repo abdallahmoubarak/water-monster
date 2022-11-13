@@ -3,6 +3,7 @@ import { gql } from "graphql-request";
 export const userContainerQuery = gql`
   query ($id: ID!) {
     containers(where: { user: { id: $id } }) {
+      id
       name
       size
       sensor_state
@@ -39,7 +40,14 @@ export const createContainerMutation = gql`
               size: $size
               address: $address
               installation_request: {
-                create: { node: { title: $title, state: $state, date: $date } }
+                create: {
+                  node: {
+                    title: $title
+                    state: $state
+                    date: $date
+                    creator: { connect: { where: { node: { id: $id } } } }
+                  }
+                }
               }
             }
           }

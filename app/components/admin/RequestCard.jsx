@@ -30,7 +30,7 @@ export default function ReuestCard({ request }) {
           ${styles.flexColumn};
           ${styles.boxshadow};
           ${styles.borderRadiusp3rem};
-          width: 10rem;
+          width: 20rem;
           padding: 1rem;
           gap: 0.6rem;
         }
