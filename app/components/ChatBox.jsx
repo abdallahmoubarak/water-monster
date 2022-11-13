@@ -1,10 +1,10 @@
+import { useEffect, useRef, useState } from "react";
+import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
-import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
 import Call from "./Call";
-import img from "@/public/icons/icon-256x256.png";
 import Message from "./Message";
+import img from "@/public/icons/icon-256x256.png";
 import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
 import { useCurrentUser } from "@/hooks/useAuth";
 

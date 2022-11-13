@@ -11,22 +11,24 @@ export default function Admin({ socket, onlineUsers }) {
   const [active, setActive] = useState("Users");
   const [chatUser, setChatUser] = useState();
   return (
-    <AdminLayout active={active} setActive={setActive}>
-      {active === "Users" && <Users />}
-      {active === "Requests" && <Requests />}
-      {active === "Contacts" && (
-        <Contacts
-          chatUser={chatUser}
-          setChatUser={setChatUser}
-          onlineUsers={onlineUsers}
-          setPage={setActive}
-        />
-      )}
-      {active === "Statistics" && <Statistics />}
-      {active === "Map" && <MapPage />}
+    <>
+      <AdminLayout active={active} setActive={setActive}>
+        {active === "Users" && <Users />}
+        {active === "Requests" && <Requests />}
+        {active === "Contacts" && (
+          <Contacts
+            chatUser={chatUser}
+            setChatUser={setChatUser}
+            onlineUsers={onlineUsers}
+            setPage={setActive}
+          />
+        )}
+        {active === "Statistics" && <Statistics />}
+        {active === "Map" && <MapPage />}
+      </AdminLayout>
       {active === "Chat" && (
         <Chat setPage={setActive} user={chatUser} socket={socket} />
       )}
-    </AdminLayout>
+    </>
   );
 }

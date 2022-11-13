@@ -33,10 +33,12 @@ export default function AdminLayout({ children, active, setActive }) {
         }
         .nav-container {
           ${styles.flexBothcenter};
-          padding: 1rem;
+          padding: 0.6rem;
         }
         .page-container {
           flex: 1 1;
+          overflow: hidden;
+          height: calc(100vh - 4rem);
         }
 
         @media only screen and (min-width: 40rem) {
@@ -48,6 +50,7 @@ export default function AdminLayout({ children, active, setActive }) {
           }
           .nav-container {
             height: calc(100vh - 8rem);
+            padding: 1rem 0.6rem;
           }
         }
       `}</style>

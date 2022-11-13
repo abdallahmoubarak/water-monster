@@ -64,10 +64,10 @@ export default function Profile({ currentUser, setPage }) {
                 text="Logout"
                 dark={true}
                 onClick={() => {
-                  localStorage.removeItem("JWT");
-                  localStorage.removeItem("User");
                   client.setQueryData(["JWT"], null);
                   client.setQueryData(["User"], null);
+                  localStorage.removeItem("JWT");
+                  localStorage.removeItem("User");
                 }}
               />
             </InputsContainer>

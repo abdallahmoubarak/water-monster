@@ -15,7 +15,7 @@ export default function AdminNavBar({ active = "Requests", setActive }) {
           {navItems.map((item, i) => (
             <li key={i} className="nav-li" onClick={() => setActive(item.name)}>
               <div className={`nav-icon ${active === item.name && "active"}`}>
-                <Image src={item.img} alt={item.name} height={33} />
+                <Image src={item.img} alt={item.name} height={26} />
               </div>
               <span
                 className={`nav-text ${active === item.name && "active-txt"}`}>
@@ -30,6 +30,8 @@ export default function AdminNavBar({ active = "Requests", setActive }) {
           ${styles.boxshadow};
           ${styles.borderRadius1rem};
           background: white;
+          width: 100%;
+          max-width: 26rem;
         }
         .nav-ul {
           padding: 0.3rem 1rem;
@@ -41,11 +43,12 @@ export default function AdminNavBar({ active = "Requests", setActive }) {
           ${styles.flexColumn};
           gap: 0.2rem;
           cursor: pointer;
+          margin: auto;
         }
         .nav-icon {
           ${styles.flexBothcenter};
-          width: 2.8rem;
-          height: 2.8rem;
+          width: 2.6rem;
+          height: 2.6rem;
           background: ${styles.grey};
           ${styles.borderRadius50percent};
         }
@@ -53,7 +56,7 @@ export default function AdminNavBar({ active = "Requests", setActive }) {
           background: ${styles.primaryColor};
         }
         .nav-text {
-          font-size: 0.7rem;
+          font-size: 0.6rem;
         }
         .active-txt {
           color: ${styles.primaryColor};

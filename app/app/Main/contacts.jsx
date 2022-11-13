@@ -20,9 +20,14 @@ export default function Contacts({
   const { data: users } = useGetContacts({ id: currentUser.id });
 
   useEffect(() => {
-    admin && setContacts(admin);
-    admin && setChatUser(admin[0]);
-    users && admin && setContacts([...admin, ...users]);
+    if (currentUser.type !== "Admin") {
+      admin && setContacts(admin);
+      admin && setChatUser(admin[0]);
+      users && admin && setContacts([...admin, ...users]);
+    } else {
+      users && setChatUser(users[0]);
+      users && setContacts(users);
+    }
   }, [admin, users]);
 
   return (
