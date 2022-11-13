@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getAdminQuery,
   getContactsQuery,
+  getUsersQuery,
   updateNameMutation,
   updatePhoneMutation,
 } from "./gql/user";
@@ -71,6 +72,21 @@ export const useGetContacts = ({ id }) => {
   return useQuery({
     queryFn: () => getContacts({ id }),
     queryKey: ["Contacts"],
+    onError: (err) => console.log(err),
+  });
+};
+
+/*********************** use get contacts hook ***********************/
+
+const getUsers = async () => {
+  const res = await graphQLClient.request(getUsersQuery);
+  return res?.users;
+};
+
+export const useGetUsers = () => {
+  return useQuery({
+    queryFn: () => getUsers(),
+    queryKey: ["Users"],
     onError: (err) => console.log(err),
   });
 };

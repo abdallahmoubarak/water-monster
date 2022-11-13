@@ -73,3 +73,12 @@ export const getContactsQuery = gql`
     }
   }
 `;
+
+export const getUsersQuery = gql`
+  query {
+    users(where: { type_NOT: "Admin" }) {
+      name
+      type
+    }
+  }
+`;
