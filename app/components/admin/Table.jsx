@@ -14,19 +14,17 @@ export default function Table({
           <thead>
             <tr className="head">
               {header?.map((item, i) => (
-                <th key={i} className="column">
-                  {item}
-                </th>
+                <th key={i}>{item}</th>
               ))}
-              {canEdit && <th className="head s">Edit</th>}
-              <th className="head s">View</th>
+              {canEdit && <th className="head view">Edit</th>}
+              <th className="head view">View</th>
             </tr>
           </thead>
           <tbody>
             {rows?.map((item, j) => (
               <tr key={j}>
                 {header?.map((head, k) => (
-                  <td key={k} className="column">
+                  <td key={k}>
                     <span className="td-title">{head}</span>
                     <span className="td-item">
                       {item[head.toLowerCase()] || "-"}
@@ -34,11 +32,15 @@ export default function Table({
                   </td>
                 ))}
                 {canEdit && (
-                  <td className="column" onClick={() => handleEditClick(item)}>
+                  <td
+                    className="view"
+                    onClick={() => handleEditClick && handleEditClick(item)}>
                     <FaRegEdit />
                   </td>
                 )}
-                <td className="column" onClick={() => handleViewClick(item)}>
+                <td
+                  className="view"
+                  onClick={() => handleViewClick && handleViewClick(item)}>
                   <FaEye />
                 </td>
               </tr>
@@ -83,18 +85,6 @@ export default function Table({
         table th {
           text-align: left;
         }
-        table td.l,
-        table th.l {
-          text-align: right;
-        }
-        table td.c,
-        table th.c {
-          text-align: center;
-        }
-        table td.r,
-        table th.r {
-          text-align: center;
-        }
 
         .head th {
           font-size: 1.2rem;
@@ -121,51 +111,13 @@ export default function Table({
         .td-title {
           display: none;
         }
-        .s {
-          font-size: 0.8rem !important;
-        }
 
-        @media screen and (max-width: 700px) {
-          .table-container {
-            border-width: 1px;
-          }
-          table {
-            display: block;
-          }
-          table > *,
-          table tr,
-          table td,
-          table th,
-          .td-title {
-            display: block;
-          }
-          table thead {
-            display: none;
-          }
-          table tbody tr {
-            height: auto;
-            padding: 1.2rem 0;
-          }
-          table tbody tr td {
-            display: flex;
-            align-items: flex-start;
-          }
-          table tbody tr td .td-item {
-            flex: 1 1 100%;
-          }
-          .td-title {
-            font-size: 0.9rem;
-            color: ${styles.primaryColor};
-            font-weight: 600;
-            padding: auto 1rem;
-            flex: 1 1 50%;
-          }
-          tr {
-          }
-          .column {
-            text-align: left;
-            width: 100%;
-          }
+        table th.view {
+          font-size: 0.8rem;
+        }
+        table td.view {
+          text-align: center;
+          width: 2rem;
         }
       `}</style>
     </>
