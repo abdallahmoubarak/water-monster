@@ -5,6 +5,7 @@ export const requestsQuery = gql`
     requests {
       title
       createdAt
+      state
     }
   }
 `;

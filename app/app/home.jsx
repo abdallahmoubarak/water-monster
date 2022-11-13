@@ -16,7 +16,6 @@ export default function Page({ currentUser }) {
   const [page, setPageName] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
   const [pageId, setPageId] = useState("");
-  const [connected, setConnected] = useState(false);
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
@@ -36,7 +35,6 @@ export default function Page({ currentUser }) {
   useEffect(() => {
     socket?.on("connect", () => {
       console.log("SOCKET CONNECTED!", socket?.id);
-      setConnected(true);
     });
   }, [socket]);
 

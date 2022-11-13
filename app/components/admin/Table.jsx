@@ -113,7 +113,7 @@ export default function Table({
         }
 
         table th.view {
-          font-size: 0.8rem;
+          ${styles.fontSizep8rem};
         }
         table td.view {
           text-align: center;
