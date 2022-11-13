@@ -1,6 +1,7 @@
 import AdminNavBar from "@/components/admin/NavBar";
 import TopBar from "@/components/TopBar";
 import { styles } from "@/utils/styles";
+import AdminLogout from "./logout";
 
 export default function AdminLayout({ children, active, setActive }) {
   return (
@@ -14,6 +15,7 @@ export default function AdminLayout({ children, active, setActive }) {
           <div className="page-container">{children}</div>
         </div>
       </div>
+      <AdminLogout />
 
       <style jsx>{`
         .main-container {
