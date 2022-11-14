@@ -5,6 +5,7 @@ import {
   createContainerMutation,
   deleteContainerMutation,
   updateContainerMutation,
+  updateManualModeMutation,
   updatePrivateModeMutation,
   userContainerQuery,
 } from "./gql/container";
@@ -87,7 +88,20 @@ const updatePrivateMode = async ({ id, private_mode }) => {
 
 export const useUpdatePrivateMode = () => {
   return useMutation(updatePrivateMode, {
-    onSuccess: () => client.invalidateQueries("Containers"),
+    onError: (err) => console.log(err),
+  });
+};
+
+/****************** updating manual mode in a container ******************/
+
+const updateManualMode = async ({ id, manual_mode }) => {
+  const variables = { id, manual_mode };
+  const res = await graphQLClient.request(updateManualModeMutation, variables);
+  return res;
+};
+
+export const useUpdateManualMode = () => {
+  return useMutation(updateManualMode, {
     onError: (err) => console.log(err),
   });
 };

@@ -10,6 +10,7 @@ import { MdPendingActions } from "react-icons/md";
 import {
   useDeleteContainer,
   useUpdateContainer,
+  useUpdateManualMode,
   useUpdatePrivateMode,
 } from "@/hooks/useContainer";
 import Box from "./Box";
@@ -24,6 +25,8 @@ export default function SettingForm({ containerId, setPage }) {
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { mutate: updatePrivateMode } = useUpdatePrivateMode();
+  const { mutate: updateManualMode } = useUpdateManualMode();
   const { mutate: updateContainer } = useUpdateContainer({
     setPage,
     setIsLoading,
@@ -33,7 +36,6 @@ export default function SettingForm({ containerId, setPage }) {
     setPage,
     setIsLoading,
   });
-  const { mutate: updatePrivateMode } = useUpdatePrivateMode();
 
   useEffect(() => {
     const cnt = client
@@ -58,6 +60,7 @@ export default function SettingForm({ containerId, setPage }) {
     setIsPrivate(!isPrivate);
   };
   const toggleManualMode = () => {
+    updateManualMode({ id: container.id, manual_mode: !isManual });
     setIsManual(!isManual);
   };
 

@@ -124,3 +124,16 @@ export const updatePrivateModeMutation = gql`
     }
   }
 `;
+
+export const updateManualModeMutation = gql`
+  mutation ($id: ID!, $manual_mode: Boolean!) {
+    updateContainers(
+      where: { id: $id }
+      update: { manual_mode: $manual_mode }
+    ) {
+      containers {
+        id
+      }
+    }
+  }
+`;
