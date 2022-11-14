@@ -11,7 +11,7 @@ export const containerDefs = gql`
     pending: String
     sensor_state: Boolean
     private_mode: Boolean
-    filling_mode: Boolean
+    manual_mode: Boolean
     installation_request: Request!
       @relationship(type: "INSTALLING", direction: IN)
     user: User! @relationship(type: "OWNS", direction: IN)

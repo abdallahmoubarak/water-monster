@@ -9,7 +9,7 @@ export const containerDefs = gql`
     current_level: Int
     sensor_state: Boolean
     private_mode: Boolean
-    filling_mode: Boolean
+    manual_mode: Boolean
     user: User! @relationship(type: "OWNS", direction: IN)
   }
 `;

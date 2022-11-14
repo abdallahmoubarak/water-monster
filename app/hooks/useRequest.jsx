@@ -27,7 +27,7 @@ const acceptRequest = async ({ id, state }) => {
 
 export const useAcceptRequest = () => {
   return useMutation(acceptRequest, {
-    onSuccess: client.invalidateQueries("Requests"),
+    onSuccess: () => client.invalidateQueries("Requests"),
     onError: (err) => console.log(err),
   });
 };

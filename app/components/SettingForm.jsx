@@ -7,7 +7,11 @@ import { client } from "pages/_app";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
 import { MdPendingActions } from "react-icons/md";
-import { useDeleteContainer, useUpdateContainer } from "@/hooks/useContainer";
+import {
+  useDeleteContainer,
+  useUpdateContainer,
+  useUpdatePrivateMode,
+} from "@/hooks/useContainer";
 import Box from "./Box";
 
 export default function SettingForm({ containerId, setPage }) {
@@ -15,9 +19,9 @@ export default function SettingForm({ containerId, setPage }) {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
-  const [privateOn, setPrivateOn] = useState(true);
-  const [manual, setManual] = useState(true);
   const [state, setState] = useState("");
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const { mutate: updateContainer } = useUpdateContainer({
@@ -29,23 +33,32 @@ export default function SettingForm({ containerId, setPage }) {
     setPage,
     setIsLoading,
   });
+  const { mutate: updatePrivateMode } = useUpdatePrivateMode();
 
   useEffect(() => {
     const cnt = client
       ?.getQueryData(["Containers"])
       ?.filter((item) => item.id === containerId)[0];
     setContainer(cnt);
-    setName(cnt.name);
-    setSize(cnt.size);
-    setAddress(cnt.address);
-    setPrivateOn(cnt.private_mode);
-    setManual(cnt.filling_mode);
-    setState(cnt.installation_request?.state);
+    setName(cnt?.name);
+    setSize(cnt?.size);
+    setAddress(cnt?.address);
+    setIsPrivate(cnt?.private_mode);
+    setIsManual(cnt?.manual_mode);
+    setState(cnt?.installation_request?.state);
   }, [containerId]);
 
   const handleUpdate = () => {
     updateContainer({ id: container.id, name, size });
     setIsLoading(true);
+  };
+
+  const togglePrivateMode = () => {
+    updatePrivateMode({ id: container.id, private_mode: !isPrivate });
+    setIsPrivate(!isPrivate);
+  };
+  const toggleManualMode = () => {
+    setIsManual(!isManual);
   };
 
   return (
@@ -56,10 +69,10 @@ export default function SettingForm({ containerId, setPage }) {
             <Switch
               icon={<FaRegEyeSlash />}
               title={"Private Mode"}
-              on={privateOn}
-              setOn={setPrivateOn}
+              on={isPrivate}
+              setOn={togglePrivateMode}
               description={
-                privateOn
+                isPrivate
                   ? "Providers can't see your container !!!"
                   : "Providers can see your container"
               }
@@ -67,11 +80,11 @@ export default function SettingForm({ containerId, setPage }) {
             <Switch
               icon={<BiWater />}
               title={"Filling Mode"}
-              on={manual}
-              setOn={setManual}
-              description={manual ? "Manual" : "Automatically"}
+              on={isManual}
+              setOn={toggleManualMode}
+              description={isManual ? "Manual" : "Automatically"}
             />
-            {manual && <Button text={"Request Fillment"} dark={true} />}
+            {isManual && <Button text={"Request Fillment"} dark={true} />}
           </Box>
         )}
 

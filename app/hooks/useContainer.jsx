@@ -5,6 +5,7 @@ import {
   createContainerMutation,
   deleteContainerMutation,
   updateContainerMutation,
+  updatePrivateModeMutation,
   userContainerQuery,
 } from "./gql/container";
 
@@ -66,7 +67,6 @@ export const useUpdateContainer = ({ setPage, setIsLoading }) => {
 const deleteContainer = async (id) => {
   const variables = { container_id: id };
   const res = await graphQLClient.request(deleteContainerMutation, variables);
-  console.log(res);
   return res;
 };
 
@@ -74,5 +74,20 @@ export const useDeleteContainer = ({ setPage, setIsLoading }) => {
   return useMutation(deleteContainer, {
     onSuccess: () => setPage("Containers"),
     onError: () => setIsLoading(false),
+  });
+};
+
+/****************** updating private mode in a container ******************/
+
+const updatePrivateMode = async ({ id, private_mode }) => {
+  const variables = { id, private_mode };
+  const res = await graphQLClient.request(updatePrivateModeMutation, variables);
+  return res;
+};
+
+export const useUpdatePrivateMode = () => {
+  return useMutation(updatePrivateMode, {
+    onSuccess: () => client.invalidateQueries("Containers"),
+    onError: (err) => console.log(err),
   });
 };

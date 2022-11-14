@@ -8,7 +8,7 @@ export const userContainerQuery = gql`
       size
       sensor_state
       private_mode
-      filling_mode
+      manual_mode
       water_level
       address
       installation_request {
@@ -61,7 +61,7 @@ export const createContainerMutation = gql`
           size
           sensor_state
           private_mode
-          filling_mode
+          manual_mode
           water_level
           address
           installation_request {
@@ -87,7 +87,7 @@ export const updateContainerMutation = gql`
         size
         sensor_state
         private_mode
-        filling_mode
+        manual_mode
         water_level
         address
         installation_request {
@@ -108,6 +108,19 @@ export const deleteContainerMutation = gql`
     ) {
       nodesDeleted
       relationshipsDeleted
+    }
+  }
+`;
+
+export const updatePrivateModeMutation = gql`
+  mutation ($id: ID!, $private_mode: Boolean!) {
+    updateContainers(
+      where: { id: $id }
+      update: { private_mode: $private_mode }
+    ) {
+      containers {
+        id
+      }
     }
   }
 `;
