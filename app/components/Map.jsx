@@ -1,14 +1,13 @@
 "use client";
 import { getGeoLocation } from "@/utils/getGeoLocation";
 import { styles } from "@/utils/styles";
-import { useRouter } from "next/router";
 import { Map, Marker, Overlay, ZoomControl } from "pigeon-maps";
 import { osm } from "pigeon-maps/providers";
 import { useEffect, useMemo, useState } from "react";
 import { BiTargetLock } from "react-icons/bi";
-import { FaRoute } from "react-icons/fa";
-import { BsFillChatFill } from "react-icons/bs";
 import Image from "next/image";
+import Pop from "./MapPop";
+import { useGetMapContainers } from "@/hooks/useContainer";
 
 export default function MyMap() {
   const currentLocation = useMemo(
@@ -21,9 +20,10 @@ export default function MyMap() {
   const [center, setCenter] = useState(currentLocation);
   const [zoom, setZoom] = useState(17);
 
-  useEffect(() => {
-    getGeoLocation();
-  }, [currentLocation]);
+  const { data: containersLocation } = useGetMapContainers();
+  console.log(containersLocation);
+
+  getGeoLocation();
 
   return (
     <>
@@ -45,19 +45,31 @@ export default function MyMap() {
             setZoom(zoom);
           }}>
           <ZoomControl />
-          {containersLoc.map((container, i) => (
+          {containersLocation?.map((container, i) => (
             <Marker
               key={i}
               width={50}
-              anchor={container.location}
+              anchor={[
+                container.location.longitude,
+                container.location.latitude,
+              ]}
               onClick={() => {
                 setZoom(18);
-                setCenter(container.location);
+                setCenter([
+                  container.location.longitude,
+                  container.location.latitude,
+                ]);
               }}
             />
           ))}
-          {containersLoc.map((container, i) => (
-            <Marker key={i} width={50} anchor={container.location}>
+          {containersLocation?.map((container, i) => (
+            <Marker
+              key={i}
+              width={50}
+              anchor={[
+                container.location.longitude,
+                container.location.latitude,
+              ]}>
               <Image
                 className="marker-img"
                 src={"/svg/containermarker.svg"}
@@ -67,14 +79,15 @@ export default function MyMap() {
               />
             </Marker>
           ))}
-          {containersLoc.map((container, i) => (
-            <Overlay key={i} anchor={container.location} offset={[80, 155]}>
-              <Pop
-                level={container.water_level}
-                dist={container.location}
-                current={currentLocation}
-                requested={container.requested}
-              />
+          {containersLocation?.map((container, i) => (
+            <Overlay
+              key={i}
+              anchor={[
+                container.location.longitude,
+                container.location.latitude,
+              ]}
+              offset={[80, 155]}>
+              <Pop container={container} current={currentLocation} />
             </Overlay>
           ))}
           {/* owner marker */}
@@ -133,76 +146,3 @@ const containersLoc = [
   { location: [33.85101, 35.5152022], water_level: 20 },
   { location: [33.87101, 35.5282022], water_level: 30 },
 ];
-
-const Pop = ({ level, dist, current, requested }) => {
-  const router = useRouter();
-  return (
-    <>
-      <div className="content">
-        {requested && <div className="requested">Filling requested</div>}
-        <div>{(3000 * level) / 100} liter is empty.</div>
-        <div className="icons-container">
-          <div className="icon">
-            <BsFillChatFill />
-          </div>
-          <div
-            className="icon"
-            onClick={() =>
-              router.push(
-                `https://www.google.com/maps/dir/${current[0]},${current[1]}/${dist[0]},${dist[1]}/data=!4m2!4m1!3e0`,
-              )
-            }>
-            <FaRoute />
-          </div>
-          <div className="icon GO">GO</div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        .content {
-          background: white;
-          padding: 0.4rem 0.6rem;
-          ${styles.borderRadius1rem};
-          ${styles.boxshadow};
-          color: ${styles.primaryColor};
-          border: 1px solid ${styles.primaryColor};
-          font-size: 1rem;
-          position: relative;
-        }
-        .content:before {
-          content: "";
-          position: absolute;
-          top: 100%;
-          left: 70px;
-          width: 0;
-          border-top: 10px solid ${styles.primaryColor};
-          border-left: 10px solid transparent;
-          border-right: 10px solid transparent;
-        }
-        .requested {
-          color: ${styles.secondaryColor};
-        }
-        .icons-container {
-          ${styles.flexBothcenter};
-          gap: 1rem;
-          padding-top: 0.5rem;
-        }
-        .icon {
-          ${styles.flexBothcenter};
-          ${styles.borderRadius50percent};
-          color: white;
-          background: ${styles.primaryColor};
-          width: 2.6rem;
-          height: 2.6rem;
-          cursor: pointer;
-          font-weight: bold;
-          border: 1px solid ${styles.primaryColor};
-        }
-        .GO {
-          background: white;
-          color: ${styles.primaryColor};
-        }
-      `}</style>
-    </>
-  );
-};

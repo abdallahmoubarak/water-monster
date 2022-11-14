@@ -4,6 +4,7 @@ import { client } from "pages/_app";
 import {
   createContainerMutation,
   deleteContainerMutation,
+  getMapContainersQuery,
   updateContainerMutation,
   updateManualModeMutation,
   updatePrivateModeMutation,
@@ -103,5 +104,21 @@ const updateManualMode = async ({ id, manual_mode }) => {
 export const useUpdateManualMode = () => {
   return useMutation(updateManualMode, {
     onError: (err) => console.log(err),
+  });
+};
+
+// TODO: [WM-99] query availble containers for map
+
+/****************** get availble map containers ******************/
+
+const getMapContainers = async () => {
+  const res = await graphQLClient.request(getMapContainersQuery);
+  return res?.containers;
+};
+
+export const useGetMapContainers = () => {
+  return useQuery({
+    queryKey: ["MapContainers"],
+    queryFn: () => getMapContainers(),
   });
 };

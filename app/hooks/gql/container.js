@@ -158,3 +158,30 @@ export const updateManualModeMutation = gql`
     }
   }
 `;
+
+export const getMapContainersQuery = gql`
+  query {
+    containers(
+      where: {
+        OR: [
+          { private_mode: false, manual_mode: true }
+          { private_mode: false, manual_mode: false }
+          { requests_SINGLE: { state: "waiting" } }
+        ]
+      }
+    ) {
+      id
+      name
+      location {
+        longitude
+        latitude
+      }
+      size
+      sensor_state
+      water_level
+      requests(where: { title: "Filling", state: "waiting" }) {
+        state
+      }
+    }
+  }
+`;
