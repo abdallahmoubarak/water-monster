@@ -20,7 +20,8 @@ export default function SettingForm({ containerId, setPage }) {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
-  const [state, setState] = useState("");
+  const [installationState, setInstallationState] = useState("");
+  const [isAwaitFilling, setIsAwaitFilling] = useState(false);
   const [isPrivate, setIsPrivate] = useState(false);
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,7 +48,10 @@ export default function SettingForm({ containerId, setPage }) {
     setAddress(cnt?.address);
     setIsPrivate(cnt?.private_mode);
     setIsManual(cnt?.manual_mode);
-    setState(cnt?.installation_request?.state);
+    setInstallationState(
+      cnt?.requests.filter((req) => req.title === "Installation")[0]?.state,
+    );
+    cnt?.requests.length === 2 && setIsAwaitFilling(true);
   }, [containerId]);
 
   const handleUpdate = () => {
@@ -67,7 +71,7 @@ export default function SettingForm({ containerId, setPage }) {
   return (
     <>
       <div className="setting-container">
-        {state === "done" && (
+        {installationState === "done" && (
           <Box title={"Controll"}>
             <Switch
               icon={<FaRegEyeSlash />}
@@ -87,17 +91,19 @@ export default function SettingForm({ containerId, setPage }) {
               setOn={toggleManualMode}
               description={isManual ? "Manual" : "Automatically"}
             />
-            {isManual && <Button text={"Request Fillment"} dark={true} />}
+            {isAwaitFilling
+              ? "Waiting for fillment..."
+              : isManual && <Button text={"Request Fillment"} dark={true} />}
           </Box>
         )}
 
         {/* Information section  */}
 
         <Box title={"Inforamation"}>
-          {state !== "done" && (
+          {installationState !== "done" && (
             <div className="state">
               <MdPendingActions />
-              <div>Pending for {state}...</div>
+              <div>Pending for {installationState}...</div>
             </div>
           )}
           <Input name="Container name" value={name} setValue={setName} />
@@ -110,7 +116,7 @@ export default function SettingForm({ containerId, setPage }) {
               isLoading={isLoading}
               disabled={name === container?.name}
             />
-            {state === "approval" && (
+            {installationState === "approval" && (
               <Button
                 text="Delete"
                 dark={true}

@@ -11,7 +11,14 @@ export const userContainerQuery = gql`
       manual_mode
       water_level
       address
-      requests {
+      requests(
+        where: {
+          OR: [
+            { title: "Installation" }
+            { title: "Filling", state_NOT: "done" }
+          ]
+        }
+      ) {
         title
         state
         date
@@ -64,7 +71,14 @@ export const createContainerMutation = gql`
           manual_mode
           water_level
           address
-          requests {
+          requests(
+            where: {
+              OR: [
+                { title: "Installation" }
+                { title: "Filling", state_NOT: "done" }
+              ]
+            }
+          ) {
             title
             state
             date
@@ -90,7 +104,14 @@ export const updateContainerMutation = gql`
         manual_mode
         water_level
         address
-        requests {
+        requests(
+          where: {
+            OR: [
+              { title: "Installation" }
+              { title: "Filling", state_NOT: "done" }
+            ]
+          }
+        ) {
           title
           state
           date
