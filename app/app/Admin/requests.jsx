@@ -17,6 +17,8 @@ export default function Requests() {
           ${styles.flexBothcenter};
           flex-wrap: wrap;
           gap: 0.6rem;
+          overflow: auto;
+          height: 100%;
         }
       `}</style>
     </>

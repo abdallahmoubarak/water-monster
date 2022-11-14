@@ -24,3 +24,22 @@ export const acceptRequestMutation = gql`
     }
   }
 `;
+
+export const createFillingRequestMutation = gql`
+  mutation ($user_id: ID!, $container_id: ID!) {
+    createRequests(
+      input: [
+        {
+          title: "Filling"
+          state: "waiting"
+          creator: { connect: { where: { node: { id: $user_id } } } }
+          container: { connect: { where: { node: { id: $container_id } } } }
+        }
+      ]
+    ) {
+      requests {
+        id
+      }
+    }
+  }
+`;

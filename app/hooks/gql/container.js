@@ -11,7 +11,7 @@ export const userContainerQuery = gql`
       manual_mode
       water_level
       address
-      installation_request {
+      requests {
         title
         state
         date
@@ -39,7 +39,7 @@ export const createContainerMutation = gql`
               name: $name
               size: $size
               address: $address
-              installation_request: {
+              requests: {
                 create: {
                   node: {
                     title: $title
@@ -64,7 +64,7 @@ export const createContainerMutation = gql`
           manual_mode
           water_level
           address
-          installation_request {
+          requests {
             title
             state
             date
@@ -90,7 +90,7 @@ export const updateContainerMutation = gql`
         manual_mode
         water_level
         address
-        installation_request {
+        requests {
           title
           state
           date
@@ -104,7 +104,7 @@ export const deleteContainerMutation = gql`
   mutation ($container_id: ID!) {
     deleteContainers(
       where: { id: $container_id }
-      delete: { installation_request: { where: {} } }
+      delete: { requests: { where: {} } }
     ) {
       nodesDeleted
       relationshipsDeleted
