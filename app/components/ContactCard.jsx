@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "@/styles/Contact.module.css";
-import img from "@/public/icons/icon-256x256.png";
 import { useCurrentUser } from "@/hooks/useAuth";
 import { useGetMessages } from "@/hooks/useMessage";
 import { useEffect, useState } from "react";
@@ -33,7 +32,9 @@ export default function ContactCard({
           document.body.clientWidth < 736 && setPage("Chat");
         }}>
         <div className={styles.contactImg}>
-          <Image src={user?.profile_url || img} alt="" width={48} height={48} />
+          {user?.profile_url && (
+            <Image src={user?.profile_url} alt="" width={48} height={48} />
+          )}
         </div>
         <div className={styles.contactBody}>
           <div className={styles.middle}>

@@ -36,7 +36,6 @@
 }
 
 .contactImg {
-  background: var(--primary-color);
   min-width: 3rem;
   height: 3rem;
   flex: 0 1 3rem;
@@ -46,6 +45,8 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  background: var(--primary-color) center/cover url("/svg/person-white.svg")
+    no-repeat;
 }
 
 .contactBody {

@@ -4,7 +4,6 @@ import { styles } from "@/utils/styles";
 import Image from "next/image";
 import Call from "./Call";
 import Message from "./Message";
-import img from "@/public/icons/icon-256x256.png";
 import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
 import { useCurrentUser } from "@/hooks/useAuth";
 
@@ -78,12 +77,14 @@ export default function ChatBox({ user, setPage, socket }) {
                 </div>
               )}
               <div className="profile-img">
-                <Image
-                  src={user?.profile_url || img}
-                  alt=""
-                  width={48}
-                  height={48}
-                />
+                {user?.profile_url && (
+                  <Image
+                    src={user?.profile_url}
+                    alt=""
+                    width={48}
+                    height={48}
+                  />
+                )}
               </div>
               <div className="user-info">
                 <div className="user-name">{user?.name}</div>
@@ -139,11 +140,10 @@ export default function ChatBox({ user, setPage, socket }) {
         }
         .profile-img {
           ${styles.flexBothcenter};
-          background: ${styles.primaryColor};
           min-width: 3rem;
           height: 3rem;
           ${styles.borderRadius50percent};
-          border: 3px solid white;
+          ${styles.darkProfileBackground};
         }
 
         .user-info {

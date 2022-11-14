@@ -1,14 +1,12 @@
 import { styles } from "@/utils/styles";
-import { FaPhone, FaUser } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
 
 export default function Call({ call, setCall, user }) {
   return (
     <>
       <div className={`callpage ${call && "inner"}`}>
         <div className="call-head">
-          <div className="call-profile-img">
-            <FaUser />
-          </div>
+          <div className="call-profile-img"></div>
 
           <div className="target-user-name">{user?.name}</div>
 
@@ -69,6 +67,8 @@ export default function Call({ call, setCall, user }) {
         }
 
         .call-profile-img {
+          ${styles.flexJustifycenter};
+          ${styles.flexAligncenter}
           width: 7rem;
           height: 7rem;
           border: 3px solid white;
@@ -76,11 +76,10 @@ export default function Call({ call, setCall, user }) {
           font-size: 7rem;
           padding-top: 2rem;
           line-height: 0rem;
-          border-radius: 50%;
           overflow: hidden;
-          ${styles.flexAligncenter}
-          ${styles.flexJustifycenter};
+          ${styles.borderRadius50percent};
           cursor: pointer;
+          ${styles.darkProfileBackground}
         }
       `}</style>
     </>

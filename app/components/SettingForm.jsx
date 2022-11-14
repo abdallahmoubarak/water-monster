@@ -1,8 +1,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Switch from "./Switch";
 import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
-import Switch from "./Switch";
 import { client } from "pages/_app";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
