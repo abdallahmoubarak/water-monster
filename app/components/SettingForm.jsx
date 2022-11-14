@@ -15,9 +15,8 @@ export default function SettingForm({ containerId, setPage }) {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
-  const [date, setDate] = useState("");
   const [privateOn, setPrivateOn] = useState(true);
-  const [auto, setAuto] = useState(true);
+  const [manual, setManual] = useState(true);
   const [state, setState] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -39,9 +38,8 @@ export default function SettingForm({ containerId, setPage }) {
     setName(cnt.name);
     setSize(cnt.size);
     setAddress(cnt.address);
-    setDate(cnt.date);
     setPrivateOn(cnt.private_mode);
-    setAuto(cnt.filling_mode);
+    setManual(cnt.filling_mode);
     setState(cnt.installation_request?.state);
   }, [containerId]);
 
@@ -62,44 +60,47 @@ export default function SettingForm({ containerId, setPage }) {
               setOn={setPrivateOn}
               description={
                 privateOn
-                  ? "New Providers can't see your container !!!"
-                  : "All Providers can see your container"
+                  ? "Providers can't see your container !!!"
+                  : "Providers can see your container"
               }
             />
             <Switch
               icon={<BiWater />}
               title={"Filling Mode"}
-              on={auto}
-              setOn={setAuto}
-              description={auto ? "Automatically" : "Manual"}
+              on={manual}
+              setOn={setManual}
+              description={manual ? "Manual" : "Automatically"}
             />
-            {!auto && <Button text={"Request Fillment"} dark={true} />}
+            {manual && <Button text={"Request Fillment"} dark={true} />}
           </Box>
         )}
 
         {/* Information section  */}
 
         <Box title={"Inforamation"}>
-          <div className="state">
-            <MdPendingActions />
-            <div>Pending for {state}...</div>
-          </div>
+          {state !== "done" && (
+            <div className="state">
+              <MdPendingActions />
+              <div>Pending for {state}...</div>
+            </div>
+          )}
           <Input name="Container name" value={name} setValue={setName} />
           <Input name={"Size"} value={size} setValue={setSize} />
           <Input name={"Address"} value={address} disabled={true} />
           <div className="btn-container">
-            {state !== "installation" && (
+            <Button
+              text="Save"
+              onClick={handleUpdate}
+              isLoading={isLoading}
+              disabled={name === container?.name}
+            />
+            {state === "approval" && (
               <Button
-                text="Save"
-                onClick={handleUpdate}
-                isLoading={isLoading}
+                text="Delete"
+                dark={true}
+                onClick={() => deleteContainer(container.id)}
               />
             )}
-            <Button
-              text="Delete"
-              dark={true}
-              onClick={() => deleteContainer(container.id)}
-            />
           </div>
         </Box>
       </div>

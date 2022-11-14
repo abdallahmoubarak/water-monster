@@ -2,8 +2,13 @@ import { styles } from "@/utils/styles";
 import { dateTimeChanger } from "@/utils/time";
 import installation from "@/public/svg/installation.svg";
 import Image from "next/image";
+import Button from "../Button";
+import { useAcceptRequest } from "@/hooks/useRequest";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function ReuestCard({ request }) {
+  const { mutate: acceptRequest } = useAcceptRequest();
+  const currentIndex = indxs.installationIndxs.indexOf(request?.state);
   return (
     <>
       <div className="request-card">
@@ -33,10 +38,45 @@ export default function ReuestCard({ request }) {
           </div>
         </div>
         <div className="request-footer">
-          <div>requested</div>
-          <div>approved</div>
-          <div>installed</div>
-          <div>done</div>
+          {processSteps.installation.map((step, i) => (
+            <div className="step" key={i}>
+              <div
+                className={`step-circule ${i < currentIndex && "step-active"}`}>
+                {i}
+              </div>
+              <div>{step}</div>
+            </div>
+          ))}
+        </div>
+        <div className="request-action btn-container">
+          {request?.state === "done" ? (
+            <div className="done">
+              <FaCheckCircle />
+              <span>Done</span>
+            </div>
+          ) : (
+            <>
+              <Button
+                text="Reject"
+                dark={true}
+                onClick={() =>
+                  acceptRequest({
+                    id: request?.id,
+                    state: "rejected",
+                  })
+                }
+              />
+              <Button
+                text="Accept"
+                onClick={() =>
+                  acceptRequest({
+                    id: request?.id,
+                    state: indxs.installationIndxs[currentIndex + 1],
+                  })
+                }
+              />
+            </>
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -47,17 +87,18 @@ export default function ReuestCard({ request }) {
           ${styles.flexColumn};
           ${styles.boxshadow};
           ${styles.borderRadiusp3rem};
-          width: 20rem;
-          padding: 0.6rem 1rem;
+          width: 22rem;
           ${styles.userSelect};
-          cursor: pointer;
           gap: 1rem;
         }
         .request-header {
           ${styles.fontSize1p2rem}
+          border-bottom: 1px solid lightgray;
+          padding: 0.6rem 1rem;
         }
         .request-body {
-          ${styles.flexAligncenter}
+          ${styles.flexAligncenter};
+          padding: 0rem 0.6rem;
         }
         .request-info {
           display: -webkit-box;
@@ -74,14 +115,58 @@ export default function ReuestCard({ request }) {
         }
         .request-time {
           ${styles.fontSizep8rem};
+          color: ${styles.primaryColor};
         }
         .request-footer {
-          ${styles.flexAligncenter};
-          ${styles.justifyBetween};
+          ${styles.flexBothcenter};
           ${styles.fontSizep8rem};
-          gap: 0.2rem;
+          gap: 1.6rem;
+          border-top: 1px solid lightgray;
+          padding: 0.6rem 1rem;
+          padding-bottom: 0rem;
+        }
+        .request-action {
+          padding-bottom: 0.6rem;
+          height: 4rem;
+          ${styles.flexBothcenter};
+        }
+        .step {
+          ${styles.flexBothcenter};
+          ${styles.flexColumn};
+          gap: 0.3rem;
+        }
+        .step-circule {
+          border: 1px dashed gray;
+          ${styles.borderRadius50percent};
+          width: 2rem;
+          height: 2rem;
+          ${styles.flexBothcenter}
+        }
+        .step-active {
+          background: ${styles.primaryColor};
+          color: white;
+          border: 1px dashed ${styles.primaryColor};
+        }
+        .btn-container {
+          ${styles.flexAligncenter};
+        }
+        .done {
+          ${styles.flexAligncenter};
+          gap: 0.4rem;
+          color: green;
+          font-weight: bold;
+          ${styles.fontSize1p2rem}
         }
       `}</style>
     </>
   );
 }
+
+const processSteps = {
+  filling: ["Requested", "Approved", "Filled"],
+  installation: ["Requested", "Approved", "Installed"],
+};
+
+const indxs = {
+  installationIndxs: ["requested", "approval", "installation", "done"],
+};
