@@ -25,7 +25,7 @@ export default function Admin({ socket, onlineUsers }) {
             />
           )}
           {active === "Statistics" && <Statistics />}
-          {active === "Map" && <MapPage />}
+          {active === "Map" && <MapPage setPage={setActive} />}
         </AdminLayout>
       )}
       {active === "Chat" && (

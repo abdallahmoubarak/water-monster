@@ -107,8 +107,6 @@ export const useUpdateManualMode = () => {
   });
 };
 
-// TODO: [WM-99] query availble containers for map
-
 /****************** get availble map containers ******************/
 
 const getMapContainers = async () => {

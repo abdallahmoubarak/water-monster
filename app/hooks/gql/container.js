@@ -179,6 +179,9 @@ export const getMapContainersQuery = gql`
       size
       sensor_state
       water_level
+      user {
+        id
+      }
       requests(where: { title: "Filling", state: "waiting" }) {
         state
       }

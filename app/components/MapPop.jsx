@@ -3,7 +3,7 @@ import { FaRoute } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
 import { useRouter } from "next/router";
 
-export default function Pop({ container, current }) {
+export default function Pop({ container, current, setPage }) {
   const router = useRouter();
   return (
     <>
@@ -15,7 +15,9 @@ export default function Pop({ container, current }) {
           {(container?.size * container?.water_level) / 100} liter is empty.
         </div>
         <div className="icons-container">
-          <div className="icon">
+          <div
+            className="icon"
+            onClick={() => setPage("Chat", container?.user?.id)}>
             <BsFillChatFill />
           </div>
           <div
