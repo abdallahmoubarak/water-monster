@@ -5,6 +5,7 @@ import {
   acceptRequestMutation,
   createFillingRequestMutation,
   requestsQuery,
+  reserveRequestMutation,
 } from "./gql/request";
 
 /*********************** getting users requests ***********************/
@@ -49,6 +50,20 @@ const fillingRequest = async ({ user_id, container_id }) => {
 
 export const useFillingRequest = () => {
   return useMutation(fillingRequest, {
+    onError: (err) => console.log(err),
+  });
+};
+
+/*********************** create Filling request ***********************/
+
+const reserveRequest = async ({ provider_id, container_id }) => {
+  const variables = { provider_id, container_id };
+  const res = await graphQLClient.request(reserveRequestMutation, variables);
+  return res?.requests;
+};
+
+export const usereserveRequest = () => {
+  return useMutation(reserveRequest, {
     onError: (err) => console.log(err),
   });
 };

@@ -43,3 +43,19 @@ export const createFillingRequestMutation = gql`
     }
   }
 `;
+
+export const reserveRequestMutation = gql`
+  mutation ($provider_id: ID!, $request_id: ID!) {
+    updateRequests(
+      where: { id: $request_id }
+      update: {
+        state: "reserved"
+        providor: { connect: { where: { node: { id: $provider_id } } } }
+      }
+    ) {
+      requests {
+        id
+      }
+    }
+  }
+`;

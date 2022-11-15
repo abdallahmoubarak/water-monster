@@ -85,10 +85,10 @@ export default function MapPage({ setPage, userType }) {
                 container.location.longitude,
                 container.location.latitude,
               ]}
-              offset={[80, 155]}>
+              offset={[80, 190]}>
               <Pop
                 container={container}
-                current={currentLocation}
+                currentLocation={currentLocation}
                 setPage={setPage}
               />
             </Overlay>

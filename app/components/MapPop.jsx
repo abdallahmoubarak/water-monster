@@ -1,18 +1,29 @@
 import { styles } from "@/utils/styles";
 import { FaRoute } from "react-icons/fa";
-import { BsFillChatFill } from "react-icons/bs";
+import { BsFillChatFill, BsWater } from "react-icons/bs";
+import { GiPathDistance } from "react-icons/gi";
 import { useRouter } from "next/router";
+import getTimeDistance from "@/utils/distance";
 
-export default function Pop({ container, current, setPage }) {
+export default function Pop({ container, currentLocation, setPage }) {
   const router = useRouter();
   return (
     <>
       <div className="content">
         {Boolean(container?.requests?.length) && (
-          <div className="requested">Filling requested</div>
+          <div className="requested">Requested</div>
         )}
         <div>
-          {(container?.size * container?.water_level) / 100} liter is empty.
+          <BsWater /> {(container?.size * container?.water_level) / 100} liter
+          is empty.
+        </div>
+        <div>
+          <GiPathDistance />{" "}
+          {getTimeDistance({
+            currentLocation,
+            distanceLocation: container.location,
+          })}{" "}
+          min.
         </div>
         <div className="icons-container">
           <div
@@ -24,7 +35,7 @@ export default function Pop({ container, current, setPage }) {
             className="icon"
             onClick={() =>
               router.push(
-                `https://www.google.com/maps/dir/${current[0]},${current[1]}/${container?.location.longitude},${container?.location.latitude}/data=!4m2!4m1!3e0`,
+                `https://www.google.com/maps/dir/${currentLocation[0]},${currentLocation[1]}/${container?.location.longitude},${container?.location.latitude}/data=!4m2!4m1!3e0`,
               )
             }>
             <FaRoute />
