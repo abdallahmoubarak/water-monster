@@ -56,8 +56,8 @@ export const useFillingRequest = () => {
 
 /*********************** create Filling request ***********************/
 
-const reserveRequest = async ({ provider_id, container_id }) => {
-  const variables = { provider_id, container_id };
+const reserveRequest = async ({ provider_id, request_id }) => {
+  const variables = { provider_id, request_id };
   const res = await graphQLClient.request(reserveRequestMutation, variables);
   return res?.requests;
 };

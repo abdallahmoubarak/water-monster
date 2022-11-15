@@ -15,21 +15,23 @@ export default function Pop({
   setChatUser,
 }) {
   const router = useRouter();
-  const [isReserved, setIsReserved] = useState(
-    container?.requests[0]?.state === "reserved",
-  );
-
   const currentUser = client.getQueryData(["User"]);
-
-  const provider = Boolean(
-    container?.requests[0]?.providor[0]?.id === currentUser.id,
+  const [isReserved, setIsReserved] = useState(
+    Boolean(container?.requests[0]?.state === "reserved"),
+  );
+  const [isProvider, setIsProvider] = useState(
+    Boolean(container?.requests[0]?.providor[0]?.id === currentUser.id),
   );
 
   const { mutate: reserveRequest } = useReserveRequest();
 
   const handleReserve = () => {
-    reserveRequest({ provider_id: currentUser.id, container_id: container.id });
+    reserveRequest({
+      provider_id: currentUser.id,
+      request_id: container?.requests[0]?.id,
+    });
     setIsReserved(true);
+    setIsProvider(true);
   };
   const handleFill = () => {};
 
@@ -53,7 +55,7 @@ export default function Pop({
           })}{" "}
           min.
         </div>
-        {(!isReserved || provider) && (
+        {(!isReserved || isProvider) && (
           <div className="icons-container">
             <div
               className="icon"
@@ -72,7 +74,6 @@ export default function Pop({
               }>
               <FaRoute />
             </div>
-            {/* // TODO: [WM-103] reserve the request for the provider who click on GO button */}
             {isReserved ? (
               <div className="icon Fill" onClick={handleFill}>
                 Fill

@@ -185,6 +185,7 @@ export const getMapContainersQuery = gql`
         profile_url
       }
       requests(where: { title: "Filling", state_NOT: "done" }) {
+        id
         state
         providor {
           id
