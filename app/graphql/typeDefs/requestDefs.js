@@ -6,7 +6,8 @@ export const requestDefs = gql`
     title: String!
     state: String
     date: Date
-    not_active: Boolean
+    initial_state: Float
+    final_state: Float
     container: Container @relationship(type: "REQUESTED_FOR", direction: OUT)
     creator: User! @relationship(type: "CREATED_BY", direction: OUT)
     providor: [User!]! @relationship(type: "PROVIDED_BY", direction: OUT)

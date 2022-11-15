@@ -6,6 +6,7 @@ import {
   createFillingRequestMutation,
   requestsQuery,
   reserveRequestMutation,
+  startFillingMutation,
 } from "./gql/request";
 
 /*********************** getting users requests ***********************/
@@ -54,7 +55,7 @@ export const useFillingRequest = () => {
   });
 };
 
-/*********************** create Filling request ***********************/
+/*********************** reserve Filling request ***********************/
 
 const reserveRequest = async ({ provider_id, request_id }) => {
   const variables = { provider_id, request_id };
@@ -65,5 +66,20 @@ const reserveRequest = async ({ provider_id, request_id }) => {
 export const useReserveRequest = () => {
   return useMutation(reserveRequest, {
     onError: (err) => console.log(err),
+  });
+};
+
+/*********************** start Filling  ***********************/
+
+const startFilling = async ({ provider_id, request_id, empty_level }) => {
+  const variables = { provider_id, request_id, empty_level };
+  const res = await graphQLClient.request(startFillingMutation, variables);
+  return res?.requests;
+};
+
+export const useStartFilling = () => {
+  return useMutation(startFilling, {
+    onError: (err) => console.log(err),
+    onSuccess: () => client.refetchQueries(["MapContainers"]),
   });
 };

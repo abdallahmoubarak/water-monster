@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import getTimeDistance from "@/utils/distance";
 import { useState } from "react";
 import { client } from "pages/_app";
-import { useReserveRequest } from "@/hooks/useRequest";
+import { useReserveRequest, useStartFilling } from "@/hooks/useRequest";
 
 export default function Pop({
   container,
@@ -16,6 +16,7 @@ export default function Pop({
 }) {
   const router = useRouter();
   const currentUser = client.getQueryData(["User"]);
+  const emptyLevel = (container?.size * (100 - container?.water_level)) / 100;
   const [isReserved, setIsReserved] = useState(
     Boolean(container?.requests[0]?.state === "reserved"),
   );
@@ -24,6 +25,7 @@ export default function Pop({
   );
 
   const { mutate: reserveRequest } = useReserveRequest();
+  const { mutate: startFilling } = useStartFilling();
 
   const handleReserve = () => {
     reserveRequest({
@@ -33,7 +35,13 @@ export default function Pop({
     setIsReserved(true);
     setIsProvider(true);
   };
-  const handleFill = () => {};
+  const handleFill = () => {
+    startFilling({
+      provider_id: currentUser.id,
+      request_id: container?.requests[0]?.id,
+      empty_level: emptyLevel,
+    });
+  };
 
   return (
     <>
@@ -44,8 +52,7 @@ export default function Pop({
           </div>
         )}
         <div>
-          <BsWater /> {(container?.size * container?.water_level) / 100} liter
-          is empty.
+          <BsWater /> {emptyLevel} liter is empty.
         </div>
         <div>
           <GiPathDistance />{" "}

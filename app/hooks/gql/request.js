@@ -59,3 +59,20 @@ export const reserveRequestMutation = gql`
     }
   }
 `;
+
+export const startFillingMutation = gql`
+  mutation ($provider_id: ID!, $request_id: ID!, $empty_level: Float!) {
+    updateRequests(
+      where: { id: $request_id }
+      update: {
+        state: "done"
+        initial_state: $empty_level
+        providor: { connect: { where: { node: { id: $provider_id } } } }
+      }
+    ) {
+      requests {
+        id
+      }
+    }
+  }
+`;

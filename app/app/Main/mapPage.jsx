@@ -83,6 +83,7 @@ export default function MapPage({ setPage, setChatUser }) {
           {containers?.map((container, i) => {
             let y = 190;
             if (container?.requests[0]?.state === "reserved") y = 145;
+            if (!container?.requests[0]) y = 170;
             return (
               <Overlay
                 key={i}
