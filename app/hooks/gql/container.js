@@ -166,7 +166,7 @@ export const getMapContainersQuery = gql`
         OR: [
           { private_mode: false, manual_mode: true }
           { private_mode: false, manual_mode: false }
-          { requests_SINGLE: { state: "waiting" } }
+          { requests_SINGLE: { state_NOT: "done" } }
         ]
       }
     ) {
@@ -181,8 +181,10 @@ export const getMapContainersQuery = gql`
       water_level
       user {
         id
+        name
+        profile_url
       }
-      requests(where: { title: "Filling", state: "waiting" }) {
+      requests(where: { title: "Filling", state_NOT: "done" }) {
         state
       }
     }

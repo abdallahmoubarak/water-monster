@@ -9,7 +9,7 @@ import Image from "next/image";
 import Pop from "@/components/MapPop";
 import { useGetMapContainers } from "@/hooks/useContainer";
 
-export default function MapPage({ setPage, userType }) {
+export default function MapPage({ setPage, userType, setChatUser }) {
   const currentLocation = useMemo(
     () => [
       parseFloat(localStorage.getItem("lat")),
@@ -20,7 +20,7 @@ export default function MapPage({ setPage, userType }) {
   const [center, setCenter] = useState(currentLocation);
   const [zoom, setZoom] = useState(17);
 
-  const { data: containersLocation } = useGetMapContainers();
+  const { data: containers } = useGetMapContainers();
 
   getGeoLocation();
 
@@ -44,7 +44,7 @@ export default function MapPage({ setPage, userType }) {
             setZoom(zoom);
           }}>
           <ZoomControl />
-          {containersLocation?.map((container, i) => (
+          {containers?.map((container, i) => (
             <Marker
               key={i}
               width={50}
@@ -61,7 +61,7 @@ export default function MapPage({ setPage, userType }) {
               }}
             />
           ))}
-          {containersLocation?.map((container, i) => (
+          {containers?.map((container, i) => (
             <Marker
               key={i}
               width={50}
@@ -78,21 +78,26 @@ export default function MapPage({ setPage, userType }) {
               />
             </Marker>
           ))}
-          {containersLocation?.map((container, i) => (
-            <Overlay
-              key={i}
-              anchor={[
-                container.location.longitude,
-                container.location.latitude,
-              ]}
-              offset={[80, 190]}>
-              <Pop
-                container={container}
-                currentLocation={currentLocation}
-                setPage={setPage}
-              />
-            </Overlay>
-          ))}
+          {containers?.map((container, i) => {
+            let y = 190;
+            if (container?.requests[0]?.state === "reserved") y = 145;
+            return (
+              <Overlay
+                key={i}
+                anchor={[
+                  container.location.longitude,
+                  container.location.latitude,
+                ]}
+                offset={[80, y]}>
+                <Pop
+                  container={container}
+                  currentLocation={currentLocation}
+                  setPage={setPage}
+                  setChatUser={setChatUser}
+                />
+              </Overlay>
+            );
+          })}
           {/* owner marker */}
           <Marker
             width={50}

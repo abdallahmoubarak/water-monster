@@ -25,7 +25,6 @@ export default function Page({ currentUser }) {
     setPageId(id);
   };
 
-  // FIXME: [WM-102] re-structure useEffect for socket
   useEffect(() => {
     setSocket(
       SocketIOClient.connect(process.env.NEXT_PUBLIC_BASEURL, {
@@ -35,22 +34,18 @@ export default function Page({ currentUser }) {
   }, []);
 
   useEffect(() => {
+    let userId = currentUser?.id;
     socket?.on("connect", () => {
       console.log("SOCKET CONNECTED!", socket?.id);
+      currentUser && socket?.emit("addUser", userId);
+
+      socket?.on("getUsers", (users) => {
+        setOnlineUsers(users);
+      });
+
+      if (socket) return () => socket?.disconnect();
     });
   }, [socket]);
-
-  useEffect(() => {
-    let userId = currentUser?.id;
-    currentUser && socket?.emit("addUser", userId);
-
-    socket?.on("getUsers", (users) => {
-      setOnlineUsers(users);
-      console.log(users);
-    });
-
-    if (socket) return () => socket?.disconnect();
-  }, [currentUser, socket]);
 
   useEffect(() => {
     currentUser.type === "Admin" && setPage("Admin");
@@ -75,6 +70,7 @@ export default function Page({ currentUser }) {
                   setPage={setPage}
                   currentUser={currentUser}
                   userType={currentUser?.type}
+                  setChatUser={setChatUser}
                 />
               )}
             </>

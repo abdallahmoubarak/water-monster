@@ -4,14 +4,25 @@ import { BsFillChatFill, BsWater } from "react-icons/bs";
 import { GiPathDistance } from "react-icons/gi";
 import { useRouter } from "next/router";
 import getTimeDistance from "@/utils/distance";
+import { useState } from "react";
 
-export default function Pop({ container, currentLocation, setPage }) {
+export default function Pop({
+  container,
+  currentLocation,
+  setPage,
+  setChatUser,
+}) {
+  const [isReserved, setIsReserved] = useState(
+    container?.requests[0]?.state === "reserved",
+  );
   const router = useRouter();
   return (
     <>
       <div className="content">
         {Boolean(container?.requests?.length) && (
-          <div className="requested">Requested</div>
+          <div className="requested">
+            {isReserved ? "Reserved" : "Requested"}
+          </div>
         )}
         <div>
           <BsWater /> {(container?.size * container?.water_level) / 100} liter
@@ -25,24 +36,30 @@ export default function Pop({ container, currentLocation, setPage }) {
           })}{" "}
           min.
         </div>
-        <div className="icons-container">
-          <div
-            className="icon"
-            onClick={() => setPage("Chat", container?.user?.id)}>
-            <BsFillChatFill />
+        {!isReserved && (
+          <div className="icons-container">
+            <div
+              className="icon"
+              onClick={() => {
+                setChatUser(container?.user);
+                setPage("Chat");
+              }}>
+              <BsFillChatFill />
+            </div>
+            <div
+              className="icon"
+              onClick={() =>
+                router.push(
+                  `https://www.google.com/maps/dir/${currentLocation[0]},${currentLocation[1]}/${container?.location.longitude},${container?.location.latitude}/data=!4m2!4m1!3e0`,
+                )
+              }>
+              <FaRoute />
+            </div>
+            {/* // TODO: [WM-103] reserve the request for the provider who click on GO button */}
+
+            <div className="icon GO">GO</div>
           </div>
-          <div
-            className="icon"
-            onClick={() =>
-              router.push(
-                `https://www.google.com/maps/dir/${currentLocation[0]},${currentLocation[1]}/${container?.location.longitude},${container?.location.latitude}/data=!4m2!4m1!3e0`,
-              )
-            }>
-            <FaRoute />
-          </div>
-          {/* // TODO: [WM-103] reserve the request for the provider who click on GO button */}
-          <div className="icon GO">GO</div>
-        </div>
+        )}
       </div>
 
       <style jsx>{`

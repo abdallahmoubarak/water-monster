@@ -9,7 +9,7 @@ import Users from "./users";
 
 export default function Admin({ socket, onlineUsers }) {
   const [active, setActive] = useState("Users");
-  const [chatUser, setChatUser] = useState([]);
+  const [chatUser, setChatUser] = useState({});
   return (
     <>
       {layoutPages.includes(active) && (
@@ -22,10 +22,13 @@ export default function Admin({ socket, onlineUsers }) {
               setChatUser={setChatUser}
               onlineUsers={onlineUsers}
               setPage={setActive}
+              socket={socket}
             />
           )}
           {active === "Statistics" && <Statistics />}
-          {active === "Map" && <MapPage setPage={setActive} />}
+          {active === "Map" && (
+            <MapPage setPage={setActive} setChatUser={setChatUser} />
+          )}
         </AdminLayout>
       )}
       {active === "Chat" && (
