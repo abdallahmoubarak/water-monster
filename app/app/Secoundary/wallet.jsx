@@ -5,10 +5,11 @@ import Field from "@/components/Field";
 import Input from "@/components/Input";
 import InputsContainer from "@/components/InputsContainer";
 import { formatter } from "@/utils/currencyFormatter";
+import { client } from "pages/_app";
 import { useState } from "react";
 import Layout from "./sLayout";
 
-export default function Wallet({ currentUser, setPage }) {
+export default function Wallet({ setPage }) {
   const [name, setName] = useState();
   const [cardNumber, setCardNumber] = useState("");
   const [exp, setExp] = useState("");
@@ -16,6 +17,8 @@ export default function Wallet({ currentUser, setPage }) {
   const [flip, setFlip] = useState(false);
 
   const [amount, setAmount] = useState();
+
+  const currentUser = client.getQueryData(["User"]);
 
   return (
     <>

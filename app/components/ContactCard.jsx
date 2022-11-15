@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "@/styles/Contact.module.css";
-import { useCurrentUser } from "@/hooks/useAuth";
 import { useGetMessages } from "@/hooks/useMessage";
 import { useEffect, useState } from "react";
 import { timeChanger } from "@/utils/time";
+import { client } from "pages/_app";
 
 export default function ContactCard({
   user,
@@ -12,7 +12,8 @@ export default function ContactCard({
   onlineUsers,
 }) {
   const [lastmsg, setLastMsg] = useState("last message");
-  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const currentUser = client.getQueryData(["User"]);
+
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,
     other: user.id,

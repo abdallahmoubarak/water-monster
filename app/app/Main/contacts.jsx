@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
 import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
-import { useCurrentUser } from "@/hooks/useAuth";
 import Loading from "@/components/Loading";
+import { client } from "pages/_app";
 
 export default function Contacts({
   setPage,
@@ -15,7 +15,8 @@ export default function Contacts({
 }) {
   const [contacts, setContacts] = useState([]);
 
-  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const currentUser = client.getQueryData(["User"]);
+
   const { data: admin, isLoading } = useGetAdmin({ enabled: true });
   const { data: users } = useGetContacts({ id: currentUser.id });
 

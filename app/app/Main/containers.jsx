@@ -5,9 +5,12 @@ import RequestInstallation from "@/components/RequestInstallation";
 import Container from "@/components/Container";
 import { useUserContainers } from "@/hooks/useContainer";
 import ContainerLoader from "@/components/ContainerLoader";
+import { client } from "pages/_app";
 
-export default function Containers({ setPage, currentUser }) {
+export default function Containers({ setPage }) {
   const [requestOn, setRequestOn] = useState(false);
+  const currentUser = client.getQueryData(["User"]);
+
   const { data: containers, isLoading } = useUserContainers(currentUser.id);
 
   return (

@@ -5,6 +5,7 @@ import { GiPathDistance } from "react-icons/gi";
 import { useRouter } from "next/router";
 import getTimeDistance from "@/utils/distance";
 import { useState } from "react";
+import { client } from "pages/_app";
 
 export default function Pop({
   container,
@@ -12,10 +13,20 @@ export default function Pop({
   setPage,
   setChatUser,
 }) {
+  const router = useRouter();
   const [isReserved, setIsReserved] = useState(
     container?.requests[0]?.state === "reserved",
   );
-  const router = useRouter();
+
+  const currentUser = client.getQueryData(["User"]);
+
+  const provider = Boolean(
+    container?.requests[0]?.providor[0]?.id === currentUser.id,
+  );
+
+  const handleReserve = () => {};
+  const handleFill = () => {};
+
   return (
     <>
       <div className="content">
@@ -36,7 +47,7 @@ export default function Pop({
           })}{" "}
           min.
         </div>
-        {!isReserved && (
+        {(!isReserved || provider) && (
           <div className="icons-container">
             <div
               className="icon"
@@ -56,8 +67,15 @@ export default function Pop({
               <FaRoute />
             </div>
             {/* // TODO: [WM-103] reserve the request for the provider who click on GO button */}
-
-            <div className="icon GO">GO</div>
+            {isReserved ? (
+              <div className="icon Fill" onClick={handleFill}>
+                Fill
+              </div>
+            ) : (
+              <div className="icon GO" onClick={handleReserve}>
+                GO
+              </div>
+            )}
           </div>
         )}
       </div>

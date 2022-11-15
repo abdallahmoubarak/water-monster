@@ -1,10 +1,10 @@
-import { useCurrentUser } from "@/hooks/useAuth";
 import { styles } from "@/utils/styles";
 import { timeChanger } from "@/utils/time";
+import { client } from "pages/_app";
 import { useEffect, useRef } from "react";
 
 export default function Message({ message }) {
-  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const currentUser = client.getQueryData(["User"]);
   const scrollRef = useRef();
 
   useEffect(() => {

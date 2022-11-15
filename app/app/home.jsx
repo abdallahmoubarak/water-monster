@@ -63,12 +63,11 @@ export default function Page({ currentUser }) {
           {page === "Containers" && (
             <>
               {currentUser?.type === "Client" && (
-                <Containers setPage={setPage} currentUser={currentUser} />
+                <Containers setPage={setPage} />
               )}
               {currentUser?.type === "Provider" && (
                 <MapPage
                   setPage={setPage}
-                  currentUser={currentUser}
                   userType={currentUser?.type}
                   setChatUser={setChatUser}
                 />
@@ -87,18 +86,14 @@ export default function Page({ currentUser }) {
           )}
         </Layout>
       )}
-      {page === "Profile" && (
-        <Profile setPage={setPage} currentUser={currentUser} />
-      )}
       {page === "Chat" && (
         <Chat setPage={setPage} user={chatUser} socket={socket} />
       )}
       {page === "Setting" && (
         <ContainerSetting setPage={setPage} containerId={pageId} />
       )}
-      {page === "Wallet" && (
-        <Wallet setPage={setPage} currentUser={currentUser} />
-      )}
+      {page === "Profile" && <Profile setPage={setPage} />}
+      {page === "Wallet" && <Wallet setPage={setPage} />}
       {page === "Admin" && <Admin onlineUsers={onlineUsers} socket={socket} />}
     </>
   );

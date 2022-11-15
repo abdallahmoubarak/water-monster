@@ -8,8 +8,9 @@ import { BiTargetLock } from "react-icons/bi";
 import Image from "next/image";
 import Pop from "@/components/MapPop";
 import { useGetMapContainers } from "@/hooks/useContainer";
+import { client } from "pages/_app";
 
-export default function MapPage({ setPage, userType, setChatUser }) {
+export default function MapPage({ setPage, setChatUser }) {
   const currentLocation = useMemo(
     () => [
       parseFloat(localStorage.getItem("lat")),
@@ -21,6 +22,7 @@ export default function MapPage({ setPage, userType, setChatUser }) {
   const [zoom, setZoom] = useState(17);
 
   const { data: containers } = useGetMapContainers();
+  const userType = client.getQueryData(["User"]).type;
 
   getGeoLocation();
 
@@ -110,7 +112,11 @@ export default function MapPage({ setPage, userType, setChatUser }) {
           <Marker width={50} anchor={currentLocation}>
             <Image
               className="marker-img"
-              src={userType ? "/svg/tankmarker.svg" : "/svg/admin-marker.svg"}
+              src={
+                userType === "Providor"
+                  ? "/svg/tankmarker.svg"
+                  : "/svg/admin-marker.svg"
+              }
               alt=""
               width={50}
               height={60}

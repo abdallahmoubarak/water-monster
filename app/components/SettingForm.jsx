@@ -15,7 +15,6 @@ import {
 } from "@/hooks/useContainer";
 import Box from "./Box";
 import { useFillingRequest } from "@/hooks/useRequest";
-import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function SettingForm({ containerId, setPage }) {
   const [container, setContainer] = useState();
@@ -28,7 +27,7 @@ export default function SettingForm({ containerId, setPage }) {
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const currentUser = client.getQueryData(["User"]);
 
   const { mutate: requestFilling } = useFillingRequest();
   const { mutate: updatePrivateMode } = useUpdatePrivateMode();

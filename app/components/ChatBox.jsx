@@ -5,7 +5,7 @@ import Image from "next/image";
 import Call from "./Call";
 import Message from "./Message";
 import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
-import { useCurrentUser } from "@/hooks/useAuth";
+import { client } from "pages/_app";
 
 export default function ChatBox({ user, setPage, socket }) {
   const inputRef = useRef(null);
@@ -13,7 +13,8 @@ export default function ChatBox({ user, setPage, socket }) {
   const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
 
-  const { data: currentUser } = useCurrentUser({ enabled: false });
+  const currentUser = client.getQueryData(["User"]);
+
   const { mutate: createMessage } = useCreateMessage();
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,
