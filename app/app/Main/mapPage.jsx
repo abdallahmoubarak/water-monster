@@ -21,7 +21,6 @@ export default function MapPage({ setPage, userType }) {
   const [zoom, setZoom] = useState(17);
 
   const { data: containersLocation } = useGetMapContainers();
-  console.log(containersLocation);
 
   getGeoLocation();
 

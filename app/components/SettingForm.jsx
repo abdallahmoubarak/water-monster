@@ -14,6 +14,8 @@ import {
   useUpdatePrivateMode,
 } from "@/hooks/useContainer";
 import Box from "./Box";
+import { useFillingRequest } from "@/hooks/useRequest";
+import { useCurrentUser } from "@/hooks/useAuth";
 
 export default function SettingForm({ containerId, setPage }) {
   const [container, setContainer] = useState();
@@ -26,6 +28,9 @@ export default function SettingForm({ containerId, setPage }) {
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { data: currentUser } = useCurrentUser({ enabled: false });
+
+  const { mutate: requestFilling } = useFillingRequest();
   const { mutate: updatePrivateMode } = useUpdatePrivateMode();
   const { mutate: updateManualMode } = useUpdateManualMode();
   const { mutate: updateContainer } = useUpdateContainer({
@@ -93,7 +98,19 @@ export default function SettingForm({ containerId, setPage }) {
             />
             {isAwaitFilling
               ? "Waiting for fillment..."
-              : isManual && <Button text={"Request Fillment"} dark={true} />}
+              : isManual && (
+                  <Button
+                    text={"Request Fillment"}
+                    dark={true}
+                    onClick={() => {
+                      requestFilling({
+                        container_id: containerId,
+                        user_id: currentUser?.id,
+                      });
+                      setIsAwaitFilling(true);
+                    }}
+                  />
+                )}
           </Box>
         )}
 
