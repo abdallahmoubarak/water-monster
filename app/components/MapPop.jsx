@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import getTimeDistance from "@/utils/distance";
 import { useState } from "react";
 import { client } from "pages/_app";
+import { useReserveRequest } from "@/hooks/useRequest";
 
 export default function Pop({
   container,
@@ -24,7 +25,12 @@ export default function Pop({
     container?.requests[0]?.providor[0]?.id === currentUser.id,
   );
 
-  const handleReserve = () => {};
+  const { mutate: reserveRequest } = useReserveRequest();
+
+  const handleReserve = () => {
+    reserveRequest({ provider_id: currentUser.id, container_id: container.id });
+    setIsReserved(true);
+  };
   const handleFill = () => {};
 
   return (

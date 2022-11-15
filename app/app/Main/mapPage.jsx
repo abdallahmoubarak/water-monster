@@ -113,7 +113,7 @@ export default function MapPage({ setPage, setChatUser }) {
             <Image
               className="marker-img"
               src={
-                userType === "Providor"
+                userType === "Provider"
                   ? "/svg/tankmarker.svg"
                   : "/svg/admin-marker.svg"
               }

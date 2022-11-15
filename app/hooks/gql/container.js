@@ -186,6 +186,9 @@ export const getMapContainersQuery = gql`
       }
       requests(where: { title: "Filling", state_NOT: "done" }) {
         state
+        providor {
+          id
+        }
       }
     }
   }

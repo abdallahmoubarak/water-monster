@@ -62,7 +62,7 @@ const reserveRequest = async ({ provider_id, container_id }) => {
   return res?.requests;
 };
 
-export const usereserveRequest = () => {
+export const useReserveRequest = () => {
   return useMutation(reserveRequest, {
     onError: (err) => console.log(err),
   });
