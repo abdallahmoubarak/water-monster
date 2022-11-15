@@ -29,6 +29,7 @@ export default function Pop({ container, current, setPage }) {
             }>
             <FaRoute />
           </div>
+          {/* // TODO: [WM-103] reserve the request for the provider who click on GO button */}
           <div className="icon GO">GO</div>
         </div>
       </div>
