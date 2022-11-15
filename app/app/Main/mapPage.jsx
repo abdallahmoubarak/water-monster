@@ -9,7 +9,7 @@ import Image from "next/image";
 import Pop from "@/components/MapPop";
 import { useGetMapContainers } from "@/hooks/useContainer";
 
-export default function MapPage({ setPage }) {
+export default function MapPage({ setPage, userType }) {
   const currentLocation = useMemo(
     () => [
       parseFloat(localStorage.getItem("lat")),
@@ -106,7 +106,7 @@ export default function MapPage({ setPage }) {
           <Marker width={50} anchor={currentLocation}>
             <Image
               className="marker-img"
-              src={"/svg/tankmarker.svg"}
+              src={userType ? "/svg/tankmarker.svg" : "/svg/admin-marker.svg"}
               alt=""
               width={50}
               height={60}

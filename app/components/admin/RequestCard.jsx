@@ -141,7 +141,7 @@ const Filling = ({ request }) => {
 
 const processSteps = {
   installation: ["Requested", "Approved", "Installed"],
-  filling: ["Requested", "Waiting", "Filled"],
+  filling: ["Requested", "Reserved", "Filled"],
 };
 
 const indxs = {

@@ -71,7 +71,11 @@ export default function Page({ currentUser }) {
                 <Containers setPage={setPage} currentUser={currentUser} />
               )}
               {currentUser?.type === "Provider" && (
-                <MapPage setPage={setPage} currentUser={currentUser} />
+                <MapPage
+                  setPage={setPage}
+                  currentUser={currentUser}
+                  userType={currentUser?.type}
+                />
               )}
             </>
           )}
