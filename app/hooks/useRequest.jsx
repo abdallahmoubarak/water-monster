@@ -7,6 +7,7 @@ import {
   requestsQuery,
   reserveRequestMutation,
   startFillingMutation,
+  userFillingRequestsQuery,
 } from "./gql/request";
 
 /*********************** getting users requests ***********************/
@@ -81,5 +82,20 @@ export const useStartFilling = () => {
   return useMutation(startFilling, {
     onError: (err) => console.log(err),
     onSuccess: () => client.refetchQueries(["MapContainers"]),
+  });
+};
+
+/*********************** getting users filling requests ***********************/
+
+const getUserFillingRequests = async ({ id }) => {
+  const variables = { id };
+  const res = await graphQLClient.request(userFillingRequestsQuery, variables);
+  return res?.requests;
+};
+
+export const useGetUserFillingRequests = ({ id }) => {
+  return useQuery({
+    queryKey: ["FillingHistory"],
+    queryFn: () => getUserFillingRequests({ id }),
   });
 };

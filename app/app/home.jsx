@@ -19,7 +19,6 @@ export default function Page({ currentUser }) {
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
 
-  // FIXME: [WM-101] pass object to this function
   const setPage = (name, id) => {
     setPageName(name);
     setPageId(id);

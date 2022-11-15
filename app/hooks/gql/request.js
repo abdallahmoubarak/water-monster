@@ -2,7 +2,7 @@ import { gql } from "graphql-request";
 
 export const requestsQuery = gql`
   query {
-    requests {
+    requests(options: { sort: { createdAt: DESC } }) {
       id
       title
       createdAt
@@ -73,6 +73,24 @@ export const startFillingMutation = gql`
       requests {
         id
       }
+    }
+  }
+`;
+
+export const userFillingRequestsQuery = gql`
+  query ($id: ID!) {
+    requests(where: { AND: [{ title: "Filling" }, { creator: { id: $id } }] }) {
+      id
+      initial_state
+      container {
+        id
+        name
+      }
+      providor {
+        name
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
