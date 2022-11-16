@@ -17,15 +17,13 @@ export default function Wallet({ setPage }) {
   const [ccv, setCcv] = useState("");
   const [flip, setFlip] = useState(false);
   const [amount, setAmount] = useState();
+  const currentAmount = formatter.format(currentUser?.wallet?.amount);
 
   return (
     <>
       <Layout title={"Wallet"} onClick={() => setPage("Profile")}>
         <Box title={"Balance"} withOutShadow={true}>
-          <Field
-            title={"Wallet balance"}
-            value={formatter.format(currentUser?.wallet?.amount)}
-          />
+          <Field title={"Wallet balance"} value={currentAmount} />
         </Box>
         <CreditCard
           name={name}

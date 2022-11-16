@@ -1,7 +1,6 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createMessageMutation, getMessagesQuery } from "./gql/message";
-import { client } from "pages/_app";
 
 /*********************** use create message hook ***********************/
 

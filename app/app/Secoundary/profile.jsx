@@ -5,6 +5,7 @@ import Input from "@/components/Input";
 import InputsContainer from "@/components/InputsContainer";
 import UploadImage from "@/components/UploadImage";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
+import { useCreateWallet } from "@/hooks/useWallet";
 import { formatter } from "@/utils/currencyFormatter";
 import { client } from "pages/_app";
 import { useState } from "react";
@@ -16,9 +17,20 @@ export default function Profile({ setPage }) {
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
   const [base64, setImg64] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentAmount, setCurrentAmount] = useState(
+    formatter.format(parseFloat(currentUser?.wallet?.amount)),
+  );
 
   const { mutate: updateName } = useUpdateName();
   const { mutate: updatePhone } = useUpdatePhone();
+  const { mutate: createWallet } = useCreateWallet();
+
+  const handleCreateWallet = () => {
+    setIsLoading(true);
+    createWallet({ id: currentUser.id });
+    setCurrentAmount(formatter.format(1000));
+  };
 
   return (
     <>
@@ -50,17 +62,25 @@ export default function Profile({ setPage }) {
                   updatePhone({ id: currentUser?.id, phone })
                 }
               />
-              <Field
-                title={"Wallet balance"}
-                value={formatter.format(currentUser?.wallet?.amount)}
-              />
-              <Button
-                text={currentUser?.type === "Client" ? "Recharge" : "Withdraw"}
-                onClick={() => setPage("Wallet")}
-              />
+              {currentUser?.wallet?.amount ? (
+                <>
+                  <Field title={"Wallet balance"} value={currentAmount} />
+                  <Button
+                    text={
+                      currentUser?.type === "Client" ? "Recharge" : "Withdraw"
+                    }
+                    onClick={() => setPage("Wallet")}
+                  />
+                </>
+              ) : (
+                <Button
+                  text="Create a wallet"
+                  onClick={handleCreateWallet}
+                  isLoading={isLoading}
+                />
+              )}
               <Field title={"Language"} value={"En"} />
               <Field title={"Email"} value={currentUser?.email} />
-
               <Button
                 text="Logout"
                 dark={true}
