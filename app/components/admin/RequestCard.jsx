@@ -12,15 +12,19 @@ export default function ReuestCard({ request }) {
   return (
     <>
       <div className={styles.requestCard}>
-        <div className={styles.requestHeader}>
-          <div>
-            {request?.title} <span>request</span>
+        <div className={styles.cardHeader}>
+          <div className={styles.requestIcon}>
+            <Image src={installation} alt={""} width={45} />
           </div>
-          <div className={styles.requestTime}>
-            {dateTimeChanger(request?.createdAt)}
+          <div>
+            <div>
+              {request?.title} <span>request</span>
+            </div>
+            <div className={styles.requestTime}>
+              {dateTimeChanger(request?.createdAt)}
+            </div>
           </div>
         </div>
-
         <div className={styles.requestBody}>
           {request?.title === "Installation" && (
             <Installation request={request} acceptRequest={acceptRequest} />
@@ -36,21 +40,15 @@ const Installation = ({ request, acceptRequest }) => {
   const currentIndex = indxs.installationIndxs.indexOf(request?.state);
   return (
     <>
-      <div className={styles.requestIconInfo}>
-        <div className={styles.requestIcon}>
-          <Image src={installation} alt={""} width={80} />
+      <div className={styles.requestInfo}>
+        <div className={styles.requestCreator}>{request?.creator?.name}</div>
+        <div>
+          <span>Waiting: </span>
+          {request?.state}
         </div>
-        <div className={styles.requestInfo}>
-          <div className={styles.requestCreator}>{request?.creator?.name}</div>
-
-          <div>
-            <span>Waiting: </span>
-            {request?.state}
-          </div>
-          <div>
-            <span>Prefered date: </span>
-            {request?.date}
-          </div>
+        <div>
+          <span>Prefered date: </span>
+          {request?.date}
         </div>
       </div>
       <div className={styles.requestSteps}>
@@ -104,21 +102,16 @@ const Filling = ({ request }) => {
   const currentIndex = indxs.fillingIndxs.indexOf(request?.state);
   return (
     <>
-      <div className={styles.requestIconInfo}>
-        <div className={styles.requestIcon}>
-          <Image src={filling} alt={""} width={80} />
-        </div>
-        <div className={styles.requestInfo}>
-          <div className={styles.requestCreator}>{request?.creator?.name}</div>
+      <div className={styles.requestInfo}>
+        <div className={styles.requestCreator}>{request?.creator?.name}</div>
 
-          <div>
-            <span>Waiting: </span>
-            {request?.state}
-          </div>
-          <div>
-            <span>Provider: </span>
-            {request?.date}
-          </div>
+        <div>
+          <span>Waiting: </span>
+          {request?.state}
+        </div>
+        <div>
+          <span>Provider: </span>
+          {request?.date}
         </div>
       </div>
       <div className={styles.requestSteps}>

@@ -8,12 +8,11 @@ import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
 import { client } from "pages/_app";
 
 export default function ChatBox({ user, setPage, socket }) {
+  const currentUser = client.getQueryData(["User"]);
   const inputRef = useRef(null);
   const [messages, setMessages] = useState([]);
   const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
-
-  const currentUser = client.getQueryData(["User"]);
 
   const { mutate: createMessage } = useCreateMessage();
   const { data: msgs } = useGetMessages({

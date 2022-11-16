@@ -11,8 +11,8 @@ export default function ContactCard({
   setPage,
   onlineUsers,
 }) {
-  const [lastmsg, setLastMsg] = useState("last message");
   const currentUser = client.getQueryData(["User"]);
+  const [lastmsg, setLastMsg] = useState("last message");
 
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,

@@ -10,6 +10,7 @@ export const requestsQuery = gql`
       date
       creator {
         name
+        profile_url
       }
     }
   }

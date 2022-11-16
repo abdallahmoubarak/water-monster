@@ -13,9 +13,8 @@ export default function Contacts({
   onlineUsers,
   socket,
 }) {
-  const [contacts, setContacts] = useState([]);
-
   const currentUser = client.getQueryData(["User"]);
+  const [contacts, setContacts] = useState([]);
 
   const { data: admin, isLoading } = useGetAdmin({ enabled: true });
   const { data: users } = useGetContacts({ id: currentUser.id });

@@ -1,4 +1,5 @@
 import Table from "@/components/admin/Table";
+import PageTitle from "@/components/PageTitle";
 import Select from "@/components/Select";
 import { useGetUsers } from "@/hooks/useUser";
 import filter from "@/utils/search";
@@ -32,6 +33,7 @@ export default function Users() {
   return (
     <>
       <div className="page">
+        <PageTitle text="Users" />
         <div className="head-container">
           <div className="input-container">
             <input

@@ -17,6 +17,7 @@ import Box from "./Box";
 import { useFillingRequest } from "@/hooks/useRequest";
 
 export default function SettingForm({ containerId, setPage }) {
+  const currentUser = client.getQueryData(["User"]);
   const [container, setContainer] = useState();
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
@@ -26,8 +27,6 @@ export default function SettingForm({ containerId, setPage }) {
   const [isPrivate, setIsPrivate] = useState(false);
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const currentUser = client.getQueryData(["User"]);
 
   const { mutate: requestFilling } = useFillingRequest();
   const { mutate: updatePrivateMode } = useUpdatePrivateMode();

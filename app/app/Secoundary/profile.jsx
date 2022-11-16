@@ -11,6 +11,7 @@ import { useState } from "react";
 import Layout from "./sLayout";
 
 export default function Profile({ setPage }) {
+  const currentUser = client.getQueryData(["User"]);
   const [name, setName] = useState(currentUser?.name || "");
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
@@ -18,8 +19,6 @@ export default function Profile({ setPage }) {
 
   const { mutate: updateName } = useUpdateName();
   const { mutate: updatePhone } = useUpdatePhone();
-
-  const currentUser = client.getQueryData(["User"]);
 
   return (
     <>

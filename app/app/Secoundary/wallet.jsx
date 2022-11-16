@@ -10,15 +10,13 @@ import { useState } from "react";
 import Layout from "./sLayout";
 
 export default function Wallet({ setPage }) {
+  const currentUser = client.getQueryData(["User"]);
   const [name, setName] = useState();
   const [cardNumber, setCardNumber] = useState("");
   const [exp, setExp] = useState("");
   const [ccv, setCcv] = useState("");
   const [flip, setFlip] = useState(false);
-
   const [amount, setAmount] = useState();
-
-  const currentUser = client.getQueryData(["User"]);
 
   return (
     <>

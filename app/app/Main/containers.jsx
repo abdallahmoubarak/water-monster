@@ -8,8 +8,8 @@ import ContainerLoader from "@/components/ContainerLoader";
 import { client } from "pages/_app";
 
 export default function Containers({ setPage }) {
-  const [requestOn, setRequestOn] = useState(false);
   const currentUser = client.getQueryData(["User"]);
+  const [requestOn, setRequestOn] = useState(false);
 
   const { data: containers, isLoading } = useUserContainers(currentUser.id);
 
