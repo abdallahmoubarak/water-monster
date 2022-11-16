@@ -4,6 +4,7 @@ import CreditCard from "@/components/CreditCard";
 import Field from "@/components/Field";
 import Input from "@/components/Input";
 import InputsContainer from "@/components/InputsContainer";
+import { useChargeWallet, useWithdrawMutation } from "@/hooks/useWallet";
 import { formatter } from "@/utils/currencyFormatter";
 import { client } from "pages/_app";
 import { useState } from "react";
@@ -17,7 +18,11 @@ export default function Wallet({ setPage }) {
   const [ccv, setCcv] = useState("");
   const [flip, setFlip] = useState(false);
   const [amount, setAmount] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const currentAmount = formatter.format(currentUser?.wallet?.amount);
+
+  const { mutate: charge } = useChargeWallet({ setAmount, setIsLoading });
+  const { mutate: withdraw } = useWithdrawMutation({ setAmount, setIsLoading });
 
   return (
     <>
@@ -56,7 +61,31 @@ export default function Wallet({ setPage }) {
         </Box>
         <Box withOutShadow={true}>
           <Input name={"Amount"} value={amount} setValue={setAmount} />
-          <Button text="Charge" />
+          {currentUser.type === "Client" ? (
+            <Button
+              text="Charge"
+              isLoading={isLoading}
+              onClick={() => {
+                setIsLoading(true);
+                charge({
+                  id: currentUser?.wallet?.id,
+                  amount: parseFloat(amount),
+                });
+              }}
+            />
+          ) : (
+            <Button
+              text="Withdraw"
+              isLoading={isLoading}
+              onClick={() => {
+                setIsLoading(true);
+                withdraw({
+                  id: currentUser?.wallet?.id,
+                  amount: parseFloat(amount),
+                });
+              }}
+            />
+          )}
         </Box>
       </Layout>
     </>

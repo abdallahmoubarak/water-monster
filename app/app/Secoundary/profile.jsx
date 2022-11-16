@@ -18,8 +18,8 @@ export default function Profile({ setPage }) {
   const [image, setImage] = useState("");
   const [base64, setImg64] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [currentAmount, setCurrentAmount] = useState(
-    formatter.format(parseFloat(currentUser?.wallet?.amount)),
+  const currentAmount = formatter.format(
+    parseFloat(currentUser?.wallet?.amount),
   );
 
   const { mutate: updateName } = useUpdateName();
@@ -29,7 +29,6 @@ export default function Profile({ setPage }) {
   const handleCreateWallet = () => {
     setIsLoading(true);
     createWallet({ id: currentUser.id });
-    setCurrentAmount(formatter.format(1000));
   };
 
   return (

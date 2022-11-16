@@ -14,3 +14,23 @@ export const createWalletMutation = gql`
     }
   }
 `;
+
+export const chargeWalletMutation = gql`
+  mutation ($id: ID!, $amount: Float) {
+    updateWallets(where: { id: $id }, update: { amount_ADD: $amount }) {
+      wallets {
+        amount
+      }
+    }
+  }
+`;
+
+export const withdrawMutation = gql`
+  mutation ($id: ID!, $amount: Float) {
+    updateWallets(where: { id: $id }, update: { amount_SUBTRACT: $amount }) {
+      wallets {
+        amount
+      }
+    }
+  }
+`;
