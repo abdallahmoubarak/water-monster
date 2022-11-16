@@ -21,7 +21,7 @@ export default function Pop({
     Boolean(container?.requests[0]?.state === "reserved"),
   );
   const [isProvider, setIsProvider] = useState(
-    Boolean(container?.requests[0]?.providor[0]?.id === currentUser.id),
+    Boolean(container?.requests[0]?.provider[0]?.id === currentUser.id),
   );
 
   const { mutate: reserveRequest } = useReserveRequest();

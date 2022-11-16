@@ -50,7 +50,7 @@ export const reserveRequestMutation = gql`
       where: { id: $request_id }
       update: {
         state: "reserved"
-        providor: { connect: { where: { node: { id: $provider_id } } } }
+        provider: { connect: { where: { node: { id: $provider_id } } } }
       }
     ) {
       requests {
@@ -67,7 +67,7 @@ export const startFillingMutation = gql`
       update: {
         state: "done"
         initial_state: $empty_level
-        providor: { connect: { where: { node: { id: $provider_id } } } }
+        provider: { connect: { where: { node: { id: $provider_id } } } }
       }
     ) {
       requests {
@@ -86,7 +86,7 @@ export const userFillingRequestsQuery = gql`
         id
         name
       }
-      providor {
+      provider {
         name
       }
       createdAt
