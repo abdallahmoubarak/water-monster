@@ -10,6 +10,10 @@ export const updateNameMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -25,6 +29,10 @@ export const updatePhoneMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -40,6 +48,10 @@ export const updateProfileUrlMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }

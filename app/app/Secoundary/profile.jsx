@@ -38,7 +38,7 @@ export default function Profile({ setPage }) {
                 setValue={setName}
                 onBlur={() =>
                   currentUser?.name !== name &&
-                  updateName({ id: currentUser.id, name })
+                  updateName({ id: currentUser?.id, name })
                 }
               />
               <Input
@@ -47,19 +47,19 @@ export default function Profile({ setPage }) {
                 setValue={setPhone}
                 onBlur={() =>
                   currentUser?.phone !== phone &&
-                  updatePhone({ id: currentUser.id, phone })
+                  updatePhone({ id: currentUser?.id, phone })
                 }
               />
               <Field
                 title={"Wallet balance"}
-                value={formatter.format(13000000)}
+                value={formatter.format(currentUser?.wallet?.amount)}
               />
               <Button
-                text={currentUser.type === "Client" ? "Recharge" : "Withdraw"}
+                text={currentUser?.type === "Client" ? "Recharge" : "Withdraw"}
                 onClick={() => setPage("Wallet")}
               />
               <Field title={"Language"} value={"En"} />
-              <Field title={"Email"} value={currentUser.email} />
+              <Field title={"Email"} value={currentUser?.email} />
 
               <Button
                 text="Logout"

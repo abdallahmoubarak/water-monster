@@ -22,7 +22,10 @@ export default function Wallet({ setPage }) {
     <>
       <Layout title={"Wallet"} onClick={() => setPage("Profile")}>
         <Box title={"Balance"} withOutShadow={true}>
-          <Field title={"Wallet balance"} value={formatter.format(1300000)} />
+          <Field
+            title={"Wallet balance"}
+            value={formatter.format(currentUser?.wallet?.amount)}
+          />
         </Box>
         <CreditCard
           name={name}
