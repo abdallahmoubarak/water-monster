@@ -2,6 +2,7 @@ import { formatter } from "@/utils/currencyFormatter";
 import { dateTimeChanger } from "@/utils/time";
 import styles from "@/styles/FillingCard.module.css";
 import Button from "./Button";
+import Image from "next/image";
 
 export default function FillingCard({ item }) {
   return (
