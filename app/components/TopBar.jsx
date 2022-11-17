@@ -28,15 +28,11 @@ export default function TopBar({ withImg, setActive }) {
           height: 100%;
         }
         .profile-image {
-          background: white;
           width: 3rem;
           height: 3rem;
-          border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
           cursor: pointer;
+          ${styles.borderRadius50percent};
+          ${styles.darkProfileBackground};
         }
       `}</style>
     </>

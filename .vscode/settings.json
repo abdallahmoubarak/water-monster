@@ -1,0 +1,7 @@
+{
+  "atlascode.bitbucket.enabled": false,
+  "atlascode.jira.statusbar.enabled": true,
+  "atlascode.jira.statusbar.showUser": true,
+  "atlascode.jira.statusbar.showProduct": false,
+  "atlascode.jira.statusbar.showLogin": false
+}

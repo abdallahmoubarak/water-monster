@@ -30,4 +30,8 @@ export const styles = {
     "border-radius: .3rem; -webkit-border-radius: .3rem; -moz-border-radius: .3rem; -ms-border-radius: .3rem;-o-border-radius: .3rem;",
   borderRadius50percent:
     "border-radius: 50%; -webkit-border-radius: 50%; -moz-border-radius: 50%; -ms-border-radius: 50%; -o-border-radius: 50%;",
+  whiteProfileBackground:
+    "background: #43b9c3 center/cover url('/svg/person-white.svg') no-repeat;",
+  darkProfileBackground:
+    "background: white center/cover url('/svg/person-colored.svg') no-repeat;",
 };

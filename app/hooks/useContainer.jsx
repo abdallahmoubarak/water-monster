@@ -4,7 +4,10 @@ import { client } from "pages/_app";
 import {
   createContainerMutation,
   deleteContainerMutation,
+  getMapContainersQuery,
   updateContainerMutation,
+  updateManualModeMutation,
+  updatePrivateModeMutation,
   userContainerQuery,
 } from "./gql/container";
 
@@ -66,7 +69,6 @@ export const useUpdateContainer = ({ setPage, setIsLoading }) => {
 const deleteContainer = async (id) => {
   const variables = { container_id: id };
   const res = await graphQLClient.request(deleteContainerMutation, variables);
-  console.log(res);
   return res;
 };
 
@@ -74,5 +76,47 @@ export const useDeleteContainer = ({ setPage, setIsLoading }) => {
   return useMutation(deleteContainer, {
     onSuccess: () => setPage("Containers"),
     onError: () => setIsLoading(false),
+  });
+};
+
+/****************** updating private mode in a container ******************/
+
+const updatePrivateMode = async ({ id, private_mode }) => {
+  const variables = { id, private_mode };
+  const res = await graphQLClient.request(updatePrivateModeMutation, variables);
+  return res;
+};
+
+export const useUpdatePrivateMode = () => {
+  return useMutation(updatePrivateMode, {
+    onError: (err) => console.log(err),
+  });
+};
+
+/****************** updating manual mode in a container ******************/
+
+const updateManualMode = async ({ id, manual_mode }) => {
+  const variables = { id, manual_mode };
+  const res = await graphQLClient.request(updateManualModeMutation, variables);
+  return res;
+};
+
+export const useUpdateManualMode = () => {
+  return useMutation(updateManualMode, {
+    onError: (err) => console.log(err),
+  });
+};
+
+/****************** get availble map containers ******************/
+
+const getMapContainers = async () => {
+  const res = await graphQLClient.request(getMapContainersQuery);
+  return res?.containers;
+};
+
+export const useGetMapContainers = () => {
+  return useQuery({
+    queryKey: ["MapContainers"],
+    queryFn: () => getMapContainers(),
   });
 };

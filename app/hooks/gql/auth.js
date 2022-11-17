@@ -32,6 +32,10 @@ export const signInMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -46,6 +50,10 @@ export const meQuery = gql`
       phone
       type
       profile_url
+      wallet {
+        id
+        amount
+      }
     }
   }
 `;

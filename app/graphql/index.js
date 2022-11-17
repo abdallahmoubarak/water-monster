@@ -19,6 +19,8 @@ const driver = neo4j.driver(
 export const ogm = new OGM({ typeDefs, driver });
 export const User = ogm.model("User");
 export const Wallet = ogm.model("Wallet");
+export const Transaction = ogm.model("Transaction");
+export const Request = ogm.model("Request");
 
 const neoSchema = new Neo4jGraphQL({
   typeDefs,

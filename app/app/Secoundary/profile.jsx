@@ -5,19 +5,31 @@ import Input from "@/components/Input";
 import InputsContainer from "@/components/InputsContainer";
 import UploadImage from "@/components/UploadImage";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
+import { useCreateWallet } from "@/hooks/useWallet";
 import { formatter } from "@/utils/currencyFormatter";
 import { client } from "pages/_app";
 import { useState } from "react";
 import Layout from "./sLayout";
 
-export default function Profile({ currentUser, setPage }) {
+export default function Profile({ setPage }) {
+  const currentUser = client.getQueryData(["User"]);
   const [name, setName] = useState(currentUser?.name || "");
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
   const [base64, setImg64] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const currentAmount = formatter.format(
+    parseFloat(currentUser?.wallet?.amount),
+  );
 
   const { mutate: updateName } = useUpdateName();
   const { mutate: updatePhone } = useUpdatePhone();
+  const { mutate: createWallet } = useCreateWallet();
+
+  const handleCreateWallet = () => {
+    setIsLoading(true);
+    createWallet({ id: currentUser.id });
+  };
 
   return (
     <>
@@ -37,7 +49,7 @@ export default function Profile({ currentUser, setPage }) {
                 setValue={setName}
                 onBlur={() =>
                   currentUser?.name !== name &&
-                  updateName({ id: currentUser.id, name })
+                  updateName({ id: currentUser?.id, name })
                 }
               />
               <Input
@@ -46,28 +58,36 @@ export default function Profile({ currentUser, setPage }) {
                 setValue={setPhone}
                 onBlur={() =>
                   currentUser?.phone !== phone &&
-                  updatePhone({ id: currentUser.id, phone })
+                  updatePhone({ id: currentUser?.id, phone })
                 }
               />
-              <Field
-                title={"Wallet balance"}
-                value={formatter.format(13000000)}
-              />
-              <Button
-                text={currentUser.type === "Client" ? "Recharge" : "Withdraw"}
-                onClick={() => setPage("Wallet")}
-              />
+              {currentUser?.wallet?.amount ? (
+                <>
+                  <Field title={"Wallet balance"} value={currentAmount} />
+                  <Button
+                    text={
+                      currentUser?.type === "Client" ? "Recharge" : "Withdraw"
+                    }
+                    onClick={() => setPage("Wallet")}
+                  />
+                </>
+              ) : (
+                <Button
+                  text="Create a wallet"
+                  onClick={handleCreateWallet}
+                  isLoading={isLoading}
+                />
+              )}
               <Field title={"Language"} value={"En"} />
-              <Field title={"Email"} value={currentUser.email} />
-
+              <Field title={"Email"} value={currentUser?.email} />
               <Button
                 text="Logout"
                 dark={true}
                 onClick={() => {
-                  localStorage.removeItem("JWT");
-                  localStorage.removeItem("User");
                   client.setQueryData(["JWT"], null);
                   client.setQueryData(["User"], null);
+                  localStorage.removeItem("JWT");
+                  localStorage.removeItem("User");
                 }}
               />
             </InputsContainer>

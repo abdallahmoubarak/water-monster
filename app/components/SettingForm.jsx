@@ -1,26 +1,36 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Switch from "./Switch";
 import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
-import Switch from "./Switch";
 import { client } from "pages/_app";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { BiWater } from "react-icons/bi";
 import { MdPendingActions } from "react-icons/md";
-import { useDeleteContainer, useUpdateContainer } from "@/hooks/useContainer";
+import {
+  useDeleteContainer,
+  useUpdateContainer,
+  useUpdateManualMode,
+  useUpdatePrivateMode,
+} from "@/hooks/useContainer";
 import Box from "./Box";
+import { useFillingRequest } from "@/hooks/useRequest";
 
 export default function SettingForm({ containerId, setPage }) {
+  const currentUser = client.getQueryData(["User"]);
   const [container, setContainer] = useState();
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
-  const [date, setDate] = useState("");
-  const [privateOn, setPrivateOn] = useState(true);
-  const [auto, setAuto] = useState(true);
-  const [state, setState] = useState("");
+  const [installationState, setInstallationState] = useState("");
+  const [isAwaitFilling, setIsAwaitFilling] = useState(false);
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { mutate: requestFilling } = useFillingRequest();
+  const { mutate: updatePrivateMode } = useUpdatePrivateMode();
+  const { mutate: updateManualMode } = useUpdateManualMode();
   const { mutate: updateContainer } = useUpdateContainer({
     setPage,
     setIsLoading,
@@ -36,13 +46,15 @@ export default function SettingForm({ containerId, setPage }) {
       ?.getQueryData(["Containers"])
       ?.filter((item) => item.id === containerId)[0];
     setContainer(cnt);
-    setName(cnt.name);
-    setSize(cnt.size);
-    setAddress(cnt.address);
-    setDate(cnt.date);
-    setPrivateOn(cnt.private_mode);
-    setAuto(cnt.filling_mode);
-    setState(cnt.installation_request?.state);
+    setName(cnt?.name);
+    setSize(cnt?.size);
+    setAddress(cnt?.address);
+    setIsPrivate(cnt?.private_mode);
+    setIsManual(cnt?.manual_mode);
+    setInstallationState(
+      cnt?.requests.filter((req) => req.title === "Installation")[0]?.state,
+    );
+    cnt?.requests.length === 2 && setIsAwaitFilling(true);
   }, [containerId]);
 
   const handleUpdate = () => {
@@ -50,56 +62,82 @@ export default function SettingForm({ containerId, setPage }) {
     setIsLoading(true);
   };
 
+  const togglePrivateMode = () => {
+    updatePrivateMode({ id: container.id, private_mode: !isPrivate });
+    setIsPrivate(!isPrivate);
+  };
+  const toggleManualMode = () => {
+    updateManualMode({ id: container.id, manual_mode: !isManual });
+    setIsManual(!isManual);
+  };
+
   return (
     <>
       <div className="setting-container">
-        {state === "done" && (
+        {installationState === "done" && (
           <Box title={"Controll"}>
             <Switch
               icon={<FaRegEyeSlash />}
               title={"Private Mode"}
-              on={privateOn}
-              setOn={setPrivateOn}
+              on={isPrivate}
+              setOn={togglePrivateMode}
               description={
-                privateOn
-                  ? "New Providers can't see your container !!!"
-                  : "All Providers can see your container"
+                isPrivate
+                  ? "Providers can't see your container !!!"
+                  : "Providers can see your container"
               }
             />
             <Switch
               icon={<BiWater />}
               title={"Filling Mode"}
-              on={auto}
-              setOn={setAuto}
-              description={auto ? "Automatically" : "Manual"}
+              on={isManual}
+              setOn={toggleManualMode}
+              description={isManual ? "Manual" : "Automatically"}
             />
-            {!auto && <Button text={"Request Fillment"} dark={true} />}
+            {isAwaitFilling
+              ? "Waiting for fillment..."
+              : isManual && (
+                  <Button
+                    text={"Request Fillment"}
+                    dark={true}
+                    onClick={() => {
+                      requestFilling({
+                        container_id: containerId,
+                        user_id: currentUser?.id,
+                      });
+                      setIsAwaitFilling(true);
+                    }}
+                  />
+                )}
           </Box>
         )}
 
         {/* Information section  */}
 
         <Box title={"Inforamation"}>
-          <div className="state">
-            <MdPendingActions />
-            <div>Pending for {state}...</div>
-          </div>
+          {installationState !== "done" && (
+            <div className="state">
+              <MdPendingActions />
+              <div>Pending for {installationState}...</div>
+            </div>
+          )}
           <Input name="Container name" value={name} setValue={setName} />
           <Input name={"Size"} value={size} setValue={setSize} />
           <Input name={"Address"} value={address} disabled={true} />
           <div className="btn-container">
-            {state !== "installation" && (
+            <Button
+              text="Save"
+              onClick={handleUpdate}
+              isLoading={isLoading}
+              disabled={name === container?.name}
+            />
+            {installationState === "approval" && (
               <Button
-                text="Save"
-                onClick={handleUpdate}
-                isLoading={isLoading}
+                text="Delete"
+                dark={true}
+                onClick={() => deleteContainer(container.id)}
               />
             )}
-            <Button
-              text="Delete"
-              dark={true}
-              onClick={() => deleteContainer(container.id)}
-            />
           </div>
         </Box>
       </div>

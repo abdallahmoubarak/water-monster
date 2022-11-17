@@ -1,34 +1,55 @@
-"use client";
+import { useEffect, useRef, useState } from "react";
+import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
-import { FaPaperPlane, FaPhone, FaArrowLeft } from "react-icons/fa";
-import { useEffect, useRef, useState } from "react";
 import Call from "./Call";
-import img from "@/public/icons/icon-256x256.png";
 import Message from "./Message";
 import { useCreateMessage, useGetMessages } from "@/hooks/useMessage";
-import { useCurrentUser } from "@/hooks/useAuth";
+import { client } from "pages/_app";
 
-export default function ChatBox({ user, setPage }) {
+export default function ChatBox({ user, setPage, socket }) {
+  const currentUser = client.getQueryData(["User"]);
   const inputRef = useRef(null);
-  const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState([]);
   const [value, setValue] = useState("");
   const [call, setCall] = useState(false);
 
-  const { data: currentUser } = useCurrentUser({ enabled: false });
   const { mutate: createMessage } = useCreateMessage();
   const { data: msgs } = useGetMessages({
     me: currentUser?.id,
-    other: user.id,
-    enabled: Boolean(currentUser?.id) && Boolean(user.id),
+    other: user?.id,
+    enabled: false,
   });
 
   useEffect(() => msgs && setMessages(msgs), [msgs]);
 
+  useEffect(() => {
+    socket?.on(
+      "getMessage",
+      ({ senderId, content }) =>
+        user?.id === senderId &&
+        setMessages((messages) => [
+          ...messages,
+          {
+            content,
+            createdAt: new Date(),
+            from: { id: senderId },
+          },
+        ]),
+    );
+  }, [socket, user?.id]);
+
+  const handleSendOnSocket = ({ user, content }) => {
+    socket.emit("sendMessage", {
+      senderId: currentUser?.id,
+      receiverId: user.id,
+      content,
+    });
+  };
+
   const sendMessage = async () => {
     if (value) {
-      createMessage({ content: value, to: user.id, from: currentUser?.id });
+      createMessage({ content: value, to: user?.id, from: currentUser?.id });
       setMessages([
         ...messages,
         {
@@ -37,13 +58,7 @@ export default function ChatBox({ user, setPage }) {
           from: { id: currentUser?.id },
         },
       ]);
-      // const message = { content: value, user };
-      // const res = await fetch("/api/chat", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(message),
-      // });
-      // res.ok && setValue("");
+      handleSendOnSocket({ user, content: value });
       setValue("");
     }
     inputRef?.current?.focus();
@@ -62,12 +77,14 @@ export default function ChatBox({ user, setPage }) {
                 </div>
               )}
               <div className="profile-img">
-                <Image
-                  src={user?.profile_url || img}
-                  alt=""
-                  width={48}
-                  height={48}
-                />
+                {user?.profile_url && (
+                  <Image
+                    src={user?.profile_url}
+                    alt=""
+                    width={48}
+                    height={48}
+                  />
+                )}
               </div>
               <div className="user-info">
                 <div className="user-name">{user?.name}</div>
@@ -78,7 +95,7 @@ export default function ChatBox({ user, setPage }) {
             </div>
             <div className="chat-body">
               {messages?.map((message, i) => (
-                <Message message={message} currentUser={currentUser} key={i} />
+                <Message key={i} message={message} currentUser={currentUser} />
               ))}
             </div>
             <div className="chat-input-container">
@@ -91,10 +108,7 @@ export default function ChatBox({ user, setPage }) {
                 value={value}
                 onKeyDown={(e) => e.key === "Enter" && sendMessage()}
               />
-              <div
-                className="chat-icon"
-                onClick={sendMessage}
-                disabled={!connected}>
+              <div className="chat-icon" onClick={sendMessage}>
                 <FaPaperPlane />
               </div>
             </div>
@@ -126,11 +140,10 @@ export default function ChatBox({ user, setPage }) {
         }
         .profile-img {
           ${styles.flexBothcenter};
-          background: ${styles.primaryColor};
           min-width: 3rem;
           height: 3rem;
           ${styles.borderRadius50percent};
-          border: 3px solid white;
+          ${styles.darkProfileBackground};
         }
 
         .user-info {

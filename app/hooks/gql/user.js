@@ -10,6 +10,10 @@ export const updateNameMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -25,6 +29,10 @@ export const updatePhoneMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -40,6 +48,10 @@ export const updateProfileUrlMutation = gql`
         phone
         type
         profile_url
+        wallet {
+          id
+          amount
+        }
       }
     }
   }
@@ -51,6 +63,34 @@ export const getAdminQuery = gql`
       id
       name
       profile_url
+    }
+  }
+`;
+
+export const getContactsQuery = gql`
+  query ($me: ID!) {
+    users(
+      where: {
+        OR: [
+          { sent_messages_SOME: { to: { id: $me } } }
+          { received_messages_SOME: { from: { id: $me } } }
+        ]
+        type_NOT: "Admin"
+      }
+    ) {
+      id
+      name
+      profile_url
+      type
+    }
+  }
+`;
+
+export const getUsersQuery = gql`
+  query {
+    users(where: { type_NOT: "Admin" }) {
+      name
+      type
     }
   }
 `;

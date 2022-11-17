@@ -2,22 +2,39 @@ import ContactCard from "@/components/ContactCard";
 import { useEffect, useState } from "react";
 import { styles } from "@/utils/styles";
 import ChatBox from "@/components/ChatBox";
-import { useGetAdmin } from "@/hooks/useUser";
+import { useGetAdmin, useGetContacts } from "@/hooks/useUser";
+import Loading from "@/components/Loading";
+import { client } from "pages/_app";
 
-export default function Contacts({ setPage, chatUser, setChatUser }) {
+export default function Contacts({
+  setPage,
+  chatUser,
+  setChatUser,
+  onlineUsers,
+  socket,
+}) {
+  const currentUser = client.getQueryData(["User"]);
   const [contacts, setContacts] = useState([]);
 
-  const { data: admin } = useGetAdmin({ enabled: true });
+  const { data: admin, isLoading } = useGetAdmin({ enabled: true });
+  const { data: users } = useGetContacts({ id: currentUser.id });
 
   useEffect(() => {
-    admin && setContacts(admin);
-    admin && setChatUser(admin[0]);
-  }, [admin]);
+    if (currentUser.type !== "Admin") {
+      admin && setContacts(admin);
+      admin && setChatUser(admin[0]);
+      users && admin && setContacts([...admin, ...users]);
+    } else {
+      users && setChatUser(users[0]);
+      users && setContacts(users);
+    }
+  }, [admin, users]);
 
   return (
     <>
       <div className="contact-page-container">
         <div className="contacts-wrapper">
+          {isLoading && <Loading />}
           <div className="contacts-container">
             {contacts?.map((contact, i) => (
               <ContactCard
@@ -25,12 +42,13 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
                 user={contact}
                 setChatUser={setChatUser}
                 setPage={setPage}
+                onlineUsers={onlineUsers}
               />
             ))}
           </div>
         </div>
         <div className="chat-wrapper">
-          <ChatBox user={chatUser} />
+          <ChatBox user={chatUser} socket={socket} />
         </div>
       </div>
       <style jsx>{`
@@ -49,7 +67,7 @@ export default function Contacts({ setPage, chatUser, setChatUser }) {
           overflow: auto;
           padding: 1rem;
           height: 100%;
-          min-width: 18rem;
+          min-width: 22rem;
         }
         .chat-wrapper {
           padding: 1rem 0rem;

@@ -9,7 +9,7 @@ export default function Switch({ icon, title, description, on, setOn }) {
             <div>{icon}</div>
             <div>{title}</div>
           </div>
-          <div className="switch" onClick={() => setOn(!on)}>
+          <div className="switch" onClick={setOn}>
             <div className="circul"></div>
           </div>
         </div>

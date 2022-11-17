@@ -66,11 +66,11 @@ export default function UploadImage({
           top: 0;
           width: 100%;
           height: 100%;
-          background-color: ${styles.primaryColor};
           overflow: hidden;
           padding: 0;
           z-index: 1;
           cursor: pointer;
+          ${styles.whiteProfileBackground}
         }
       `}</style>
     </>

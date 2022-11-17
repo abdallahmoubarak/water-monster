@@ -8,10 +8,13 @@ export default function Button({
   dark,
   font = "1.2rem",
   isLoading,
+  disabled,
 }) {
   return (
     <>
-      <button onClick={onClick} className={dark ? "dark" : ""}>
+      <button
+        onClick={onClick}
+        className={`${dark && "dark"} ${disabled && "disabled"}`}>
         {isLoading ? (
           <div className="loading">
             <Image src={Loading} height={50} width={50} alt={""} />
@@ -54,6 +57,11 @@ export default function Button({
           height: 1.6rem;
           margin: auto;
           ${styles.flexBothcenter};
+        }
+        .disabled {
+          color: white;
+          background: gray;
+          border: 1px solid gray;
         }
       `}</style>
     </>

@@ -4,7 +4,8 @@ export const transactionDefs = gql`
   type Transaction {
     id: ID! @id
     amount: Float
-    from: Wallet @relationship(type: "FROM", direction: IN)
+    for: Request @relationship(type: "PAYED_FOR", direction: OUT)
+    from: Wallet @relationship(type: "FROM", direction: OUT)
     to: Wallet @relationship(type: "TO", direction: OUT)
     createdAt: DateTime! @timestamp(operations: [CREATE])
     updatedAt: DateTime! @timestamp(operations: [CREATE, UPDATE])
