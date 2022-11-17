@@ -20,13 +20,12 @@ export default function Requests() {
         .page {
           height: 100%;
           overflow: auto;
-          padding: 1rem 0.6rem;
         }
         .cards-container {
-          padding: 0.6rem;
+          padding: 0.6rem 1rem;
           ${styles.flexAligncenter};
           flex-wrap: wrap;
-          gap: 0.6rem;
+          gap: 1rem;
         }
       `}</style>
     </>

@@ -14,7 +14,11 @@ export default function ReuestCard({ request }) {
       <div className={styles.requestCard}>
         <div className={styles.cardHeader}>
           <div className={styles.requestIcon}>
-            <Image src={installation} alt={""} width={45} />
+            <Image
+              src={request?.title === "Installation" ? installation : filling}
+              alt={""}
+              width={45}
+            />
           </div>
           <div>
             <div>
@@ -127,7 +131,16 @@ const Filling = ({ request }) => {
           </div>
         ))}
       </div>
-      <div className={styles.requestAction}></div>
+      <div className={styles.requestAction}>
+        {request?.state === "done" ? (
+          <div className={styles.done}>
+            <FaCheckCircle />
+            <span>Done</span>
+          </div>
+        ) : (
+          <div className={styles.done}>In Progress</div>
+        )}
+      </div>
     </>
   );
 };

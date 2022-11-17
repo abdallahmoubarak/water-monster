@@ -44,10 +44,10 @@ export default function Statistics() {
           padding-top: 5rem;
         }
         .cards-container {
-          padding: 0.6rem;
+          padding: 0.6rem 1rem;
           ${styles.flexBothcenter};
           flex-wrap: wrap;
-          gap: 0.6rem;
+          gap: 1rem;
           padding-bottom: 2rem;
         }
       `}</style>

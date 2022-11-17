@@ -80,7 +80,10 @@ export const startFillingMutation = gql`
 
 export const userFillingRequestsQuery = gql`
   query ($id: ID!) {
-    requests(where: { AND: [{ title: "Filling" }, { creator: { id: $id } }] }) {
+    requests(
+      where: { AND: [{ title: "Filling" }, { creator: { id: $id } }] }
+      options: { sort: { createdAt: DESC } }
+    ) {
       id
       initial_state
       container {
