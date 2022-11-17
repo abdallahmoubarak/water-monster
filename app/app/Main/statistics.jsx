@@ -10,7 +10,6 @@ export default function Statistics() {
   const { data: fillingHistory } = useGetUserFillingRequests({
     id: currentUser.id,
   });
-  console.log(fillingHistory);
 
   return (
     <>

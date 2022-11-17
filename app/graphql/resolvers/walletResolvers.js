@@ -7,12 +7,13 @@ export const walletMutations = {
     _source,
     { amount, req_id, payer_wallet_id, payed_wallet_id, payment_method },
   ) => {
-    const { requests } = await Request.find({ where: { id } });
-    if (requests[0]) {
+    const request = await Request.find({ where: { id: req_id } });
+
+    if (!request[0].payment_method) {
       const { transactions } = await Transaction.create({
         input: [{ amount }],
       });
-      const peyer = await Wallet.update({
+      await Wallet.update({
         where: { id: payer_wallet_id },
         update: {
           amount_SUBTRACT: amount,
@@ -21,7 +22,7 @@ export const walletMutations = {
           },
         },
       });
-      const peyed = await Wallet.update({
+      await Wallet.update({
         where: { id: payed_wallet_id },
         update: {
           amount_ADD: amount,
@@ -30,7 +31,7 @@ export const walletMutations = {
           },
         },
       });
-      const request = await Request.update({
+      await Request.update({
         where: { id: req_id },
         update: {
           payment_method,
@@ -39,8 +40,8 @@ export const walletMutations = {
           },
         },
       });
+      return transactions[0].id;
     }
-
-    return transactions[0].id;
+    return "The Payment Done From Before";
   },
 };

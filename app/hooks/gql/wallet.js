@@ -34,3 +34,20 @@ export const withdrawMutation = gql`
     }
   }
 `;
+
+export const payMutation = gql`
+  mutation (
+    $req_id: ID!
+    $payer_wallet_id: ID!
+    $payed_wallet_id: ID!
+    $amount: Float!
+  ) {
+    pay(
+      amount: $amount
+      req_id: $req_id
+      payer_wallet_id: $payer_wallet_id
+      payed_wallet_id: $payed_wallet_id
+      payment_method: "Wallet"
+    )
+  }
+`;

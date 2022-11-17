@@ -5,10 +5,29 @@ import Button from "./Button";
 import Image from "next/image";
 import Select from "./Select";
 import { useState } from "react";
+import { usePayMutation } from "@/hooks/useWallet";
+import { client } from "pages/_app";
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function FillingCard({ item, balance }) {
-  const [selected, setSelected] = useState();
+  const currentUser = client.getQueryData(["User"]);
+  const [selected, setSelected] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const toPay = 100 * item?.initial_state;
+
+  const { mutate: pay } = usePayMutation({ setIsLoading });
+
+  const handelPay = () => {
+    {
+      setIsLoading(true);
+      pay({
+        req_id: item?.id,
+        payer_wallet_id: currentUser?.wallet.id,
+        payed_wallet_id: item?.provider[0].wallet.id,
+        amount: toPay,
+      });
+    }
+  };
   return (
     <>
       <div className={styles.cardContainer}>
@@ -40,14 +59,16 @@ export default function FillingCard({ item, balance }) {
             </div>
           </div>
         </div>
-        <div className={styles.cardPayment}>
-          <Select
-            name="Payment"
-            options={["Wallet", "Cash"]}
-            setSelected={setSelected}
-            selected={selected}
-          />
-        </div>
+        {!item?.payment_method && (
+          <div className={styles.cardPayment}>
+            <Select
+              name="Payment"
+              options={["Wallet", "Cash"]}
+              setSelected={setSelected}
+              selected={selected}
+            />
+          </div>
+        )}
         <div className={styles.balance}>
           {selected === "Wallet" &&
             (balance < toPay
@@ -55,7 +76,16 @@ export default function FillingCard({ item, balance }) {
               : "Balance: ") + formatter.format(balance)}
         </div>
         <div className={styles.cardFooter}>
-          <Button text="Pay" />
+          {!item?.payment_method ? (
+            !!selected && (
+              <Button text="Pay" onClick={handelPay} isLoading={isLoading} />
+            )
+          ) : (
+            <div className={styles.done}>
+              <FaCheckCircle />
+              <span>Payment done with {item?.payment_method}</span>
+            </div>
+          )}
         </div>
         <div className={styles.date}>{dateTimeChanger(item.createdAt)}</div>
       </div>

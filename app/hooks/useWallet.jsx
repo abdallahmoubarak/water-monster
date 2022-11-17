@@ -4,6 +4,7 @@ import { client } from "pages/_app";
 import {
   chargeWalletMutation,
   createWalletMutation,
+  payMutation,
   withdrawMutation,
 } from "./gql/wallet";
 
@@ -56,6 +57,24 @@ export const useWithdrawMutation = ({ setAmount, setIsLoading }) => {
       setIsLoading(false);
       setAmount("");
       client.refetchQueries(["User"]);
+    },
+  });
+};
+
+/****************** Pay Mutation  ******************/
+
+const pay = async ({ req_id, payer_wallet_id, payed_wallet_id, amount }) => {
+  const variables = { req_id, payer_wallet_id, payed_wallet_id, amount };
+  const res = await graphQLClient.request(payMutation, variables);
+  return res;
+};
+
+export const usePayMutation = ({ setIsLoading }) => {
+  return useMutation(pay, {
+    onError: (err) => console.log(err),
+    onSuccess: () => {
+      setIsLoading(false);
+      client.refetchQueries(["FillingHistory"]);
     },
   });
 };

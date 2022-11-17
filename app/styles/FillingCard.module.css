@@ -108,3 +108,16 @@
   text-align: center;
   min-height: 1.2rem;
 }
+
+.done {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.4rem;
+  color: green;
+  font-weight: bold;
+  font-size: 1.2rem;
+}

@@ -86,6 +86,7 @@ export const userFillingRequestsQuery = gql`
     ) {
       id
       initial_state
+      payment_method
       container {
         id
         name
