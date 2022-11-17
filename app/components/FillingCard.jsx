@@ -3,8 +3,12 @@ import { dateTimeChanger } from "@/utils/time";
 import styles from "@/styles/FillingCard.module.css";
 import Button from "./Button";
 import Image from "next/image";
+import Select from "./Select";
+import { useState } from "react";
 
-export default function FillingCard({ item }) {
+export default function FillingCard({ item, balance }) {
+  const [selected, setSelected] = useState();
+  const toPay = 100 * item?.initial_state;
   return (
     <>
       <div className={styles.cardContainer}>
@@ -32,9 +36,23 @@ export default function FillingCard({ item }) {
           <div className={styles.cardBodyItemTotal}>
             <div>Total</div>
             <div>
-              <span>{formatter.format(100 * item?.initial_state)}</span>
+              <span>{formatter.format(toPay)}</span>
             </div>
           </div>
+        </div>
+        <div className={styles.cardPayment}>
+          <Select
+            name="Payment"
+            options={["Wallet", "Cash"]}
+            setSelected={setSelected}
+            selected={selected}
+          />
+        </div>
+        <div className={styles.balance}>
+          {selected === "Wallet" &&
+            (balance < toPay
+              ? "Charge wallet first, your current balance is: "
+              : "Balance: ") + formatter.format(balance)}
         </div>
         <div className={styles.cardFooter}>
           <Button text="Pay" />

@@ -89,6 +89,9 @@ export const userFillingRequestsQuery = gql`
       }
       provider {
         name
+        wallet {
+          id
+        }
       }
       createdAt
       updatedAt

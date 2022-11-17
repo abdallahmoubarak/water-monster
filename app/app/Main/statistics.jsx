@@ -6,8 +6,10 @@ import Image from "next/image";
 import { client } from "pages/_app";
 
 export default function Statistics() {
-  const userId = client.getQueryData(["User"]).id;
-  const { data: fillingHistory } = useGetUserFillingRequests({ id: userId });
+  const currentUser = client.getQueryData(["User"]);
+  const { data: fillingHistory } = useGetUserFillingRequests({
+    id: currentUser.id,
+  });
   console.log(fillingHistory);
 
   return (
@@ -26,7 +28,11 @@ export default function Statistics() {
 
           <div className="cards-container">
             {fillingHistory?.map((item, i) => (
-              <FillingCard key={i} item={item} />
+              <FillingCard
+                key={i}
+                item={item}
+                balance={currentUser?.wallet?.amount}
+              />
             ))}
           </div>
         </>
