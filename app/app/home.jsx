@@ -9,7 +9,7 @@ import Chat from "./Secoundary/chat";
 import ContainerSetting from "./Secoundary/containerSetting";
 import Wallet from "./Secoundary/wallet";
 import MapPage from "./Main/mapPage";
-import SocketIOClient from "socket.io-client";
+import { io } from "socket.io-client";
 import Admin from "./Admin";
 
 export default function Page({ currentUser }) {
@@ -25,11 +25,7 @@ export default function Page({ currentUser }) {
   };
 
   useEffect(() => {
-    setSocket(
-      SocketIOClient.connect(process.env.NEXT_PUBLIC_BASEURL, {
-        path: "/api/socketio",
-      }),
-    );
+    setSocket(io(process.env.NEXT_PUBLIC_BASEURL, { path: "/api/socketio" }));
   }, []);
 
   useEffect(() => {

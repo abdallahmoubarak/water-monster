@@ -5,7 +5,7 @@ import Button from "./Button";
 import Image from "next/image";
 import Select from "./Select";
 import { useState } from "react";
-import { usePayMutation } from "@/hooks/useWallet";
+import { useCashMutation, usePayMutation } from "@/hooks/useWallet";
 import { client } from "pages/_app";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -16,16 +16,19 @@ export default function FillingCard({ item, balance }) {
   const toPay = 100 * item?.initial_state;
 
   const { mutate: pay } = usePayMutation({ setIsLoading });
+  const { mutate: cash } = useCashMutation({ setIsLoading });
 
   const handelPay = () => {
     {
       setIsLoading(true);
-      pay({
-        req_id: item?.id,
-        payer_wallet_id: currentUser?.wallet.id,
-        payed_wallet_id: item?.provider[0].wallet.id,
-        amount: toPay,
-      });
+      selected === "Wallet" &&
+        pay({
+          req_id: item?.id,
+          payer_wallet_id: currentUser?.wallet.id,
+          payed_wallet_id: item?.provider[0].wallet.id,
+          amount: toPay,
+        });
+      selected === "Cash" && cash({ req_id: item?.id });
     }
   };
   return (
@@ -60,21 +63,23 @@ export default function FillingCard({ item, balance }) {
           </div>
         </div>
         {!item?.payment_method && (
-          <div className={styles.cardPayment}>
-            <Select
-              name="Payment"
-              options={["Wallet", "Cash"]}
-              setSelected={setSelected}
-              selected={selected}
-            />
-          </div>
+          <>
+            <div className={styles.cardPayment}>
+              <Select
+                name="Payment"
+                options={["Wallet", "Cash"]}
+                setSelected={setSelected}
+                selected={selected}
+              />
+            </div>
+            <div className={styles.balance}>
+              {selected === "Wallet" &&
+                (balance < toPay
+                  ? "Charge wallet first, your current balance is: "
+                  : "Balance: ") + formatter.format(balance)}
+            </div>
+          </>
         )}
-        <div className={styles.balance}>
-          {selected === "Wallet" &&
-            (balance < toPay
-              ? "Charge wallet first, your current balance is: "
-              : "Balance: ") + formatter.format(balance)}
-        </div>
         <div className={styles.cardFooter}>
           {!item?.payment_method ? (
             !!selected && (
@@ -83,7 +88,7 @@ export default function FillingCard({ item, balance }) {
           ) : (
             <div className={styles.done}>
               <FaCheckCircle />
-              <span>Payment done with {item?.payment_method}</span>
+              <span>Payment done by {item?.payment_method}</span>
             </div>
           )}
         </div>

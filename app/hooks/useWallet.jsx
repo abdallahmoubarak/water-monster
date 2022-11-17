@@ -2,6 +2,7 @@ import { graphQLClient } from "@/utils/graphQLInstance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { client } from "pages/_app";
 import {
+  cashMutation,
   chargeWalletMutation,
   createWalletMutation,
   payMutation,
@@ -71,6 +72,24 @@ const pay = async ({ req_id, payer_wallet_id, payed_wallet_id, amount }) => {
 
 export const usePayMutation = ({ setIsLoading }) => {
   return useMutation(pay, {
+    onError: (err) => console.log(err),
+    onSuccess: () => {
+      setIsLoading(false);
+      client.refetchQueries(["FillingHistory"]);
+    },
+  });
+};
+
+/****************** Cash Mutation  ******************/
+
+const cash = async ({ req_id }) => {
+  const variables = { req_id };
+  const res = await graphQLClient.request(cashMutation, variables);
+  return res;
+};
+
+export const useCashMutation = ({ setIsLoading }) => {
+  return useMutation(cash, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);

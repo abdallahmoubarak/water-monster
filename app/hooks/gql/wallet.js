@@ -51,3 +51,13 @@ export const payMutation = gql`
     )
   }
 `;
+
+export const cashMutation = gql`
+  mutation ($req_id: ID!) {
+    updateRequests(where: { id: $req_id }, update: { payment_method: "Cash" }) {
+      requests {
+        id
+      }
+    }
+  }
+`;

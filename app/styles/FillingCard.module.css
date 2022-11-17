@@ -17,8 +17,8 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  flex: 1 1 16rem;
-  max-width: 30rem;
+  flex: 1 1 17rem;
+  max-width: 35rem;
   overflow: hidden;
 }
 .imgNameContainer {

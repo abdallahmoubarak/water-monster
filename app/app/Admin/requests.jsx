@@ -23,7 +23,9 @@ export default function Requests() {
         }
         .cards-container {
           padding: 0.6rem 1rem;
-          ${styles.flexAligncenter};
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
           flex-wrap: wrap;
           gap: 1rem;
         }
