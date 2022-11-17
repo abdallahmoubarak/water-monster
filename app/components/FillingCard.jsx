@@ -40,7 +40,7 @@ export default function FillingCard({ item, balance }) {
               <Image src={user?.profile_url} alt="" width={48} height={48} />
             )}
           </div>
-          <div>{item?.provider[0].name}</div>
+          <div>{item?.provider[0]?.name}</div>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.cardBodyItem}>

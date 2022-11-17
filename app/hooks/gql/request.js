@@ -81,7 +81,12 @@ export const startFillingMutation = gql`
 export const userFillingRequestsQuery = gql`
   query ($id: ID!) {
     requests(
-      where: { AND: [{ title: "Filling" }, { creator: { id: $id } }] }
+      where: {
+        AND: [
+          { title: "Filling", state_NOT: "waiting" }
+          { creator: { id: $id } }
+        ]
+      }
       options: { sort: { createdAt: DESC } }
     ) {
       id
@@ -98,7 +103,6 @@ export const userFillingRequestsQuery = gql`
         }
       }
       createdAt
-      updatedAt
     }
   }
 `;
