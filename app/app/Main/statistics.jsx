@@ -1,5 +1,6 @@
 import FillingCard from "@/components/FillingCard";
 import PageTitle from "@/components/PageTitle";
+import StatisticsChart from "@/components/StatisticsChart";
 import { useGetFillingRequests } from "@/hooks/useRequest";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
@@ -24,6 +25,7 @@ export default function Statistics() {
       {Boolean(fillingHistory?.length) && (
         <>
           <PageTitle text="Filling statistics" />
+          <StatisticsChart data={fillingHistory} />
 
           <PageTitle text="Filling history" />
 

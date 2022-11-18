@@ -39,3 +39,13 @@ export const dateTimeChanger = (od) => {
     ampm;
   return strTime;
 };
+
+export const dateChanger = (od) => {
+  const date = new Date(od);
+  let day = date.getDate();
+  let month = date.getMonth();
+
+  const strTime = day + "/" + (parseInt(month) + 1);
+
+  return strTime;
+};

@@ -90,6 +90,7 @@ export const clientFillingRequestsQuery = gql`
       container {
         id
         name
+        size
       }
       provider {
         name
@@ -98,6 +99,7 @@ export const clientFillingRequestsQuery = gql`
         }
       }
       createdAt
+      updatedAt
     }
   }
 `;
@@ -114,12 +116,14 @@ export const providerFillingRequestsQuery = gql`
       container {
         id
         name
+        size
       }
       creator {
         id
         name
       }
       createdAt
+      updatedAt
     }
   }
 `;
