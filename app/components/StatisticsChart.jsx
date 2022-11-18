@@ -36,9 +36,12 @@ export default function StatisticsChart({ data }) {
 }
 
 const createData = ({ titles, data }) => {
+  if (!data[0]) return { labels: [], datasets: [] };
   const datasets = titles?.map((title) => {
-    let containerData = data.filter((item) => item.container.name === title);
-    let containerSize = parseInt(containerData[0].container.size);
+    let containerData = data.filter((item) => item?.container?.name === title);
+    let containerSize = !!containerData[0]
+      ? parseInt(containerData[0].container.size)
+      : 0;
     let mydata = new Array(containerData.length * 2).fill(0);
 
     return {
@@ -46,7 +49,7 @@ const createData = ({ titles, data }) => {
       data: mydata.map((_, i) =>
         i % 2 === 0
           ? containerSize
-          : containerData[Math.floor(i / 2)].initial_state,
+          : containerData[Math.floor(i / 2)]?.initial_state,
       ),
       fill: false,
       borderColor: styles.primaryColor,

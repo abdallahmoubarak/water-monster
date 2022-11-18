@@ -14,7 +14,7 @@ export default function FillingCard({ item, balance }) {
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const toPay = 100 * item?.initial_state;
-  const user = item?.provider ? item?.provider[0] : item.creator;
+  const user = item?.provider ? item?.provider[0] : item?.creator;
 
   const { mutate: pay } = usePayMutation({ setIsLoading });
   const { mutate: cash } = useCashMutation({ setIsLoading });

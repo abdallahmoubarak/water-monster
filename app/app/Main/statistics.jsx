@@ -24,8 +24,12 @@ export default function Statistics() {
 
       {Boolean(fillingHistory?.length) && (
         <>
-          <PageTitle text="Filling statistics" />
-          <StatisticsChart data={fillingHistory} />
+          {currentUser.type === "Client" && (
+            <>
+              <PageTitle text="Filling statistics" />
+              <StatisticsChart data={fillingHistory} />
+            </>
+          )}
 
           <PageTitle text="Filling history" />
 
