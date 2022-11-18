@@ -63,7 +63,7 @@ export default function FillingCard({ item, balance }) {
             </div>
           </div>
         </div>
-        {!item?.payment_method && (
+        {!item?.payment_method && currentUser.type === "Client" && (
           <>
             <div className={styles.cardPayment}>
               <Select

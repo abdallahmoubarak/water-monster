@@ -102,7 +102,6 @@ const getFillingRequests = async ({ id, userType }) => {
       res = await graphQLClient.request(clientFillingRequestsQuery, variables);
       break;
   }
-  console.log(res);
   return res?.requests;
 };
 
