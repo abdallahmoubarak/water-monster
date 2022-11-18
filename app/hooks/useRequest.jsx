@@ -3,11 +3,12 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { client } from "pages/_app";
 import {
   acceptRequestMutation,
+  clientFillingRequestsQuery,
   createFillingRequestMutation,
+  providerFillingRequestsQuery,
   requestsQuery,
   reserveRequestMutation,
   startFillingMutation,
-  userFillingRequestsQuery,
 } from "./gql/request";
 
 /*********************** getting users requests ***********************/
@@ -85,17 +86,30 @@ export const useStartFilling = () => {
   });
 };
 
-/*********************** getting users filling requests ***********************/
+/*********************** getting filling requests ***********************/
 
-const getUserFillingRequests = async ({ id }) => {
+const getFillingRequests = async ({ id, userType }) => {
   const variables = { id };
-  const res = await graphQLClient.request(userFillingRequestsQuery, variables);
+  let res;
+  switch (userType) {
+    case "Provider":
+      res = await graphQLClient.request(
+        providerFillingRequestsQuery,
+        variables,
+      );
+      break;
+    case "Client":
+      res = await graphQLClient.request(clientFillingRequestsQuery, variables);
+      break;
+  }
+  console.log(res);
   return res?.requests;
 };
 
-export const useGetUserFillingRequests = ({ id }) => {
+export const useGetFillingRequests = ({ id, userType, enabled }) => {
   return useQuery({
     queryKey: ["FillingHistory"],
-    queryFn: () => getUserFillingRequests({ id }),
+    queryFn: () => getFillingRequests({ id, userType }),
+    enabled,
   });
 };

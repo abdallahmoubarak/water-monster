@@ -1,14 +1,16 @@
 import FillingCard from "@/components/FillingCard";
 import PageTitle from "@/components/PageTitle";
-import { useGetUserFillingRequests } from "@/hooks/useRequest";
+import { useGetFillingRequests } from "@/hooks/useRequest";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 import { client } from "pages/_app";
 
 export default function Statistics() {
   const currentUser = client.getQueryData(["User"]);
-  const { data: fillingHistory } = useGetUserFillingRequests({
+  const { data: fillingHistory } = useGetFillingRequests({
     id: currentUser.id,
+    userType: currentUser.type,
+    enabled: currentUser.type !== "Admin",
   });
 
   return (
@@ -26,13 +28,15 @@ export default function Statistics() {
           <PageTitle text="Filling history" />
 
           <div className="cards-container">
-            {fillingHistory?.map((item, i) => (
-              <FillingCard
-                key={i}
-                item={item}
-                balance={currentUser?.wallet?.amount}
-              />
-            ))}
+            {fillingHistory
+              ?.filter((item) => item.initial_state)
+              .map((item, i) => (
+                <FillingCard
+                  key={i}
+                  item={item}
+                  balance={currentUser?.wallet?.amount}
+                />
+              ))}
           </div>
         </>
       )}

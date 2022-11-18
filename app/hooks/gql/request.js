@@ -78,15 +78,10 @@ export const startFillingMutation = gql`
   }
 `;
 
-export const userFillingRequestsQuery = gql`
+export const clientFillingRequestsQuery = gql`
   query ($id: ID!) {
     requests(
-      where: {
-        AND: [
-          { title: "Filling", state_NOT: "waiting" }
-          { creator: { id: $id } }
-        ]
-      }
+      where: { AND: [{ title: "Filling" }, { creator: { id: $id } }] }
       options: { sort: { createdAt: DESC } }
     ) {
       id
@@ -101,6 +96,28 @@ export const userFillingRequestsQuery = gql`
         wallet {
           id
         }
+      }
+      createdAt
+    }
+  }
+`;
+
+export const providerFillingRequestsQuery = gql`
+  query ($id: ID!) {
+    requests(
+      where: { AND: [{ title: "Filling" }, { provider_SINGLE: { id: $id } }] }
+      options: { sort: { createdAt: DESC } }
+    ) {
+      id
+      initial_state
+      payment_method
+      container {
+        id
+        name
+      }
+      creator {
+        id
+        name
       }
       createdAt
     }
