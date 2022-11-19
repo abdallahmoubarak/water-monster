@@ -22,8 +22,10 @@ export default async function handler(req, res) {
     io.on("connect", (socket) => {
       console.log("a user connected.");
 
-      socket.on("addUser", (userId) => addUser(userId, socket.id));
-      socket.emit("getUsers", onlineUsers);
+      socket.on("addUser", (userId) => {
+        addUser(userId, socket.id);
+        socket.emit("getUsers", onlineUsers);
+      });
 
       // send and get message
       socket.on("sendMessage", ({ senderId, receiverId, content }) => {
@@ -32,6 +34,24 @@ export default async function handler(req, res) {
           senderId,
           content,
         });
+      });
+
+      // make call
+      socket.on("call", ({ calledId, callerId, callerName }) => {
+        const user = getUser(calledId);
+        socket.to(user.socketId).emit("getCall", { callerId, callerName });
+      });
+
+      // connecting call
+      socket.on("connectCall", ({ callerId }) => {
+        const callingUser = getUser(callerId);
+        socket.to(callingUser.socketId).emit("coCall", { callerId });
+      });
+
+      // disconnecting call
+      socket.on("disconnectCall", ({ callerId }) => {
+        const callingUser = getUser(callerId);
+        socket.to(callingUser.socketId).emit("disCall", { callerId });
       });
 
       // when disconnect

@@ -12,6 +12,7 @@ import MapPage from "./Main/mapPage";
 import { io } from "socket.io-client";
 import Admin from "./Admin";
 import { useCurrentUser } from "@/hooks/useAuth";
+import Call from "@/components/Call";
 
 export default function Home() {
   const [page, setPageName] = useState("Containers");
@@ -19,6 +20,7 @@ export default function Home() {
   const [pageId, setPageId] = useState("");
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [call, setCall] = useState(true);
   const { data: currentUser } = useCurrentUser({ enabled: true });
 
   const setPage = (name, id) => {
@@ -38,6 +40,12 @@ export default function Home() {
 
       socket?.on("getUsers", (users) => {
         setOnlineUsers(users);
+      });
+
+      socket?.on("getCall", ({ callerId, callerName }) => {
+        setChatUser({ id: callerId, name: callerName });
+        setPage("Call");
+        setCall(true);
       });
 
       if (socket) return () => socket?.disconnect();
@@ -91,6 +99,17 @@ export default function Home() {
       {page === "Profile" && <Profile setPage={setPage} />}
       {page === "Wallet" && <Wallet setPage={setPage} />}
       {page === "Admin" && <Admin onlineUsers={onlineUsers} socket={socket} />}
+      {page === "Call" && (
+        <Call
+          call={call}
+          setCall={setCall}
+          user={chatUser}
+          recieve={true}
+          setPage={setPage}
+          userType={currentUser.type}
+          socket={socket}
+        />
+      )}
     </>
   );
 }
