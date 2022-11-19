@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { client } from "pages/_app";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
@@ -13,20 +14,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
+export const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = (setName, setEmail, setProfilePic) => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      const name = result.user.displayName;
-      const email = result.user.email;
-      const profilePic = result.user.photoURL;
-      localStorage.setItem("name", name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("profilePic", profilePic);
-      setName(name);
-      setEmail(email);
-      setProfilePic(profilePic);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.idToken;
+      localStorage.setItem("JWT", token);
+      localStorage.setItem("User", {
+        name: result.user.displayName,
+        email: result.user.email,
+        profile_url: result.user.photoURL,
+      });
+      client.setQueryData(["JWT"], token);
+      client.setQueryData(["User"], {
+        name: result.user.displayName,
+        email: result.user.email,
+        profile_url: result.user.photoURL,
+      });
     })
     .catch((error) => {
       console.log(error);

@@ -12,7 +12,7 @@ import MapPage from "./Main/mapPage";
 import { io } from "socket.io-client";
 import Admin from "./Admin";
 
-export default function Page({ currentUser }) {
+export default function Home({ currentUser }) {
   const [page, setPageName] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
   const [pageId, setPageId] = useState("");
@@ -57,15 +57,14 @@ export default function Page({ currentUser }) {
           {page === "Statistics" && <Statistics />}
           {page === "Containers" && (
             <>
-              {currentUser?.type === "Client" && (
-                <Containers setPage={setPage} />
-              )}
-              {currentUser?.type === "Provider" && (
+              {currentUser?.type === "Provider" ? (
                 <MapPage
                   setPage={setPage}
                   userType={currentUser?.type}
                   setChatUser={setChatUser}
                 />
+              ) : (
+                <Containers setPage={setPage} />
               )}
             </>
           )}

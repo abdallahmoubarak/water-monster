@@ -1,12 +1,12 @@
 import SignPage from "@/app/sign";
-import Page from "@/app/home";
+import Home from "@/app/home";
 import Head from "next/head";
 import { useCurrentUser } from "@/hooks/useAuth";
 import { styles } from "@/utils/styles";
 import AnimatedLogo from "@/components/SVG/AnimatedLogo";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Index() {
   const [enabled, setEnabled] = useState(true);
   const { data: currentUser, isLoading } = useCurrentUser({ enabled });
 
@@ -28,7 +28,7 @@ export default function Home() {
         </div>
       )}
 
-      {currentUser ? <Page currentUser={currentUser} /> : <SignPage />}
+      {currentUser ? <Home currentUser={currentUser} /> : <SignPage />}
       <style jsx>{`
         .fallback {
           ${styles.flexBothcenter};

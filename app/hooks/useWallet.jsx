@@ -1,5 +1,5 @@
 import { graphQLClient } from "@/utils/graphQLInstance";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { client } from "pages/_app";
 import {
   cashMutation,
@@ -17,10 +17,13 @@ const createWallet = async ({ id }) => {
   return res;
 };
 
-export const useCreateWallet = () => {
+export const useCreateWallet = ({ setIsLoading }) => {
   return useMutation(createWallet, {
     onError: (err) => console.log(err),
-    onSuccess: () => client.refetchQueries(["User"]),
+    onSuccess: () => {
+      setIsLoading(false);
+      client.refetchQueries(["User"]);
+    },
   });
 };
 

@@ -3,7 +3,7 @@ import Input from "@/components/Input";
 import Select from "@/components/Select";
 import Or from "@/components/SVG/Or";
 import { styles } from "@/utils/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./layout";
 import googleLogo from "@/public/svg/google.svg";
 import metaLogo from "@/public/svg/metamask.svg";
@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useSignIn, useSignUp } from "@/hooks/useAuth";
 import { validSign } from "@/utils/signValidation";
 import InputsContainer from "@/components/InputsContainer";
+import { signInWithGoogle } from "@/utils/firebase";
+import { client } from "pages/_app";
 
 export default function SignPage() {
   const [signup, setSignUp] = useState(true);
@@ -25,19 +27,17 @@ export default function SignPage() {
   const { mutate: signUp } = useSignUp({ setMsg, setIsLoading });
   const { mutate: signIn } = useSignIn({ setMsg, setIsLoading });
 
-  // useEffect(() => {
-  //   setName(localStorage.getItem("name"));
-  //   setEmail(localStorage.getItem("email"));
-  //   setProfilePic(localStorage.getItem("profilePic"));
-  // }, []);
+  client.removeQueries();
 
   const handleSignClick = (signType) => {
     if (!isLoading) {
       setIsLoading(true);
       setMsg("");
       let type = selected;
-      if (!validSign(signType, email, password, name, type))
+      if (!validSign(signType, email, password, name, type)) {
+        setIsLoading(false);
         return setMsg("Inputs are not valid");
+      }
 
       signType === "signin"
         ? signIn({ email, password })
