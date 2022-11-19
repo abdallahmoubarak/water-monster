@@ -29,7 +29,7 @@ export default function StatisticsChart({ data }) {
 
   const { labels, datasets } = useMemo(
     () => titles && createData({ titles, data }),
-    [titles],
+    [titles, data],
   );
 
   return <Line options={{ responsive: true }} data={{ labels, datasets }} />;
