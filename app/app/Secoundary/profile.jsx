@@ -7,6 +7,7 @@ import UploadImage from "@/components/UploadImage";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
 import { useCreateWallet } from "@/hooks/useWallet";
 import { formatter } from "@/utils/currencyFormatter";
+import { graphQLClient } from "@/utils/graphQLInstance";
 import { client } from "pages/_app";
 import { useState } from "react";
 import Layout from "./sLayout";
@@ -84,9 +85,9 @@ export default function Profile({ setPage }) {
                 text="Logout"
                 dark={true}
                 onClick={() => {
-                  localStorage.removeItem("JWT");
                   client.setQueryData(["User"], null);
-                  client.setQueryData(["JWT"], null);
+                  localStorage.removeItem("JWT");
+                  graphQLClient.setHeaders({ authorization: undefined });
                 }}
               />
             </InputsContainer>

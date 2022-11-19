@@ -22,13 +22,8 @@ export const signInWithGoogle = (setName, setEmail, setProfilePic) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.idToken;
       localStorage.setItem("JWT", token);
-      localStorage.setItem("User", {
-        name: result.user.displayName,
-        email: result.user.email,
-        profile_url: result.user.photoURL,
-      });
-      client.setQueryData(["JWT"], token);
       client.setQueryData(["User"], {
+        id: result.user.uid,
         name: result.user.displayName,
         email: result.user.email,
         profile_url: result.user.photoURL,

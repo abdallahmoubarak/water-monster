@@ -20,7 +20,7 @@ export default function Index() {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
-      {isLoading && (
+      {isLoading && !currentUser?.id && enabled && (
         <div className="fallback">
           <div className="logo-container">
             <AnimatedLogo />
@@ -28,7 +28,7 @@ export default function Index() {
         </div>
       )}
 
-      {currentUser ? <Home currentUser={currentUser} /> : <SignPage />}
+      {currentUser?.id ? <Home /> : <SignPage />}
       <style jsx>{`
         .fallback {
           ${styles.flexBothcenter};
