@@ -23,7 +23,7 @@ export default function Button({
           text
         )}
       </button>
-      <style jsx="true">{`
+      <style jsx>{`
         button {
           background: ${styles.primaryColor};
           color: white;

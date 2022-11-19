@@ -42,7 +42,7 @@ export default function UploadImage({
           />
         </div>
       </div>
-      <style jsx="true">{`
+      <style jsx>{`
         .upload-img-container {
           width: 10rem;
           height: 10rem;

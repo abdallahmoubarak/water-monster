@@ -6,7 +6,11 @@ import Button from "./Button";
 import Input from "./Input";
 import InputsContainer from "./InputsContainer";
 
-export default function RequestInstallation({ currentUser, close }) {
+export default function RequestInstallation({
+  currentUser,
+  close,
+  setAlertMsg,
+}) {
   const [name, setName] = useState("");
   const [size, setSize] = useState("");
   const [address, setAddress] = useState("");
@@ -20,6 +24,7 @@ export default function RequestInstallation({ currentUser, close }) {
     setSize("");
     setAddress("");
     setDate("");
+    setAlertMsg("Created successfully");
     close();
   };
 
@@ -39,6 +44,7 @@ export default function RequestInstallation({ currentUser, close }) {
         </InputsContainer>
         <Button text="Request now" onClick={handleRequest} />
       </Box>
+
       <style jsx>{`
         .input-container {
           ${styles.flexColumn};
