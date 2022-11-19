@@ -1,6 +1,7 @@
 import { createJWT, comparePassword, hashPassword } from "@/utils/jwt";
 
 import { User } from "../index";
+import { Wallet } from "../index";
 
 export const authMutations = {
   signUp: async (_source, { name, email, password, type }) => {
@@ -25,11 +26,12 @@ export const authMutations = {
 
   signIn: async (_source, { email, password }) => {
     const [user] = await User.find({ where: { email } });
+    const [wallet] = await Wallet.find({ where: { owner: { id: user.id } } });
     if (!user) throw new Error("Email or password is not correct!");
     const correctPassword = await comparePassword(password, user.password);
     if (!correctPassword) throw new Error("Email or password is not correct!");
     const token = await createJWT({ sub: user.id });
 
-    return { user, token };
+    return { user: { ...user, wallet }, token };
   },
 };
