@@ -29,7 +29,8 @@ export default function StatisticsChart({ data }) {
 
   const { labels, datasets } = useMemo(
     () => titles && createData({ titles, data }),
-    [titles],
+    [titles, data],
+    //CHECK: [WM-109] check data effect
   );
 
   return <Line options={{ responsive: true }} data={{ labels, datasets }} />;

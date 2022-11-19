@@ -16,7 +16,6 @@ export const useSignUp = ({ setMsg, setIsLoading }) => {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
       client.setQueryData(["User"], res?.user);
-      client.setQueryData(["JWT"], res?.token);
     },
     onError: (err) => {
       setMsg(err.message);
@@ -38,7 +37,6 @@ export const useSignIn = ({ setMsg, setIsLoading }) => {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
       client.setQueryData(["User"], res?.user);
-      client.setQueryData(["JWT"], res?.token);
     },
     onError: (err) => {
       setMsg(err.message);

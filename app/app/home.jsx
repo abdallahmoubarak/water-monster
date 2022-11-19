@@ -11,13 +11,15 @@ import Wallet from "./Secoundary/wallet";
 import MapPage from "./Main/mapPage";
 import { io } from "socket.io-client";
 import Admin from "./Admin";
+import { useCurrentUser } from "@/hooks/useAuth";
 
-export default function Home({ currentUser }) {
+export default function Home() {
   const [page, setPageName] = useState("Containers");
   const [chatUser, setChatUser] = useState({});
   const [pageId, setPageId] = useState("");
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const { data: currentUser } = useCurrentUser({ enabled: true });
 
   const setPage = (name, id) => {
     setPageName(name);
