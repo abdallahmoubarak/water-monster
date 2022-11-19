@@ -6,10 +6,9 @@ export default function AdminLogout() {
       <div
         className="admin-logout"
         onClick={() => {
+          localStorage.removeItem("JWT");
           client.setQueryData(["JWT"], null);
           client.setQueryData(["User"], null);
-          localStorage.removeItem("JWT");
-          localStorage.removeItem("User");
         }}>
         Logout
       </div>

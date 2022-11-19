@@ -24,7 +24,7 @@ export default function Profile({ setPage }) {
 
   const { mutate: updateName } = useUpdateName();
   const { mutate: updatePhone } = useUpdatePhone();
-  const { mutate: createWallet } = useCreateWallet();
+  const { mutate: createWallet } = useCreateWallet({ setIsLoading });
 
   const handleCreateWallet = () => {
     setIsLoading(true);
@@ -84,10 +84,9 @@ export default function Profile({ setPage }) {
                 text="Logout"
                 dark={true}
                 onClick={() => {
-                  client.setQueryData(["JWT"], null);
-                  client.setQueryData(["User"], null);
                   localStorage.removeItem("JWT");
-                  localStorage.removeItem("User");
+                  client.setQueryData(["User"], null);
+                  client.setQueryData(["JWT"], null);
                 }}
               />
             </InputsContainer>

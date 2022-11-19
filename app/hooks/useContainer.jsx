@@ -39,12 +39,12 @@ const createContainer = async ({ id, name, size, address, date }) => {
     state: "approval",
   };
   const res = await graphQLClient.request(createContainerMutation, variables);
-  return res?.updateUsers?.users[0]?.containers;
+  return res;
 };
 
 export const useCreateContainer = () => {
   return useMutation(createContainer, {
-    onSuccess: (res) => client.setQueryData(["Containers"], res),
+    onSuccess: () => client.refetchQueries(["Containers"]),
     onError: (err) => console.log(err.message),
   });
 };

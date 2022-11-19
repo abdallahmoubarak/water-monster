@@ -32,10 +32,6 @@ export const signInMutation = gql`
         phone
         type
         profile_url
-        wallet {
-          id
-          amount
-        }
       }
     }
   }

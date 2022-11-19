@@ -7,11 +7,11 @@ export const validSign = (signType, email, password, name, type) => {
   if (
     signType === "signup" &&
     (!type ||
-      name.length < 5 ||
+      name?.length < 5 ||
       !(
-        email.includes("@") &
-        (email.indexOf("@") > 2) &
-        (email.length - email.indexOf("@") > 5)
+        email?.includes("@") &
+        (email?.indexOf("@") > 2) &
+        (email?.length - email.indexOf("@") > 5)
       ) ||
       !regularExpression.test(password))
   ) {
@@ -19,9 +19,9 @@ export const validSign = (signType, email, password, name, type) => {
   } else if (
     (signType === "signin" &&
       !(
-        email.includes("@") &
-        (email.indexOf("@") > 2) &
-        (email.length - email.indexOf("@") > 5)
+        email?.includes("@") &
+        (email?.indexOf("@") > 2) &
+        (email?.length - email?.indexOf("@") > 5)
       )) ||
     !regularExpression.test(password)
   ) {

@@ -51,14 +51,14 @@ export default function MapPage({ setPage, setChatUser }) {
               key={i}
               width={50}
               anchor={[
-                container.location.longitude,
-                container.location.latitude,
+                container?.location?.longitude,
+                container?.location?.latitude,
               ]}
               onClick={() => {
                 setZoom(18);
                 setCenter([
-                  container.location.longitude,
-                  container.location.latitude,
+                  container?.location?.longitude,
+                  container?.location?.latitude,
                 ]);
               }}
             />
@@ -68,8 +68,8 @@ export default function MapPage({ setPage, setChatUser }) {
               key={i}
               width={50}
               anchor={[
-                container.location.longitude,
-                container.location.latitude,
+                container?.location?.longitude,
+                container?.location?.latitude,
               ]}>
               <Image
                 className="marker-img"
@@ -84,12 +84,13 @@ export default function MapPage({ setPage, setChatUser }) {
             let y = 190;
             if (container?.requests[0]?.state === "reserved") y = 145;
             if (!container?.requests[0]) y = 170;
+            if (userType === "Admin") y = 130;
             return (
               <Overlay
                 key={i}
                 anchor={[
-                  container.location.longitude,
-                  container.location.latitude,
+                  container?.location?.longitude,
+                  container?.location?.latitude,
                 ]}
                 offset={[80, y]}>
                 <Pop

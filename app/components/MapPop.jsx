@@ -62,7 +62,7 @@ export default function Pop({
           })}{" "}
           min.
         </div>
-        {(!isReserved || isProvider) && (
+        {(!isReserved || isProvider) && currentUser.type !== "Admin" && (
           <div className="icons-container">
             <div
               className="icon"

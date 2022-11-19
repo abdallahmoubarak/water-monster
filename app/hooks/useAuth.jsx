@@ -15,9 +15,8 @@ export const useSignUp = ({ setMsg, setIsLoading }) => {
   return useMutation(signUp, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
-      localStorage.setItem("User", res?.user);
-      client.setQueryData(["JWT"], res?.token);
       client.setQueryData(["User"], res?.user);
+      client.setQueryData(["JWT"], res?.token);
     },
     onError: (err) => {
       setMsg(err.message);
@@ -38,9 +37,8 @@ export const useSignIn = ({ setMsg, setIsLoading }) => {
   return useMutation(signIn, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
-      localStorage.setItem("User", res?.user);
-      client.setQueryData(["JWT"], res?.token);
       client.setQueryData(["User"], res?.user);
+      client.setQueryData(["JWT"], res?.token);
     },
     onError: (err) => {
       setMsg(err.message);

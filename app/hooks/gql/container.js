@@ -37,52 +37,46 @@ export const createContainerMutation = gql`
     $date: Date!
     $address: String!
   ) {
-    updateUsers(
-      where: { id: $id }
-      update: {
-        containers: {
-          create: {
-            node: {
-              name: $name
-              size: $size
-              address: $address
-              requests: {
-                create: {
-                  node: {
-                    title: $title
-                    state: $state
-                    date: $date
-                    creator: { connect: { where: { node: { id: $id } } } }
-                  }
-                }
+    createContainers(
+      input: [
+        {
+          name: $name
+          size: $size
+          address: $address
+          requests: {
+            create: {
+              node: {
+                state: $state
+                title: $title
+                date: $date
+                creator: { connect: { where: { node: { id: $id } } } }
               }
             }
           }
+          user: { connect: { where: { node: { id: $id } } } }
         }
-      }
+      ]
     ) {
-      users {
-        containers {
-          id
-          name
-          size
-          sensor_state
-          private_mode
-          manual_mode
-          water_level
-          address
-          requests(
-            where: {
-              OR: [
-                { title: "Installation" }
-                { title: "Filling", state_NOT: "done" }
-              ]
-            }
-          ) {
-            title
-            state
-            date
+      containers {
+        id
+        name
+        size
+        sensor_state
+        private_mode
+        manual_mode
+        water_level
+        address
+        requests(
+          where: {
+            OR: [
+              { title: "Installation" }
+              { title: "Filling", state_NOT: "done" }
+            ]
           }
+        ) {
+          title
+          state
+          date
         }
       }
     }

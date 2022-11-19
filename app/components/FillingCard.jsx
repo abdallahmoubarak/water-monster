@@ -14,6 +14,7 @@ export default function FillingCard({ item, balance }) {
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const toPay = 100 * item?.initial_state;
+  const user = item?.provider ? item?.provider[0] : item?.creator;
 
   const { mutate: pay } = usePayMutation({ setIsLoading });
   const { mutate: cash } = useCashMutation({ setIsLoading });
@@ -25,7 +26,7 @@ export default function FillingCard({ item, balance }) {
         pay({
           req_id: item?.id,
           payer_wallet_id: currentUser?.wallet.id,
-          payed_wallet_id: item?.provider[0].wallet.id,
+          payed_wallet_id: item?.provider[0]?.wallet.id,
           amount: toPay,
         });
       selected === "Cash" && cash({ req_id: item?.id });
@@ -36,11 +37,11 @@ export default function FillingCard({ item, balance }) {
       <div className={styles.cardContainer}>
         <div className={styles.imgNameContainer}>
           <div className={styles.cardImg}>
-            {item?.provider[0]?.profile_url && (
+            {user?.profile_url && (
               <Image src={user?.profile_url} alt="" width={48} height={48} />
             )}
           </div>
-          <div>{item?.provider[0]?.name}</div>
+          <div>{user?.name}</div>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.cardBodyItem}>
@@ -62,7 +63,7 @@ export default function FillingCard({ item, balance }) {
             </div>
           </div>
         </div>
-        {!item?.payment_method && (
+        {!item?.payment_method && currentUser.type === "Client" && (
           <>
             <div className={styles.cardPayment}>
               <Select
