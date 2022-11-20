@@ -16,6 +16,10 @@ export const useSignUp = ({ setMsg, setIsLoading }) => {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
       client.setQueryData(["User"], res?.user);
+      graphQLClient.setHeaders({
+        authorization: `Bearer ${res?.token}`,
+        "Content-Type": "application/json",
+      });
     },
     onError: (err) => {
       setMsg(err.message);
@@ -37,6 +41,10 @@ export const useSignIn = ({ setMsg, setIsLoading }) => {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
       client.setQueryData(["User"], res?.user);
+      graphQLClient.setHeaders({
+        authorization: `Bearer ${res?.token}`,
+        "Content-Type": "application/json",
+      });
     },
     onError: (err) => {
       setMsg(err.message);

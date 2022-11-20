@@ -51,9 +51,10 @@ const fillingRequest = async ({ user_id, container_id }) => {
   return res?.requests;
 };
 
-export const useFillingRequest = () => {
+export const useFillingRequest = ({ setAlertMsg }) => {
   return useMutation(fillingRequest, {
     onError: (err) => console.log(err),
+    onSuccess: () => setAlertMsg("Request done"),
   });
 };
 
@@ -65,9 +66,10 @@ const reserveRequest = async ({ provider_id, request_id }) => {
   return res?.requests;
 };
 
-export const useReserveRequest = () => {
+export const useReserveRequest = ({ setAlertMsg }) => {
   return useMutation(reserveRequest, {
     onError: (err) => console.log(err),
+    onSuccess: () => setAlertMsg("Reserved for you"),
   });
 };
 
@@ -79,10 +81,13 @@ const startFilling = async ({ provider_id, request_id, empty_level }) => {
   return res?.requests;
 };
 
-export const useStartFilling = () => {
+export const useStartFilling = ({ setAlertMsg }) => {
   return useMutation(startFilling, {
     onError: (err) => console.log(err),
-    onSuccess: () => client.refetchQueries(["MapContainers"]),
+    onSuccess: () => {
+      setAlertMsg("Filling");
+      client.refetchQueries(["MapContainers"]);
+    },
   });
 };
 

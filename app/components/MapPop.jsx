@@ -7,20 +7,19 @@ import getTimeDistance from "@/utils/distance";
 import { useState } from "react";
 import { client } from "pages/_app";
 import { useReserveRequest, useStartFilling } from "@/hooks/useRequest";
-import Alert from "./Alert";
 
 export default function Pop({
   container,
   currentLocation,
   setPage,
   setChatUser,
+  setAlertMsg,
 }) {
   const router = useRouter();
   const currentUser = client.getQueryData(["User"]);
   const emptyLevel = (container?.size * (100 - container?.water_level)) / 100;
-  const [alertMsg, setAlertMsg] = useState("");
   const [isRequested, setIsRequested] = useState(
-    Boolean(container?.requests[0]?.state === "requested"),
+    Boolean(container?.requests[0]?.state === "waiting"),
   );
   const [isReserved, setIsReserved] = useState(
     Boolean(container?.requests[0]?.state === "reserved"),
@@ -29,8 +28,8 @@ export default function Pop({
     Boolean(container?.requests[0]?.provider[0]?.id === currentUser.id),
   );
 
-  const { mutate: reserveRequest } = useReserveRequest();
-  const { mutate: startFilling } = useStartFilling();
+  const { mutate: reserveRequest } = useReserveRequest({ setAlertMsg });
+  const { mutate: startFilling } = useStartFilling({ setAlertMsg });
 
   const handleReserve = () => {
     reserveRequest({
@@ -40,7 +39,6 @@ export default function Pop({
     setIsRequested(true);
     setIsReserved(true);
     setIsProvider(true);
-    setAlertMsg("Reserved for you");
   };
   const handleFill = () => {
     startFilling({
@@ -51,7 +49,6 @@ export default function Pop({
     setIsRequested(false);
     setIsReserved(true);
     setIsProvider(false);
-    setAlertMsg("Filling");
   };
 
   return (
@@ -112,7 +109,6 @@ export default function Pop({
           </div>
         )}
       </div>
-      <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
 
       <style jsx>{`
         .content {

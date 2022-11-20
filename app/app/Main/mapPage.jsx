@@ -9,6 +9,7 @@ import Image from "next/image";
 import Pop from "@/components/MapPop";
 import { useGetMapContainers } from "@/hooks/useContainer";
 import { client } from "pages/_app";
+import Alert from "@/components/Alert";
 
 export default function MapPage({ setPage, setChatUser }) {
   const currentLocation = useMemo(
@@ -18,6 +19,7 @@ export default function MapPage({ setPage, setChatUser }) {
     ],
     [],
   );
+  const [alertMsg, setAlertMsg] = useState("");
   const [center, setCenter] = useState(currentLocation);
   const [zoom, setZoom] = useState(17);
 
@@ -104,6 +106,7 @@ export default function MapPage({ setPage, setChatUser }) {
                     currentLocation={currentLocation}
                     setPage={setPage}
                     setChatUser={setChatUser}
+                    setAlertMsg={setAlertMsg}
                   />
                 </Overlay>
               );
@@ -131,6 +134,7 @@ export default function MapPage({ setPage, setChatUser }) {
             />
           </Marker>
         </Map>
+        <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
       </div>
 
       <style jsx>{`

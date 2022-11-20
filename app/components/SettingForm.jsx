@@ -15,6 +15,7 @@ import {
 } from "@/hooks/useContainer";
 import Box from "./Box";
 import { useFillingRequest } from "@/hooks/useRequest";
+import Alert from "./Alert";
 
 export default function SettingForm({ containerId, setPage }) {
   const currentUser = client.getQueryData(["User"]);
@@ -27,10 +28,11 @@ export default function SettingForm({ containerId, setPage }) {
   const [isPrivate, setIsPrivate] = useState(false);
   const [isManual, setIsManual] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
-  const { mutate: requestFilling } = useFillingRequest();
-  const { mutate: updatePrivateMode } = useUpdatePrivateMode();
-  const { mutate: updateManualMode } = useUpdateManualMode();
+  const { mutate: requestFilling } = useFillingRequest({ setAlertMsg });
+  const { mutate: updatePrivateMode } = useUpdatePrivateMode({ setAlertMsg });
+  const { mutate: updateManualMode } = useUpdateManualMode({ setAlertMsg });
   const { mutate: updateContainer } = useUpdateContainer({
     setPage,
     setIsLoading,
@@ -141,6 +143,7 @@ export default function SettingForm({ containerId, setPage }) {
           </div>
         </Box>
       </div>
+      <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
 
       <style jsx>{`
         .setting-container {
