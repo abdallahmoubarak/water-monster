@@ -160,6 +160,99 @@ This is a summary that describes the Water Monster project.
 
 ### 3- Mockups
 
+<table>
+  <tr>
+    <th>Sign up</th>
+    <th>Water level</th>
+    <th>Wallet </th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/signupm.png" />
+    </td>
+    <td>
+      <img src="./src/img/png/containersm.png" />
+    </td>
+    <td>
+      <img src="./src/img/png/walletm.png" />
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <th>Map</th>
+    <th>Profile</th>
+    <th>Chat</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/mapm.png" />
+    </td>
+    <td>
+      <img src="./src/img/png/profilem.png" />
+    </td>
+      <td>
+      <img src="./src/img/png/chatsm.png" />
+    </td>
+  </tr>
+</table>
+
+<details><summary>See more sketches</summary>
+
+<table>
+  <tr>
+    <th>Statistics</th>
+    <th>Contacts</th>
+    <th>Setting</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/statistics.png" />
+    </td>
+    <td>
+      <img src="./src/img/png/contacts.png" />
+    </td>
+    <td>
+      <img src="./src/img/png/setting.png" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Requsets</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/requests.png" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Users</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/users.png" />
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Map</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="./src/img/png/adminMap.png" />
+    </td>
+  </tr>
+</table>
+
+</details>
+
 ---
 
 ### 4- Data Modeling
