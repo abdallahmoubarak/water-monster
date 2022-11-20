@@ -26,9 +26,12 @@ export default function Profile({ setPage }) {
     parseFloat(currentUser?.wallet?.amount),
   );
 
-  const { mutate: updateName } = useUpdateName();
-  const { mutate: updatePhone } = useUpdatePhone();
-  const { mutate: createWallet } = useCreateWallet({ setIsLoading });
+  const { mutate: updateName } = useUpdateName({ setAlertMsg });
+  const { mutate: updatePhone } = useUpdatePhone({ setAlertMsg });
+  const { mutate: createWallet } = useCreateWallet({
+    setAlertMsg,
+    setIsLoading,
+  });
 
   const handleCreateWallet = () => {
     setIsLoading(true);
@@ -51,21 +54,19 @@ export default function Profile({ setPage }) {
                 name="Name"
                 value={name}
                 setValue={setName}
-                onBlur={() => {
+                onBlur={() =>
                   currentUser?.name !== name &&
-                    updateName({ id: currentUser?.id, name });
-                  currentUser?.phone !== phone && setAlertMsg("Changes saved");
-                }}
+                  updateName({ id: currentUser?.id, name })
+                }
               />
               <Input
                 name="Phone number"
                 value={phone}
                 setValue={setPhone}
-                onBlur={() => {
+                onBlur={() =>
                   currentUser?.phone !== phone &&
-                    updatePhone({ id: currentUser?.id, phone });
-                  currentUser?.phone !== phone && setAlertMsg("Changes saved");
-                }}
+                  updatePhone({ id: currentUser?.id, phone })
+                }
               />
               {currentUser?.wallet?.amount ? (
                 <>

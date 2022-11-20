@@ -23,8 +23,16 @@ export default function Wallet({ setPage }) {
   const [alertMsg, setAlertMsg] = useState("");
   const currentAmount = formatter.format(currentUser?.wallet?.amount);
 
-  const { mutate: charge } = useChargeWallet({ setAmount, setIsLoading });
-  const { mutate: withdraw } = useWithdrawMutation({ setAmount, setIsLoading });
+  const { mutate: charge } = useChargeWallet({
+    setAlertMsg,
+    setAmount,
+    setIsLoading,
+  });
+  const { mutate: withdraw } = useWithdrawMutation({
+    setAlertMsg,
+    setAmount,
+    setIsLoading,
+  });
 
   // the function will validate the card info in frontend
   const validation = () => {
@@ -51,9 +59,6 @@ export default function Wallet({ setPage }) {
             amount: parseFloat(amount),
           })
       : setAlertMsg(msg);
-    msg === "done" && action === "withdraw"
-      ? setAlertMsg("Withdraw done")
-      : setAlertMsg("Charge done");
   };
 
   return (
