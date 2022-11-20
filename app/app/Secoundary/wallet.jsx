@@ -26,6 +26,7 @@ export default function Wallet({ setPage }) {
   const { mutate: charge } = useChargeWallet({ setAmount, setIsLoading });
   const { mutate: withdraw } = useWithdrawMutation({ setAmount, setIsLoading });
 
+  // the function will validate the card info in frontend
   const validation = () => {
     if (name.length < 5) return "Name is required";
     if (cardNumber.length !== 16) return "Card number is required";
@@ -35,6 +36,7 @@ export default function Wallet({ setPage }) {
     return "done";
   };
 
+  // the function will handle withdraw and charging actions
   const handleAction = (action) => {
     setIsLoading(true);
     const msg = validation();

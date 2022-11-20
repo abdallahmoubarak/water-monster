@@ -1,18 +1,20 @@
 import Layout from "./layout";
 import { useEffect, useState } from "react";
 import Containers from "./Main/containers";
-import Statistics from "./Main/statistics";
-import Contacts from "./Main/contacts";
-import Profile from "./Secoundary/profile";
+import Admin from "./Admin";
 import Head from "next/head";
-import Chat from "./Secoundary/chat";
-import ContainerSetting from "./Secoundary/containerSetting";
-import Wallet from "./Secoundary/wallet";
 import MapPage from "./Main/mapPage";
 import { io } from "socket.io-client";
-import Admin from "./Admin";
 import { useCurrentUser } from "@/hooks/useAuth";
-import Call from "@/components/Call";
+import dynamic from "next/dynamic";
+
+const ContainerSetting = dynamic(() => import("./Secoundary/containerSetting"));
+const Statistics = dynamic(() => import("./Main/statistics"));
+const Contacts = dynamic(() => import("./Main/contacts"));
+const Profile = dynamic(() => import("./Secoundary/profile"));
+const Chat = dynamic(() => import("./Secoundary/chat"));
+const Wallet = dynamic(() => import("./Secoundary/wallet"));
+const Call = dynamic(() => import("@/components/Call"));
 
 export default function Home() {
   const [page, setPageName] = useState("Containers");
