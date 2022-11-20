@@ -1,3 +1,4 @@
+import Alert from "@/components/Alert";
 import Box from "@/components/Box";
 import Button from "@/components/Button";
 import Field from "@/components/Field";
@@ -20,6 +21,7 @@ export default function Profile({ setPage }) {
   const [image, setImage] = useState("");
   const [base64, setImg64] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const currentAmount = formatter.format(
     parseFloat(currentUser?.wallet?.amount),
   );
@@ -49,19 +51,21 @@ export default function Profile({ setPage }) {
                 name="Name"
                 value={name}
                 setValue={setName}
-                onBlur={() =>
+                onBlur={() => {
                   currentUser?.name !== name &&
-                  updateName({ id: currentUser?.id, name })
-                }
+                    updateName({ id: currentUser?.id, name });
+                  currentUser?.phone !== phone && setAlertMsg("Changes saved");
+                }}
               />
               <Input
                 name="Phone number"
                 value={phone}
                 setValue={setPhone}
-                onBlur={() =>
+                onBlur={() => {
                   currentUser?.phone !== phone &&
-                  updatePhone({ id: currentUser?.id, phone })
-                }
+                    updatePhone({ id: currentUser?.id, phone });
+                  currentUser?.phone !== phone && setAlertMsg("Changes saved");
+                }}
               />
               {currentUser?.wallet?.amount ? (
                 <>
@@ -94,6 +98,7 @@ export default function Profile({ setPage }) {
             </InputsContainer>
           </Box>
         </div>
+        <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
       </Layout>
     </>
   );
