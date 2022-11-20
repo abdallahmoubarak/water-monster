@@ -1,13 +1,13 @@
 import FillingCard from "@/components/FillingCard";
 import PageTitle from "@/components/PageTitle";
 import StatisticsChart from "@/components/StatisticsChart";
+import { useCurrentUser } from "@/hooks/useAuth";
 import { useGetFillingRequests } from "@/hooks/useRequest";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
-import { client } from "pages/_app";
 
 export default function Statistics() {
-  const currentUser = client.getQueryData(["User"]);
+  const { data: currentUser } = useCurrentUser({ enabled: true });
   const { data: fillingHistory } = useGetFillingRequests({
     id: currentUser.id,
     userType: currentUser.type,

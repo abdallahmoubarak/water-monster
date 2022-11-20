@@ -7,6 +7,7 @@ import getTimeDistance from "@/utils/distance";
 import { useState } from "react";
 import { client } from "pages/_app";
 import { useReserveRequest, useStartFilling } from "@/hooks/useRequest";
+import Alert from "./Alert";
 
 export default function Pop({
   container,
@@ -17,6 +18,7 @@ export default function Pop({
   const router = useRouter();
   const currentUser = client.getQueryData(["User"]);
   const emptyLevel = (container?.size * (100 - container?.water_level)) / 100;
+  const [alertMsg, setAlertMsg] = useState("");
   const [isRequested, setIsRequested] = useState(
     Boolean(container?.requests[0]?.state === "requested"),
   );
@@ -38,6 +40,7 @@ export default function Pop({
     setIsRequested(true);
     setIsReserved(true);
     setIsProvider(true);
+    setAlertMsg("Reserved for you");
   };
   const handleFill = () => {
     startFilling({
@@ -48,6 +51,7 @@ export default function Pop({
     setIsRequested(false);
     setIsReserved(true);
     setIsProvider(false);
+    setAlertMsg("Filling");
   };
 
   return (
@@ -99,11 +103,16 @@ export default function Pop({
                 GO
               </div>
             ) : (
-              <div className="icon GO">X</div>
+              <div
+                className="icon GO"
+                onClick={() => setAlertMsg("Contact the client first")}>
+                X
+              </div>
             )}
           </div>
         )}
       </div>
+      <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
 
       <style jsx>{`
         .content {

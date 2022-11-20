@@ -4,6 +4,7 @@ import Field from "@/components/Field";
 import Input from "@/components/Input";
 import InputsContainer from "@/components/InputsContainer";
 import UploadImage from "@/components/UploadImage";
+import { useCurrentUser } from "@/hooks/useAuth";
 import { useUpdateName, useUpdatePhone } from "@/hooks/useUser";
 import { useCreateWallet } from "@/hooks/useWallet";
 import { formatter } from "@/utils/currencyFormatter";
@@ -13,7 +14,7 @@ import { useState } from "react";
 import Layout from "./sLayout";
 
 export default function Profile({ setPage }) {
-  const currentUser = client.getQueryData(["User"]);
+  const { data: currentUser } = useCurrentUser({ enabled: true });
   const [name, setName] = useState(currentUser?.name || "");
   const [phone, setPhone] = useState(currentUser?.phone || "");
   const [image, setImage] = useState("");
