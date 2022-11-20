@@ -17,6 +17,9 @@ export default function Pop({
   const router = useRouter();
   const currentUser = client.getQueryData(["User"]);
   const emptyLevel = (container?.size * (100 - container?.water_level)) / 100;
+  const [isRequested, setIsRequested] = useState(
+    Boolean(container?.requests[0]?.state === "requested"),
+  );
   const [isReserved, setIsReserved] = useState(
     Boolean(container?.requests[0]?.state === "reserved"),
   );
@@ -32,6 +35,7 @@ export default function Pop({
       provider_id: currentUser.id,
       request_id: container?.requests[0]?.id,
     });
+    setIsRequested(true);
     setIsReserved(true);
     setIsProvider(true);
   };
@@ -41,6 +45,9 @@ export default function Pop({
       request_id: container?.requests[0]?.id,
       empty_level: emptyLevel,
     });
+    setIsRequested(false);
+    setIsReserved(true);
+    setIsProvider(false);
   };
 
   return (
@@ -58,7 +65,7 @@ export default function Pop({
           <GiPathDistance />{" "}
           {getTimeDistance({
             currentLocation,
-            distanceLocation: container.location,
+            distanceLocation: container?.location,
           })}{" "}
           min.
         </div>
@@ -82,13 +89,17 @@ export default function Pop({
               <FaRoute />
             </div>
             {isReserved ? (
-              <div className="icon Fill" onClick={handleFill}>
-                Fill
-              </div>
-            ) : (
+              isProvider && (
+                <div className="icon Fill" onClick={handleFill}>
+                  Fill
+                </div>
+              )
+            ) : isRequested ? (
               <div className="icon GO" onClick={handleReserve}>
                 GO
               </div>
+            ) : (
+              <div className="icon GO">X</div>
             )}
           </div>
         )}
