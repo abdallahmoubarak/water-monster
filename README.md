@@ -193,8 +193,72 @@ User stories is the things that done before starting the project.
 | ![Grand](./src/img/grand.png)      |
 | ![Grand](./src/img/grandstack.png) |
 
-The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
+> The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
+
+> Extending the GRAND stack to be used in the Nextjs framework, The techs has been used is as below.
+
+| Nextjs                          | Socketio                            | ReactQuery                              | Firbase(auth)                       |
+| ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- |
+| ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) |
 
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
+Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
+
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
+
+To get a build this project their are a cople of things .
+
+### Prerequisites
+
+- Download and Install [Node.js](https://nodejs.org/en/)
+
+- Create [Neo4j instance](https://neo4j.com/cloud/platform/aura-graph-database/?ref=nav-get-started-cta)
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+
+   ```sh
+   git clone https://github.com/abdallahmoubarak/water-monster
+   ```
+
+2. Go to the dir
+
+   ```sh
+   cd water-monster
+   ```
+
+3. Build the project
+   ```sh
+   npm build
+   ```
+4. Include .env.local variables
+
+   ```sh
+   NEXT_PUBLIC_GOOGLE_API_KEY = XX
+   NEXT_PUBLIC_GOOGLE_AUTH_DOMAIN = XX
+   NEXT_PUBLIC_GOOGLE_PROJECT_ID = XX
+   NEXT_PUBLIC_GOOGLE_STORAGE_BUCKET = XX
+   NEXT_PUBLIC_GOOGLE_MESSAGEING_SENDER = XX
+   NEXT_PUBLIC_GOOGLE_APP_ID = XX
+
+   NEXT_PUBLIC_NEO4J_USER = XX
+   NEXT_PUBLIC_NEO4J_PASSWORD = XX
+   NEXT_PUBLIC_NEO4J_URI = XX
+
+   NEXT_PUBLIC_JWT_SECRET= XX
+
+   NEXT_PUBLIC_ENDPOINT =  XX
+   NEXT_PUBLIC_BASEURL = XX
+   ```
+
+5. Run the project
+   ```sh
+   npm run dev --turbo
+   ```
