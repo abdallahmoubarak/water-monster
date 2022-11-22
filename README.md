@@ -132,11 +132,10 @@ This is a summary that describes the Water Monster project.
 | ------------------------------------------ |
 | ![SignIn](./src/img/uiux/adminsignInm.png) |
 
+<details><summary>See more mockups</summary>
 | Users                                    |
 | ---------------------------------------- |
 | ![Users](./src/img/uiux/adminusersm.png) |
-
-<details><summary>See more mockups</summary>
 
 </details>
 
@@ -167,7 +166,7 @@ This is a summary that describes the Water Monster project.
 | ![Grand](./src/img/grand.png)      |
 | ![Grand](./src/img/grandstack.png) |
 
-the scalablity using graph databases was the main purposet that I started doing this project using GRAND stack
+The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
 
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
