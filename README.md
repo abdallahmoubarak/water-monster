@@ -52,15 +52,15 @@ This is a summary that describes the Water Monster project.
 
 ### 1- Sketching
 
-| Sign up                               | Water level                                  | Wallet                               |
-| ------------------------------------- | -------------------------------------------- | ------------------------------------ |
-| ![Sign Up](./src/img/uiux/signup.svg) | ![Containers](./src/img/uiux/containers.svg) | ![Wallet](./src/img/uiux/wallet.svg) |
-
 | System Model                        |
 | ----------------------------------- |
 | ![Model](./src/img/uiux/system.svg) |
 
 <details><summary>See more sketches</summary>
+
+| Sign up                               | Water level                                  | Wallet                               |
+| ------------------------------------- | -------------------------------------------- | ------------------------------------ |
+| ![Sign Up](./src/img/uiux/signup.svg) | ![Containers](./src/img/uiux/containers.svg) | ![Wallet](./src/img/uiux/wallet.svg) |
 
 | Map                            | Profile                                | Chat                                |
 | ------------------------------ | -------------------------------------- | ----------------------------------- |
@@ -96,6 +96,22 @@ This is a summary that describes the Water Monster project.
 
 ### 2- Wireframes
 
+| Sign up                                | Water level                                   | Wallet                                |
+| -------------------------------------- | --------------------------------------------- | ------------------------------------- |
+| ![Sign Up](./src/img/uiux/signupw.svg) | ![Containers](./src/img/uiux/containersw.svg) | ![Wallet](./src/img/uiux/walletw.svg) |
+
+<details><summary>See more wireframes</summary>
+
+| Map                             | Profile                                 | Chat                                 |
+| ------------------------------- | --------------------------------------- | ------------------------------------ |
+| ![Map](./src/img/uiux/mapw.svg) | ![Profile](./src/img/uiux/profilew.svg) | ![Charts](./src/img/uiux/chatsw.svg) |
+
+| Statistics                                    | Contacts                                  | Setting                                 |
+| --------------------------------------------- | ----------------------------------------- | --------------------------------------- |
+| ![Statistics](./src/img/uiux/statisticsw.svg) | ![Contacts](./src/img/uiux/contactsw.svg) | ![Setting](./src/img/uiux/settingw.svg) |
+
+</details>
+
 #
 
 ### 3- Mockups
@@ -112,13 +128,13 @@ This is a summary that describes the Water Monster project.
 | --------------------------------------------- | ----------------------------------------- | --------------------------------------- |
 | ![Statistics](./src/img/uiux/statisticsm.png) | ![Contacts](./src/img/uiux/contactsm.png) | ![Setting](./src/img/uiux/settingm.png) |
 
-| Sign In                                   |
-| ----------------------------------------- |
-| ![SignIn](./src/img/uiux/adminsignIn.png) |
+| Sign In                                    |
+| ------------------------------------------ |
+| ![SignIn](./src/img/uiux/adminsignInm.png) |
 
-| Users                                   |
-| --------------------------------------- |
-| ![Users](./src/img/uiux/adminusers.png) |
+| Users                                    |
+| ---------------------------------------- |
+| ![Users](./src/img/uiux/adminusersm.png) |
 
 <details><summary>See more mockups</summary>
 
@@ -145,6 +161,13 @@ This is a summary that describes the Water Monster project.
 | ![JSN-SR04T](./src/img/circuit.png) |
 
 <img id="tech-stack" src="./src/img/title3.svg" alt="Tech Stack" />
+
+| GRAND stack                        |
+| ---------------------------------- |
+| ![Grand](./src/img/grand.png)      |
+| ![Grand](./src/img/grandstack.png) |
+
+the scalablity using graph databases was the main purposet that I started doing this project using GRAND stack
 
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
