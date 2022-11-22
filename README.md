@@ -70,17 +70,25 @@ This is a summary that describes the Water Monster project.
 | -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | ![Statistics](./src/img/uiux/statistics.svg) | ![Contacts](./src/img/uiux/contacts.svg) | ![Setting](./src/img/uiux/setting.svg) |
 
-| Requsets                                      |
-| --------------------------------------------- |
-| ![Requests](./src/img/uiux/adminrequests.svg) |
-
 | Users                                   |
 | --------------------------------------- |
 | ![Users](./src/img/uiux/adminusers.svg) |
 
+| Requsets                                      |
+| --------------------------------------------- |
+| ![Requests](./src/img/uiux/adminrequests.svg) |
+
 | Map                                 |
 | ----------------------------------- |
 | ![Map](./src/img/uiux/adminMap.svg) |
+
+| Sign In                                   |
+| ----------------------------------------- |
+| ![SignIn](./src/img/uiux/adminsignIn.svg) |
+
+| Profile                                      |
+| -------------------------------------------- |
+| ![Profile](./src/img/uiux/adminprofiles.svg) |
 
 </details>
 
