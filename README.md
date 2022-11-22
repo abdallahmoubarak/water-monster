@@ -253,14 +253,25 @@ This is a summary that describes the Water Monster project.
 
 </details>
 
----
+#
 
 ### 4- Data Modeling
 
-<table>
-<td>
-<img src='./src/project_phases/design/data_modeling_v1.png'>
-</td></table>
+| Graph Data Model Diagram                                   |
+| ---------------------------------------------------------- |
+| ![model](./src/project_phases/design/data_modeling_v1.png) |
+
+#
+
+### 4- Electronics
+
+| Ultrasonic Waterproof Sensor AJ-SR04M   | ESP8266                           | JSN-SR04T                             |
+| --------------------------------------- | --------------------------------- | ------------------------------------- |
+| ![ultrasonic](./src/img/ultrasonic.png) | ![ESP8266](./src/img/ESP8266.png) | ![JSN-SR04T](./src/img/JSN-SR04T.png) |
+
+| Circuit                             |
+| ----------------------------------- |
+| ![JSN-SR04T](./src/img/circuit.png) |
 
 <img id="tech-stack" src="./src/img/title3.svg" alt="Tech Stack" />
 

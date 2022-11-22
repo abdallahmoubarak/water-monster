@@ -8,8 +8,8 @@
 #include <WiFiClientSecureBearSSL.h>
 
 
-const int ECHOPIN = 4;
-const int TRIGPIN = 5;
+const int ECHOPIN = 4; //D2
+const int TRIGPIN = 5; //D1
 int water_level = 0;
 int container_height = 1500;
 int temp_value=0;
@@ -125,5 +125,5 @@ int check_water_level(){
     Serial.println(distance);
 
 
-    return ((container_height - distance - 180) / (container_height*0.01)); 
+    return ((container_height - distance + 180) / (container_height*0.01)); 
 }
