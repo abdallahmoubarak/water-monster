@@ -17,11 +17,12 @@ const updateName = async ({ id, name }) => {
   return res?.updateUsers?.users[0];
 };
 
-export const useUpdateName = () => {
+export const useUpdateName = ({ setAlertMsg }) => {
   return useMutation(updateName, {
     onSuccess: (res) => {
       localStorage.setItem("User", res?.user);
       client.setQueryData(["User"], res?.user);
+      setAlertMsg("Name updated");
     },
     onError: (err) => console.log(err),
   });
@@ -35,11 +36,12 @@ const updatePhone = async ({ id, phone }) => {
   return res?.updateUsers?.users[0];
 };
 
-export const useUpdatePhone = () => {
+export const useUpdatePhone = ({ setAlertMsg }) => {
   return useMutation(updatePhone, {
     onSuccess: (res) => {
       localStorage.setItem("User", res?.user);
       client.setQueryData(["User"], res?.user);
+      setAlertMsg("Phone updated");
     },
     onError: (err) => console.log(err),
   });

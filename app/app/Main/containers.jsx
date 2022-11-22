@@ -6,10 +6,12 @@ import Container from "@/components/Container";
 import { useUserContainers } from "@/hooks/useContainer";
 import ContainerLoader from "@/components/ContainerLoader";
 import { client } from "pages/_app";
+import Alert from "@/components/Alert";
 
 export default function Containers({ setPage }) {
   const currentUser = client.getQueryData(["User"]);
   const [requestOn, setRequestOn] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   const { data: containers, isLoading } = useUserContainers(currentUser.id);
 
@@ -27,6 +29,7 @@ export default function Containers({ setPage }) {
           <RequestInstallation
             currentUser={currentUser}
             close={() => setRequestOn(false)}
+            setAlertMsg={setAlertMsg}
           />
         )}
 
@@ -38,6 +41,8 @@ export default function Containers({ setPage }) {
           />
         </div>
       </div>
+
+      <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
 
       <style jsx>{`
         .page {

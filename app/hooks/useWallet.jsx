@@ -17,12 +17,13 @@ const createWallet = async ({ id }) => {
   return res;
 };
 
-export const useCreateWallet = ({ setIsLoading }) => {
+export const useCreateWallet = ({ setIsLoading, setAlertMsg }) => {
   return useMutation(createWallet, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);
       client.refetchQueries(["User"]);
+      setAlertMsg("Wallet created successfully!");
     },
   });
 };
@@ -35,13 +36,14 @@ const chargeWallet = async ({ id, amount }) => {
   return res;
 };
 
-export const useChargeWallet = ({ setAmount, setIsLoading }) => {
+export const useChargeWallet = ({ setAlertMsg, setAmount, setIsLoading }) => {
   return useMutation(chargeWallet, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);
       setAmount("");
       client.refetchQueries(["User"]);
+      setAlertMsg("Charging done!");
     },
   });
 };
@@ -54,13 +56,18 @@ const withdrawWallet = async ({ id, amount }) => {
   return res;
 };
 
-export const useWithdrawMutation = ({ setAmount, setIsLoading }) => {
+export const useWithdrawMutation = ({
+  setAlertMsg,
+  setAmount,
+  setIsLoading,
+}) => {
   return useMutation(withdrawWallet, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);
       setAmount("");
       client.refetchQueries(["User"]);
+      setAlertMsg("Withdraw done!");
     },
   });
 };
@@ -73,11 +80,12 @@ const pay = async ({ req_id, payer_wallet_id, payed_wallet_id, amount }) => {
   return res;
 };
 
-export const usePayMutation = ({ setIsLoading }) => {
+export const usePayMutation = ({ setIsLoading, setAlertMsg }) => {
   return useMutation(pay, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);
+      setAlertMsg("Payment done!");
       client.refetchQueries(["FillingHistory"]);
     },
   });
@@ -91,11 +99,12 @@ const cash = async ({ req_id }) => {
   return res;
 };
 
-export const useCashMutation = ({ setIsLoading }) => {
+export const useCashMutation = ({ setIsLoading, setAlertMsg }) => {
   return useMutation(cash, {
     onError: (err) => console.log(err),
     onSuccess: () => {
       setIsLoading(false);
+      setAlertMsg("Payment done!");
       client.refetchQueries(["FillingHistory"]);
     },
   });

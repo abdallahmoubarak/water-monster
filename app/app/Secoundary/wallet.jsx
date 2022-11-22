@@ -1,3 +1,4 @@
+import Alert from "@/components/Alert";
 import Box from "@/components/Box";
 import Button from "@/components/Button";
 import CreditCard from "@/components/CreditCard";
@@ -19,10 +20,46 @@ export default function Wallet({ setPage }) {
   const [flip, setFlip] = useState(false);
   const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const currentAmount = formatter.format(currentUser?.wallet?.amount);
 
-  const { mutate: charge } = useChargeWallet({ setAmount, setIsLoading });
-  const { mutate: withdraw } = useWithdrawMutation({ setAmount, setIsLoading });
+  const { mutate: charge } = useChargeWallet({
+    setAlertMsg,
+    setAmount,
+    setIsLoading,
+  });
+  const { mutate: withdraw } = useWithdrawMutation({
+    setAlertMsg,
+    setAmount,
+    setIsLoading,
+  });
+
+  // the function will validate the card info in frontend
+  const validation = () => {
+    if (name.length < 5) return "Name is required";
+    if (cardNumber.length !== 16) return "Card number is required";
+    if (exp.length !== 4) return "Exp is required";
+    if (ccv.length !== 3) return "CCV is required";
+    if (amount.length < 1) return "Amount is required";
+    return "done";
+  };
+
+  // the function will handle withdraw and charging actions
+  const handleAction = (action) => {
+    setIsLoading(true);
+    const msg = validation();
+    msg === "done"
+      ? action === "withdraw"
+        ? withdraw({
+            id: currentUser?.wallet?.id,
+            amount: parseFloat(amount),
+          })
+        : charge({
+            id: currentUser?.wallet?.id,
+            amount: parseFloat(amount),
+          })
+      : setAlertMsg(msg);
+  };
 
   return (
     <>
@@ -65,28 +102,17 @@ export default function Wallet({ setPage }) {
             <Button
               text="Charge"
               isLoading={isLoading}
-              onClick={() => {
-                setIsLoading(true);
-                charge({
-                  id: currentUser?.wallet?.id,
-                  amount: parseFloat(amount),
-                });
-              }}
+              onClick={() => handleAction("charge")}
             />
           ) : (
             <Button
               text="Withdraw"
               isLoading={isLoading}
-              onClick={() => {
-                setIsLoading(true);
-                withdraw({
-                  id: currentUser?.wallet?.id,
-                  amount: parseFloat(amount),
-                });
-              }}
+              onClick={() => handleAction("withdraw")}
             />
           )}
         </Box>
+        <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
       </Layout>
     </>
   );

@@ -46,6 +46,14 @@ export default function ChatBox({ user, setPage, socket }) {
       content,
     });
   };
+  const handleCalling = () => {
+    socket.emit("call", {
+      calledId: user.id,
+      callerId: currentUser?.id,
+      callerName: currentUser?.name,
+    });
+    setCall(true);
+  };
 
   const sendMessage = async () => {
     if (value) {
@@ -88,7 +96,7 @@ export default function ChatBox({ user, setPage, socket }) {
               </div>
               <div className="user-info">
                 <div className="user-name">{user?.name}</div>
-                <div className="head-icon" onClick={() => setCall(true)}>
+                <div className="head-icon" onClick={handleCalling}>
                   <FaPhone />
                 </div>
               </div>

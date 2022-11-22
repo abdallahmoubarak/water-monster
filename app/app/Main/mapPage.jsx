@@ -9,6 +9,7 @@ import Image from "next/image";
 import Pop from "@/components/MapPop";
 import { useGetMapContainers } from "@/hooks/useContainer";
 import { client } from "pages/_app";
+import Alert from "@/components/Alert";
 
 export default function MapPage({ setPage, setChatUser }) {
   const currentLocation = useMemo(
@@ -18,6 +19,7 @@ export default function MapPage({ setPage, setChatUser }) {
     ],
     [],
   );
+  const [alertMsg, setAlertMsg] = useState("");
   const [center, setCenter] = useState(currentLocation);
   const [zoom, setZoom] = useState(17);
 
@@ -46,62 +48,69 @@ export default function MapPage({ setPage, setChatUser }) {
             setZoom(zoom);
           }}>
           <ZoomControl />
-          {containers?.map((container, i) => (
-            <Marker
-              key={i}
-              width={50}
-              anchor={[
-                container?.location?.longitude,
-                container?.location?.latitude,
-              ]}
-              onClick={() => {
-                setZoom(18);
-                setCenter([
-                  container?.location?.longitude,
-                  container?.location?.latitude,
-                ]);
-              }}
-            />
-          ))}
-          {containers?.map((container, i) => (
-            <Marker
-              key={i}
-              width={50}
-              anchor={[
-                container?.location?.longitude,
-                container?.location?.latitude,
-              ]}>
-              <Image
-                className="marker-img"
-                src={"/svg/containermarker.svg"}
-                alt=""
-                width={50}
-                height={60}
-              />
-            </Marker>
-          ))}
-          {containers?.map((container, i) => {
-            let y = 190;
-            if (container?.requests[0]?.state === "reserved") y = 145;
-            if (!container?.requests[0]) y = 170;
-            if (userType === "Admin") y = 130;
-            return (
-              <Overlay
+          {containers
+            ?.filter((container) => container?.location?.longitude)
+            .map((container, i) => (
+              <Marker
                 key={i}
+                width={50}
                 anchor={[
                   container?.location?.longitude,
                   container?.location?.latitude,
                 ]}
-                offset={[80, y]}>
-                <Pop
-                  container={container}
-                  currentLocation={currentLocation}
-                  setPage={setPage}
-                  setChatUser={setChatUser}
+                onClick={() => {
+                  setZoom(18);
+                  setCenter([
+                    container?.location?.longitude,
+                    container?.location?.latitude,
+                  ]);
+                }}
+              />
+            ))}
+          {containers
+            ?.filter((container) => container?.location?.longitude)
+            .map((container, i) => (
+              <Marker
+                key={i}
+                width={50}
+                anchor={[
+                  container?.location?.longitude,
+                  container?.location?.latitude,
+                ]}>
+                <Image
+                  className="marker-img"
+                  src={"/svg/containermarker.svg"}
+                  alt=""
+                  width={50}
+                  height={60}
                 />
-              </Overlay>
-            );
-          })}
+              </Marker>
+            ))}
+          {containers
+            ?.filter((container) => container?.location?.longitude)
+            .map((container, i) => {
+              let y = 190;
+              if (container?.requests[0]?.state === "reserved") y = 145;
+              if (!container?.requests[0]) y = 170;
+              if (userType === "Admin") y = 130;
+              return (
+                <Overlay
+                  key={i}
+                  anchor={[
+                    container?.location?.longitude,
+                    container?.location?.latitude,
+                  ]}
+                  offset={[80, y]}>
+                  <Pop
+                    container={container}
+                    currentLocation={currentLocation}
+                    setPage={setPage}
+                    setChatUser={setChatUser}
+                    setAlertMsg={setAlertMsg}
+                  />
+                </Overlay>
+              );
+            })}
           {/* owner marker */}
           <Marker
             width={50}
@@ -125,6 +134,7 @@ export default function MapPage({ setPage, setChatUser }) {
             />
           </Marker>
         </Map>
+        <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
       </div>
 
       <style jsx>{`

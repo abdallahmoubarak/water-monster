@@ -1,11 +1,13 @@
 import { useState } from "react";
-import Contacts from "../Main/contacts";
-import MapPage from "../Main/mapPage";
-import Statistics from "../Main/statistics";
-import Chat from "../Secoundary/chat";
 import AdminLayout from "./layout";
-import Requests from "./requests";
 import Users from "./users";
+import dynamic from "next/dynamic";
+
+const Contacts = dynamic(() => import("../Main/contacts"));
+const MapPage = dynamic(() => import("../Main/mapPage"));
+const Statistics = dynamic(() => import("../Main/statistics"));
+const Requests = dynamic(() => import("./requests"));
+const Chat = dynamic(() => import("../Secoundary/chat"));
 
 export default function Admin({ socket, onlineUsers }) {
   const [active, setActive] = useState("Users");

@@ -13,10 +13,14 @@ export default function Pop({
   currentLocation,
   setPage,
   setChatUser,
+  setAlertMsg,
 }) {
   const router = useRouter();
   const currentUser = client.getQueryData(["User"]);
   const emptyLevel = (container?.size * (100 - container?.water_level)) / 100;
+  const [isRequested, setIsRequested] = useState(
+    Boolean(container?.requests[0]?.state === "waiting"),
+  );
   const [isReserved, setIsReserved] = useState(
     Boolean(container?.requests[0]?.state === "reserved"),
   );
@@ -24,14 +28,15 @@ export default function Pop({
     Boolean(container?.requests[0]?.provider[0]?.id === currentUser.id),
   );
 
-  const { mutate: reserveRequest } = useReserveRequest();
-  const { mutate: startFilling } = useStartFilling();
+  const { mutate: reserveRequest } = useReserveRequest({ setAlertMsg });
+  const { mutate: startFilling } = useStartFilling({ setAlertMsg });
 
   const handleReserve = () => {
     reserveRequest({
       provider_id: currentUser.id,
       request_id: container?.requests[0]?.id,
     });
+    setIsRequested(true);
     setIsReserved(true);
     setIsProvider(true);
   };
@@ -41,6 +46,9 @@ export default function Pop({
       request_id: container?.requests[0]?.id,
       empty_level: emptyLevel,
     });
+    setIsRequested(false);
+    setIsReserved(true);
+    setIsProvider(false);
   };
 
   return (
@@ -58,7 +66,7 @@ export default function Pop({
           <GiPathDistance />{" "}
           {getTimeDistance({
             currentLocation,
-            distanceLocation: container.location,
+            distanceLocation: container?.location,
           })}{" "}
           min.
         </div>
@@ -82,12 +90,20 @@ export default function Pop({
               <FaRoute />
             </div>
             {isReserved ? (
-              <div className="icon Fill" onClick={handleFill}>
-                Fill
-              </div>
-            ) : (
+              isProvider && (
+                <div className="icon Fill" onClick={handleFill}>
+                  Fill
+                </div>
+              )
+            ) : isRequested ? (
               <div className="icon GO" onClick={handleReserve}>
                 GO
+              </div>
+            ) : (
+              <div
+                className="icon GO"
+                onClick={() => setAlertMsg("Contact the client first")}>
+                X
               </div>
             )}
           </div>

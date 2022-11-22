@@ -8,16 +8,18 @@ import { useState } from "react";
 import { useCashMutation, usePayMutation } from "@/hooks/useWallet";
 import { client } from "pages/_app";
 import { FaCheckCircle } from "react-icons/fa";
+import Alert from "./Alert";
 
 export default function FillingCard({ item, balance }) {
   const currentUser = client.getQueryData(["User"]);
   const [selected, setSelected] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const toPay = 100 * item?.initial_state;
   const user = item?.provider ? item?.provider[0] : item?.creator;
 
-  const { mutate: pay } = usePayMutation({ setIsLoading });
-  const { mutate: cash } = useCashMutation({ setIsLoading });
+  const { mutate: pay } = usePayMutation({ setIsLoading, setAlertMsg });
+  const { mutate: cash } = useCashMutation({ setIsLoading, setAlertMsg });
 
   const handelPay = () => {
     {
@@ -95,6 +97,7 @@ export default function FillingCard({ item, balance }) {
         </div>
         <div className={styles.date}>{dateTimeChanger(item.createdAt)}</div>
       </div>
+      <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
     </>
   );
 }

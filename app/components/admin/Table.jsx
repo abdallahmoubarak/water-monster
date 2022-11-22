@@ -48,7 +48,7 @@ export default function Table({
           </tbody>
         </table>
       </div>
-      <style jsx="true">{`
+      <style jsx>{`
         .table-container {
           max-width: 100%;
           border: 1px solid ${styles.primaryColor};
