@@ -52,152 +52,55 @@ This is a summary that describes the Water Monster project.
 
 ### 1- Sketching
 
-<table>
-  <tr>
-    <th>Sign up</th>
-    <th>Water level</th>
-    <th>Wallet </th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/signup.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/containers.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/wallet.png" />
-    </td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <th>System Model</th>
-  </tr>
-  <tr>
-    <td><img src="./src/project_phases/design/wm_system_design_v1.png" /></td>
-  </tr>
-</table>
+| Sign up                              | Water level                                 | Wallet                              |
+| ------------------------------------ | ------------------------------------------- | ----------------------------------- |
+| ![Sign Up](./src/img/png/signup.png) | ![Containers](./src/img/png/containers.png) | ![Wallet](./src/img/png/wallet.png) |
+
+| System Model                                                  |
+| ------------------------------------------------------------- |
+| ![Model](./src/project_phases/design/wm_system_design_v1.png) |
 
 <details><summary>See more sketches</summary>
-<table>
-  <tr>
-    <th>Map</th>
-    <th>Profile</th>
-    <th>Chat</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/map.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/profile.png" />
-    </td>
-      <td>
-      <img src="./src/img/png/chats.png" />
-    </td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <th>Statistics</th>
-    <th>Contacts</th>
-    <th>Setting</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/statistics.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/contacts.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/setting.png" />
-    </td>
-  </tr>
-</table>
 
-<table>
-  <tr>
-    <th>Requsets</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/requests.png" />
-    </td>
-  </tr>
-</table>
+| Map                           | Profile                               | Chat                               |
+| ----------------------------- | ------------------------------------- | ---------------------------------- |
+| ![Map](./src/img/png/map.png) | ![Profile](./src/img/png/profile.png) | ![Charts](./src/img/png/chats.png) |
 
-<table>
-  <tr>
-    <th>Users</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/users.png" />
-    </td>
-  </tr>
-</table>
+| Statistics                                  | Contacts                                | Setting                               |
+| ------------------------------------------- | --------------------------------------- | ------------------------------------- |
+| ![Statistics](./src/img/png/statistics.png) | ![Contacts](./src/img/png/contacts.png) | ![Setting](./src/img/png/setting.png) |
 
-<table>
-  <tr>
-    <th>Map</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/adminMap.png" />
-    </td>
-  </tr>
-</table>
+| Requsets                                |
+| --------------------------------------- |
+| ![Requests](./src/img/png/requests.png) |
+
+| Users                             |
+| --------------------------------- |
+| ![Users](./src/img/png/users.png) |
+
+| Map                                |
+| ---------------------------------- |
+| ![Map](./src/img/png/adminMap.png) |
 
 </details>
 
----
+#
 
 ### 2- Wireframes
 
----
+#
 
 ### 3- Mockups
 
-<table>
-  <tr>
-    <th>Sign up</th>
-    <th>Water level</th>
-    <th>Wallet </th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/signupm.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/containersm.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/walletm.png" />
-    </td>
-  </tr>
-</table>
-<table>
-  <tr>
-    <th>Map</th>
-    <th>Profile</th>
-    <th>Chat</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/mapm.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/profilem.png" />
-    </td>
-      <td>
-      <img src="./src/img/png/chatsm.png" />
-    </td>
-  </tr>
-</table>
+| Sign up                               | Water level                                  | Wallet                               |
+| ------------------------------------- | -------------------------------------------- | ------------------------------------ |
+| ![Sign Up](./src/img/png/signupm.png) | ![Containers](./src/img/png/containersm.png) | ![Wallet](./src/img/png/walletm.png) |
 
-<details><summary>See more sketches</summary>
+| Map                                | Profile                                   | Chat                               |
+| ---------------------------------- | ----------------------------------------- | ---------------------------------- |
+| ![Sign Up](./src/img/png/mapm.png) | ![Containers](./src/img/png/profilem.png) | ![Wallet](./src/img/png/chatm.png) |
+
+<details><summary>See more mockups</summary>
 
 <table>
   <tr>
