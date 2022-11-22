@@ -108,6 +108,18 @@ This is a summary that describes the Water Monster project.
 | ----------------------------------- | ------------------------------------------ | ---------------------------------- |
 | ![Sign Up](./src/img/uiux/mapm.png) | ![Containers](./src/img/uiux/profilem.png) | ![Chat](./src/img/uiux/chatsm.png) |
 
+| Statistics                                    | Contacts                                  | Setting                                 |
+| --------------------------------------------- | ----------------------------------------- | --------------------------------------- |
+| ![Statistics](./src/img/uiux/statisticsm.png) | ![Contacts](./src/img/uiux/contactsm.png) | ![Setting](./src/img/uiux/settingm.png) |
+
+| Sign In                                   |
+| ----------------------------------------- |
+| ![SignIn](./src/img/uiux/adminsignIn.png) |
+
+| Users                                   |
+| --------------------------------------- |
+| ![Users](./src/img/uiux/adminusers.png) |
+
 <details><summary>See more mockups</summary>
 
 </details>
