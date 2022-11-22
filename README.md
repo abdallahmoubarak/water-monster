@@ -182,9 +182,13 @@ User stories is the things that done before starting the project.
 | --------------------------------------- | --------------------------------- | ------------------------------------- |
 | ![ultrasonic](./src/img/ultrasonic.png) | ![ESP8266](./src/img/ESP8266.png) | ![JSN-SR04T](./src/img/JSN-SR04T.png) |
 
-| Circuit                             |
-| ----------------------------------- |
-| ![JSN-SR04T](./src/img/circuit.png) |
+<details><summary>Circuit</summary>
+
+![JSN-SR04T](./src/img/circuit.png)
+
+</details>
+
+#
 
 <img id="tech-stack" src="./src/img/title3.svg" alt="Tech Stack" />
 
@@ -193,17 +197,23 @@ User stories is the things that done before starting the project.
 | ![Grand](./src/img/grand.png)      |
 | ![Grand](./src/img/grandstack.png) |
 
-> The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
+- The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
 
-> Extending the GRAND stack to be used in the Nextjs framework, The techs has been used is as below.
+- Extending the GRAND stack to be used in the Nextjs framework, The techs has been used is as below :
 
 | Nextjs                          | Socketio                            | ReactQuery                              | Firbase(auth)                       |
 | ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- |
 | ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) |
 
+-
+-
+-
+-
+-
+
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
-Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app
+Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app.
 
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 
