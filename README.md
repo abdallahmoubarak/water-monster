@@ -12,15 +12,27 @@ This is a summary that describes the Water Monster project.
 
 <img id="project-philosophy" src="./src/img/title1.svg" alt="Project Philosophy" />
 
-<p align="center"> Water Monster is a service app that can match water wanter and water provider. Using Water Monster users will never warry about how much water is their in the container.
+<p align="center"> 
+Water Monster is a platform that solves one of the biggest problems for those contries who depend on water containers; to provide home water. It matchs water wanter and the provider over a user friendly application.
 </p>
 
+<p align="center"> 
+Water Monster users will never warry about how much water is their in the container !!!
+</p>
+
+#
+
 ### User Stories
+
+User stories is the things that done before starting the project.
 
 ### - Client:
 
 - User shall be able to sign up, sign in, and request installation packages.
 - User shall be able to view the real time water level in the container.
+
+<details><summary>read more</summary>
+
 - User shall be able to accept service providers.
 - User shall be able to view the over time records in a chart.
 - User shall be able to set manual or auto filling mode.
@@ -30,23 +42,37 @@ This is a summary that describes the Water Monster project.
 - User shall be able to see the state of each sensor container.
 - User shall be able to chat with the provider and make a voice call.
 
+</details>
+
 ### - Service provider:
 
 - User shall be able to sign up, sign in.
 - User shall be able to view a real time active containers on the map.
+
+<details><summary>read more</summary>
+
 - User shall be able to view the level of the water for each.
 - User shall be able to chat with client and make a voice call.
 - User shall be able to see a path and calculate selected containers needed for water.
 - User shall be able to see the wallet and withdraw.
 - User shall verify the filling process by selecting the container and clicking on start filling.
 
+</details>
+
 ### - Admin:
 
 - Admin shall be able to review the package requests, and change the process state.(depending on each stage)
+
+<details><summary>read more</summary>
+
 - Admin shall be able to view each service consumer and service provider information + statistics.
 - Admin shall be able to chat with users.
 - Admin shall be able to view states on map.
 - Admin shall be able to view statistics of the system.
+
+</details>
+
+#
 
 <img id="prototyping" src="./src/img/title2.svg" alt="Prototyping" />
 
@@ -124,18 +150,19 @@ This is a summary that describes the Water Monster project.
 | ----------------------------------- | ------------------------------------------ | ---------------------------------- |
 | ![Sign Up](./src/img/uiux/mapm.png) | ![Containers](./src/img/uiux/profilem.png) | ![Chat](./src/img/uiux/chatsm.png) |
 
-| Statistics                                    | Contacts                                  | Setting                                 |
-| --------------------------------------------- | ----------------------------------------- | --------------------------------------- |
-| ![Statistics](./src/img/uiux/statisticsm.png) | ![Contacts](./src/img/uiux/contactsm.png) | ![Setting](./src/img/uiux/settingm.png) |
-
 | Sign In                                    |
 | ------------------------------------------ |
 | ![SignIn](./src/img/uiux/adminsignInm.png) |
 
 <details><summary>See more mockups</summary>
+
 | Users                                    |
 | ---------------------------------------- |
 | ![Users](./src/img/uiux/adminusersm.png) |
+
+| Statistics                                    | Contacts                                  | Setting                                 |
+| --------------------------------------------- | ----------------------------------------- | --------------------------------------- |
+| ![Statistics](./src/img/uiux/statisticsm.png) | ![Contacts](./src/img/uiux/contactsm.png) | ![Setting](./src/img/uiux/settingm.png) |
 
 </details>
 
