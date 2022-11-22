@@ -52,35 +52,35 @@ This is a summary that describes the Water Monster project.
 
 ### 1- Sketching
 
-| Sign up                              | Water level                                 | Wallet                              |
-| ------------------------------------ | ------------------------------------------- | ----------------------------------- |
-| ![Sign Up](./src/img/png/signup.png) | ![Containers](./src/img/png/containers.png) | ![Wallet](./src/img/png/wallet.png) |
+| Sign up                               | Water level                                  | Wallet                               |
+| ------------------------------------- | -------------------------------------------- | ------------------------------------ |
+| ![Sign Up](./src/img/uiux/signup.svg) | ![Containers](./src/img/uiux/containers.svg) | ![Wallet](./src/img/uiux/wallet.svg) |
 
-| System Model                                                  |
-| ------------------------------------------------------------- |
-| ![Model](./src/project_phases/design/wm_system_design_v1.png) |
+| System Model                        |
+| ----------------------------------- |
+| ![Model](./src/img/uiux/system.svg) |
 
 <details><summary>See more sketches</summary>
 
-| Map                           | Profile                               | Chat                               |
-| ----------------------------- | ------------------------------------- | ---------------------------------- |
-| ![Map](./src/img/png/map.png) | ![Profile](./src/img/png/profile.png) | ![Charts](./src/img/png/chats.png) |
+| Map                            | Profile                                | Chat                                |
+| ------------------------------ | -------------------------------------- | ----------------------------------- |
+| ![Map](./src/img/uiux/map.svg) | ![Profile](./src/img/uiux/profile.svg) | ![Charts](./src/img/uiux/chats.svg) |
 
-| Statistics                                  | Contacts                                | Setting                               |
-| ------------------------------------------- | --------------------------------------- | ------------------------------------- |
-| ![Statistics](./src/img/png/statistics.png) | ![Contacts](./src/img/png/contacts.png) | ![Setting](./src/img/png/setting.png) |
+| Statistics                                   | Contacts                                 | Setting                                |
+| -------------------------------------------- | ---------------------------------------- | -------------------------------------- |
+| ![Statistics](./src/img/uiux/statistics.svg) | ![Contacts](./src/img/uiux/contacts.svg) | ![Setting](./src/img/uiux/setting.svg) |
 
-| Requsets                                |
+| Requsets                                      |
+| --------------------------------------------- |
+| ![Requests](./src/img/uiux/adminrequests.svg) |
+
+| Users                                   |
 | --------------------------------------- |
-| ![Requests](./src/img/png/requests.png) |
+| ![Users](./src/img/uiux/adminusers.svg) |
 
-| Users                             |
-| --------------------------------- |
-| ![Users](./src/img/png/users.png) |
-
-| Map                                |
-| ---------------------------------- |
-| ![Map](./src/img/png/adminMap.png) |
+| Map                                 |
+| ----------------------------------- |
+| ![Map](./src/img/uiux/adminMap.svg) |
 
 </details>
 
@@ -92,67 +92,15 @@ This is a summary that describes the Water Monster project.
 
 ### 3- Mockups
 
-| Sign up                               | Water level                                  | Wallet                               |
-| ------------------------------------- | -------------------------------------------- | ------------------------------------ |
-| ![Sign Up](./src/img/png/signupm.png) | ![Containers](./src/img/png/containersm.png) | ![Wallet](./src/img/png/walletm.png) |
+| Sign up                                | Water level                                   | Wallet                                |
+| -------------------------------------- | --------------------------------------------- | ------------------------------------- |
+| ![Sign Up](./src/img/uiux/signupm.png) | ![Containers](./src/img/uiux/containersm.png) | ![Wallet](./src/img/uiux/walletm.png) |
 
-| Map                                | Profile                                   | Chat                               |
-| ---------------------------------- | ----------------------------------------- | ---------------------------------- |
-| ![Sign Up](./src/img/png/mapm.png) | ![Containers](./src/img/png/profilem.png) | ![Wallet](./src/img/png/chatm.png) |
+| Map                                 | Profile                                    | Chat                               |
+| ----------------------------------- | ------------------------------------------ | ---------------------------------- |
+| ![Sign Up](./src/img/uiux/mapm.png) | ![Containers](./src/img/uiux/profilem.png) | ![Chat](./src/img/uiux/chatsm.png) |
 
 <details><summary>See more mockups</summary>
-
-<table>
-  <tr>
-    <th>Statistics</th>
-    <th>Contacts</th>
-    <th>Setting</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/statistics.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/contacts.png" />
-    </td>
-    <td>
-      <img src="./src/img/png/setting.png" />
-    </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Requsets</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/requests.png" />
-    </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Users</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/users.png" />
-    </td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <th>Map</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./src/img/png/adminMap.png" />
-    </td>
-  </tr>
-</table>
 
 </details>
 
