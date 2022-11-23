@@ -21,6 +21,27 @@
   max-width: 35rem;
   overflow: hidden;
 }
+
+.cardHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  gap: 1rem;
+}
+
+.chatIcon {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .imgNameContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,7 +50,6 @@
   -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
-  padding: 0.6rem 1rem;
   font-size: 1.4rem;
 }
 
@@ -118,6 +138,19 @@
   align-items: center;
   gap: 0.4rem;
   color: green;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.waiting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--secondary-color);
   font-weight: bold;
   font-size: 1.2rem;
 }

@@ -7,12 +7,13 @@ import Select from "./Select";
 import { useState } from "react";
 import { useCashMutation, usePayMutation } from "@/hooks/useWallet";
 import { client } from "pages/_app";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import Alert from "./Alert";
+import { BsFillChatFill } from "react-icons/bs";
 
-export default function FillingCard({ item, balance }) {
+export default function FillingCard({ item, balance, setChatUser, setPage }) {
   const currentUser = client.getQueryData(["User"]);
-  const [selected, setSelected] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
   const toPay = 100 * item?.initial_state;
@@ -24,26 +25,36 @@ export default function FillingCard({ item, balance }) {
   const handelPay = () => {
     {
       setIsLoading(true);
-      selected === "Wallet" &&
+      paymentMethod === "Wallet" &&
         pay({
           req_id: item?.id,
           payer_wallet_id: currentUser?.wallet.id,
           payed_wallet_id: item?.provider[0]?.wallet.id,
           amount: toPay,
         });
-      selected === "Cash" && cash({ req_id: item?.id });
+      paymentMethod === "Cash" && cash({ req_id: item?.id });
     }
   };
   return (
     <>
       <div className={styles.cardContainer}>
-        <div className={styles.imgNameContainer}>
-          <div className={styles.cardImg}>
-            {user?.profile_url && (
-              <Image src={user?.profile_url} alt="" width={48} height={48} />
-            )}
+        <div className={styles.cardHeader}>
+          <div className={styles.imgNameContainer}>
+            <div className={styles.cardImg}>
+              {user?.profile_url && (
+                <Image src={user?.profile_url} alt="" width={48} height={48} />
+              )}
+            </div>
+            <div>{user?.name}</div>
           </div>
-          <div>{user?.name}</div>
+          <div
+            className={styles.chatIcon}
+            onClick={() => {
+              setChatUser(user);
+              setPage("Chat");
+            }}>
+            <BsFillChatFill />
+          </div>
         </div>
         <div className={styles.cardBody}>
           <div className={styles.cardBodyItem}>
@@ -71,12 +82,12 @@ export default function FillingCard({ item, balance }) {
               <Select
                 name="Payment"
                 options={["Wallet", "Cash"]}
-                setSelected={setSelected}
-                selected={selected}
+                setSelected={setPaymentMethod}
+                selected={paymentMethod}
               />
             </div>
             <div className={styles.balance}>
-              {selected === "Wallet" &&
+              {paymentMethod === "Wallet" &&
                 (balance < toPay
                   ? "Charge wallet first, your current balance is: "
                   : "Balance: ") + formatter.format(balance)}
@@ -85,8 +96,13 @@ export default function FillingCard({ item, balance }) {
         )}
         <div className={styles.cardFooter}>
           {!item?.payment_method ? (
-            !!selected && (
+            !!paymentMethod ? (
               <Button text="Pay" onClick={handelPay} isLoading={isLoading} />
+            ) : (
+              <div className={styles.waiting}>
+                <FaInfoCircle />
+                Waiting for payment...
+              </div>
             )
           ) : (
             <div className={styles.done}>

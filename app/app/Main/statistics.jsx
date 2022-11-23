@@ -6,7 +6,7 @@ import { useGetFillingRequests } from "@/hooks/useRequest";
 import { styles } from "@/utils/styles";
 import Image from "next/image";
 
-export default function Statistics() {
+export default function Statistics({ setChatUser, setPage }) {
   const { data: currentUser } = useCurrentUser({ enabled: true });
   const { data: fillingHistory } = useGetFillingRequests({
     id: currentUser.id,
@@ -25,24 +25,27 @@ export default function Statistics() {
       {Boolean(fillingHistory?.length) && (
         <>
           {currentUser.type === "Client" && (
-            <>
+            <div>
               <PageTitle text="Filling statistics" />
               <StatisticsChart data={fillingHistory} />
-            </>
+            </div>
           )}
+          <div>
+            <PageTitle text="Filling history" />
 
-          <PageTitle text="Filling history" />
-
-          <div className="cards-container">
-            {fillingHistory
-              ?.filter((item) => item.initial_state)
-              .map((item, i) => (
-                <FillingCard
-                  key={i}
-                  item={item}
-                  balance={currentUser?.wallet?.amount}
-                />
-              ))}
+            <div className="cards-container">
+              {fillingHistory
+                ?.filter((item) => item.initial_state)
+                .map((item, i) => (
+                  <FillingCard
+                    key={i}
+                    item={item}
+                    balance={currentUser?.wallet?.amount}
+                    setChatUser={setChatUser}
+                    setPage={setPage}
+                  />
+                ))}
+            </div>
           </div>
         </>
       )}
@@ -52,6 +55,7 @@ export default function Statistics() {
           ${styles.flexJustifycenter};
           padding-top: 5rem;
         }
+
         .cards-container {
           padding: 0.6rem 1rem;
           display: -webkit-box;

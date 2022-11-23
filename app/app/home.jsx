@@ -66,7 +66,9 @@ export default function Home() {
 
       {layoutPages.includes(page) && (
         <Layout withImg={true} withNav={true} active={page} setActive={setPage}>
-          {page === "Statistics" && <Statistics />}
+          {page === "Statistics" && (
+            <Statistics setChatUser={setChatUser} setPage={setPage} />
+          )}
           {page === "Containers" && (
             <>
               {currentUser?.type === "Provider" ? (

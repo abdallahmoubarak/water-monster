@@ -93,7 +93,9 @@ export const clientFillingRequestsQuery = gql`
         size
       }
       provider {
+        id
         name
+        profile_url
         wallet {
           id
         }
@@ -121,6 +123,7 @@ export const providerFillingRequestsQuery = gql`
       creator {
         id
         name
+        profile_url
       }
       createdAt
       updatedAt
