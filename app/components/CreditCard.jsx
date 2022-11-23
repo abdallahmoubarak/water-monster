@@ -5,12 +5,12 @@ export default function CreditCard({
   name = "Your name",
   number,
   date,
-  ccv,
+  cvv,
   flip,
 }) {
   const [n, setNumber] = useState(number);
   const [d, setDate] = useState(date);
-  const [c, setCcv] = useState(ccv);
+  const [c, setCvv] = useState(cvv);
 
   useEffect(() => {
     setNumber(number + Array(17 - number.length).join("X"));
@@ -21,8 +21,8 @@ export default function CreditCard({
   }, [date]);
 
   useEffect(() => {
-    setCcv(ccv + Array(4 - ccv.length).join("X"));
-  }, [ccv]);
+    setCvv(cvv + Array(4 - cvv.length).join("X"));
+  }, [cvv]);
 
   return (
     <>
@@ -79,7 +79,7 @@ export default function CreditCard({
                     <div className="section">{n.substring(12, 16)}</div>
                   </div>
                   <div className="end">
-                    <span className="end-text">exp. end: </span>
+                    <span className="end-text">exp. date: </span>
                     <span className="end-date">
                       {d.substring(0, 2)} / {d.substring(2, 4)}
                     </span>
@@ -107,8 +107,8 @@ export default function CreditCard({
             </div>
             <div className="back">
               <div className="strip-black"></div>
-              <div className="ccv">
-                <label>ccv</label>
+              <div className="cvv">
+                <label>cvv</label>
                 <div>{c}</div>
               </div>
               <div className="terms">
@@ -390,14 +390,14 @@ export default function CreditCard({
           background: black;
         }
 
-        .ccv {
+        .cvv {
           text-align: right;
           letter-spacing: 1px;
           color: black;
           padding: 0 1.6rem;
         }
 
-        .ccv div {
+        .cvv div {
           background: white;
           padding: 0.2rem;
           border-radius: 0.3rem;

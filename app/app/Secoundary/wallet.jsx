@@ -16,7 +16,7 @@ export default function Wallet({ setPage }) {
   const [name, setName] = useState();
   const [cardNumber, setCardNumber] = useState("");
   const [exp, setExp] = useState("");
-  const [ccv, setCcv] = useState("");
+  const [cvv, setCvv] = useState("");
   const [flip, setFlip] = useState(false);
   const [amount, setAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +39,7 @@ export default function Wallet({ setPage }) {
     if (name.length < 5) return "Name is required";
     if (cardNumber.length !== 16) return "Card number is required";
     if (exp.length !== 4) return "Exp is required";
-    if (ccv.length !== 3) return "CCV is required";
+    if (cvv.length !== 3) return "CVV is required";
     if (amount.length < 1) return "Amount is required";
     return "done";
   };
@@ -71,7 +71,7 @@ export default function Wallet({ setPage }) {
           name={name}
           number={cardNumber}
           date={exp}
-          ccv={ccv}
+          cvv={cvv}
           flip={flip}
         />
         <Box title={"Card Information"}>
@@ -84,12 +84,12 @@ export default function Wallet({ setPage }) {
               setValue={setCardNumber}
               limit={17}
             />
-            <Input name={"Exp.End"} value={exp} setValue={setExp} limit={5} />
+            <Input name={"Exp.Date"} value={exp} setValue={setExp} limit={5} />
             <Input
-              name={"CCV"}
+              name={"CVV"}
               type={"number"}
-              value={ccv}
-              setValue={setCcv}
+              value={cvv}
+              setValue={setCvv}
               onFocus={() => setFlip(true)}
               onBlur={() => setFlip(false)}
               limit={4}
