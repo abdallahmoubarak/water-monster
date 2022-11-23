@@ -64,6 +64,7 @@ export const useCurrentUser = ({ enabled }) => {
   return useQuery({
     queryKey: ["User"],
     queryFn: () => getUser(),
+    refetchOnWindowFocus: false,
     enabled,
   });
 };

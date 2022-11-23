@@ -20,13 +20,13 @@ export default function Index() {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
-      {isLoading && !currentUser?.id && enabled && (
+      {enabled && (isLoading && !currentUser?.id &&  (
         <div className="fallback">
           <div className="logo-container">
             <AnimatedLogo />
           </div>
         </div>
-      )}
+      ))}
 
       {currentUser?.id ? <Home /> : <SignPage />}
       <style jsx>{`
