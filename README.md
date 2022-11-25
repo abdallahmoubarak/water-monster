@@ -13,7 +13,7 @@ This is a summary that describes the Water Monster project.
 <img id="project-philosophy" src="./src/img/title1.svg" alt="Project Philosophy" />
 
 <p align="center"> 
-Water Monster is a platform that solves one of the main issues for those contries that rely on water containers; to provide home water. It helps users to control, track and ask for water refill. Moreover It helps providers to sell the service, and gives them many options over a user friendly application.
+Water Monster is a platform that solves one of the main issues for those countries that rely on water containers; to provide home water. It helps users to control, track and ask for water refill. Moreover, it helps providers to sell the service, and gives them many options over a user-friendly application.
 
 </p>
 
@@ -202,7 +202,7 @@ User stories is the things that done before starting the project.
 
 - GraphQL is a query language that helps you retrieve specific data from your endpoint APIs in the way and structure you want. because of having a graph database this query method helps in establish connections with the database in the same way that it is structured.
 
-- Reactjs is a front-end library that helps create reusable components, which helped in the scalblity of the project.
+- Reactjs is a front-end library that helps create reusable components, which helped in the scalability of the project.
 
 - Apollo server is a library that helps to connect a GraphQL schema to an HTTP server in Node.js.
 
@@ -214,27 +214,27 @@ User stories is the things that done before starting the project.
 | ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- | --------------------------------- |
 | ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) | ![Arduino](./src/img/arduino.svg) |
 
-- Nextjs is a framework that uses Reactjs for the frontend, and Nodejs for the backend. Nextjs helped in improving the performance of the project, and gives some extra ablities. It helped in generating static pages, server side rendering and client side rendering pages depanding on the case.
+- Nextjs is a framework that uses Reactjs for the frontend, and Nodejs for the backend. Nextjs helped in improving the performance of the project, and gives some extra abilities. It helped in generating static pages, server side rendering and client side rendering pages depending on the case.
 
   - SEO was done with the help of Nextjs which is not possible just by building a Reactjs application (not needed for Water Monster case).
 
   - Nextjs helped in deploying the application on a serverless, using vercel without even making any configuration.
 
-  - This application was created as a Progressive Web App (PWA), wich can be install on every operation system.
+  - This application was created as a Progressive Web App (PWA), which can be install on every operation system.
 
-  - The resaults will be shown in implementation section.
+  - The results will be shown in implementation section.
 
 - Socketio has been used to make the connectivity between app users be live over a defined socket, it helped to build a real-time chat and call.
 
 - React-query has been used to manage queries and mutations side by side with graphqlclient library in the best way using custom hooks.
 
-- Firebase (auth) has been used to make a single sign on (SSO) to the system, addional to the main sign up, signin way. The system was not fully implemented due to the time limitation of the project.
+- Firebase (auth) has been used to make a single sign on (SSO) to the system. This was added to the main sign up, signin method. The system was not fully implemented due to the time limitation of the project.
 
-- Arduino (ESP8266) has been used with waterprof ultrasonic sensor to measure the water level in the container.
+- Arduino (ESP8266) has been used with waterproof ultrasonic sensor to measure the water level in the container.
 
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
-Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app.
+Using the above-mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app.
 
 ##### Sexy features
 
