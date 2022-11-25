@@ -201,9 +201,9 @@ User stories is the things that done before starting the project.
 
 - Extending the GRAND stack to be used in the Nextjs framework, The techs has been used is as below :
 
-| Nextjs                          | Socketio                            | ReactQuery                              | Firbase(auth)                       |
-| ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- |
-| ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) |
+| Nextjs                          | Socketio                            | ReactQuery                              | Firbase(auth)                       | Arduino                           |
+| ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- | --------------------------------- |
+| ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) | ![Arduino](./src/img/arduino.svg) |
 
 -
 -
