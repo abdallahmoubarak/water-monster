@@ -35,6 +35,18 @@ export default class extends Document {
             sizes="180x180"
             href="/icons/apple-touch-icon.png"
           />
+          <title>Water Monster</title>
+          <style>{`
+            html, body, #__next {
+              height: 100%;
+            }
+            #__next {
+              margin: 0 auto;
+            }
+            h1 {
+              text-align: center;
+            }
+            `}</style>
         </Head>
         <body>
           <Main />
