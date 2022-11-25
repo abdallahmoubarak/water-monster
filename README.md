@@ -13,11 +13,12 @@ This is a summary that describes the Water Monster project.
 <img id="project-philosophy" src="./src/img/title1.svg" alt="Project Philosophy" />
 
 <p align="center"> 
-Water Monster is a platform that solves one of the biggest problems for those contries who depend on water containers; to provide home water. It matchs water wanter and the provider over a user friendly application.
+Water Monster is a platform that solves one of the main issues for those contries that rely on water containers; to provide home water. It helps users to control, track and ask for water refill. Moreover It helps providers to sell the service, and gives them many options over a user friendly application.
+
 </p>
 
 <p align="center"> 
-Water Monster users will never warry about how much water is their in the container !!!
+Water Monster users will never warry about how much water is their in their container !!!
 </p>
 
 #
@@ -192,12 +193,20 @@ User stories is the things that done before starting the project.
 
 <img id="tech-stack" src="./src/img/title3.svg" alt="Tech Stack" />
 
+- The ability to scale with graph databases was the main reason to start this project using the GRAND Stack. Graph database enables businesses and start-ups to grow faster, change faster, and be technically agile.
+
 | GRAND stack                        |
 | ---------------------------------- |
 | ![Grand](./src/img/grand.png)      |
-| ![Grand](./src/img/grandstack.png) |
+| ![GRAND](./src/img/grandstack.png) |
 
-- The scalablity of using graph databases was the main purpose that I started doing this project using GRAND stack.
+- GraphQL is a query language that helps you retrieve specific data from your endpoint APIs in the way and structure you want. because of having a graph database this query method helps in establish connections with the database in the same way that it is structured.
+
+- Reactjs is a front-end library that helps create reusable components, which helped in the scalblity of the project.
+
+- Apollo server is a library that helps to connect a GraphQL schema to an HTTP server in Node.js.
+
+- Neo4j is the database management system that uses the graph as a structure for storing data.
 
 - Extending the GRAND stack to be used in the Nextjs framework, The techs has been used is as below :
 
@@ -205,19 +214,46 @@ User stories is the things that done before starting the project.
 | ------------------------------- | ----------------------------------- | --------------------------------------- | ----------------------------------- | --------------------------------- |
 | ![Nextjs](./src/img/nextjs.svg) | ![socketio](./src/img/socketio.svg) | ![ReactQuery](./src/img/reactquery.svg) | ![Firebase](./src/img/firebase.svg) | ![Arduino](./src/img/arduino.svg) |
 
--
--
--
--
--
+- Nextjs is a framework that uses Reactjs for the frontend, and Nodejs for the backend. Nextjs helped in improving the performance of the project, and gives some extra ablities. It helped in generating static pages, server side rendering and client side rendering pages depanding on the case.
+
+  - SEO was done with the help of Nextjs which is not possible just by building a Reactjs application (not needed for Water Monster case).
+
+  - Nextjs helped in deploying the application on a serverless, using vercel without even making any configuration.
+
+  - This application was created as a Progressive Web App (PWA), wich can be install on every operation system.
+
+  - The resaults will be shown in implementation section.
+
+- Socketio has been used to make the connectivity between app users be live over a defined socket, it helped to build a real-time chat and call.
+
+- React-query has been used to manage queries and mutations side by side with graphqlclient library in the best way using custom hooks.
+
+- Firebase (auth) has been used to make a single sign on (SSO) to the system, addional to the main sign up, signin way. The system was not fully implemented due to the time limitation of the project.
+
+- Arduino (ESP8266) has been used with waterprof ultrasonic sensor to measure the water level in the container.
 
 <img id="implementation"  src="./src/img/title4.svg" alt="Implementation" />
 
 Using the above mentioned tech stacks and the wireframes built with Figma, the implementation of the app is shown as below, these are screen recordings from the real app.
 
+##### Sexy features
+
+- PWA
+- Real time chat
+- Hardware
+- Map
+
+##### CRUD & front-end features
+
+##### Provider App
+
+##### Admin App
+
+##### Analytics
+
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 
-To get a build this project their are a cople of things .
+There is a few steps to be done, to build and run this project. It's mentioned below:
 
 ### Prerequisites
 
@@ -241,7 +277,7 @@ To get a build this project their are a cople of things .
 2. Go to the dir
 
    ```sh
-   cd water-monster
+   cd water-monster/app
    ```
 
 3. Build the project
