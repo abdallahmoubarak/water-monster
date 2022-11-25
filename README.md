@@ -18,7 +18,7 @@ Water Monster is a platform that solves one of the main issues for those countri
 </p>
 
 <p align="center"> 
-Water Monster users will never warry about how much water is their in their container !!!
+Water Monster users will never warry about how much water is in their container !!!
 </p>
 
 #
