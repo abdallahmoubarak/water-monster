@@ -242,9 +242,9 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------------------ | ------------------------------------------ |
 | ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-| Map                            | Water Waves                        | Chart |
-| ------------------------------ | ---------------------------------- | ----- |
-| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) |       |
+| Map                            | Water Waves                        | Chart                              |
+| ------------------------------ | ---------------------------------- | ---------------------------------- |
+| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
 Hardware
 
