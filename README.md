@@ -238,13 +238,13 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Sexy features
 
-| Real time chat                             | Map |
-| ------------------------------------------ | --- |
-| ![Call](./src/img/gifs/real-time-call.gif) |
+| Real time chat                             | Real time call                             |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-| Real time call                             | PWA |
-| ------------------------------------------ | --- |
-| ![Chat](./src/img/gifs/real-time-chat.gif) |     |
+| Map                            | Water Waves                        | Chart |
+| ------------------------------ | ---------------------------------- | ----- |
+| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) |       |
 
 Hardware
 
