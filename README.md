@@ -246,11 +246,14 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------ | ---------------------------------- | ---------------------------------- |
 | ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
-Hardware
+| SSO with firebase                            | Fliping Bank Card | Logo Loading |
+| -------------------------------------------- | ----------------- | ------------ |
+| ![SSO](./src/img/gifs/sso-with-firebase.gif) |                   |              |
 
-- Chart
+| Hardware |
+| -------- |
 
-##### CRUD & front-end features
+##### Client App
 
 ##### Provider App
 
