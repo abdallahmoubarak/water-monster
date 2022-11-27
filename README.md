@@ -278,6 +278,9 @@ Pure components with animating with css
 
 ##### Jira dashboard
 
+| ![PWA](./src/img/jira.png) |
+| -------------------------- |
+
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 
 There is a few steps to be done, to build and run this project. It's mentioned below:
