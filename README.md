@@ -242,16 +242,23 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------------------ | ------------------------------------------ |
 | ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-| Map                            | SVG waves                          | Chart                              |
-| ------------------------------ | ---------------------------------- | ---------------------------------- |
-| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) | ![Chart](./src/img/gifs/chart.gif) |
+| Map                            | SSO with firebase                            | Chart                              |
+| ------------------------------ | -------------------------------------------- | ---------------------------------- |
+| ![Map](./src/img/gifs/map.gif) | ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
-| SSO with firebase                            | Fliping Bank Card                         | Logo Loading                           |
-| -------------------------------------------- | ----------------------------------------- | -------------------------------------- |
-| ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
+| PWA as native app | PWA size | Uploading Image |
+| ----------------- | -------- | --------------- |
+|                   |          |                 |
 
 | Hardware |
 | -------- |
+|          |
+
+Pure components with animating with css
+
+| SVG waves                          | Fliping Bank Card                         | Logo Loading                           |
+| ---------------------------------- | ----------------------------------------- | -------------------------------------- |
+| ![Waves](./src/img/gifs/waves.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
 
 ##### Client App
 
@@ -261,7 +268,15 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Analytics
 
-##### Jira
+| Vercel Analytics                          |
+| ----------------------------------------- |
+| ![Vercel](./src/img/vercel-analytics.png) |
+
+| PWA Analytics                     |
+| --------------------------------- |
+| ![PWA](./src/img/Analytics_3.png) |
+
+##### Jira dashboard
 
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 
