@@ -269,9 +269,32 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Client App
 
+- Overview.
+- Sign in.
+- Request & remove installation.
+- Request fillment.
+- Deposit in wallet.
+- Pay & chat with provider.
+- Changing container settings.
+- Updating personal info.
+
 ##### Provider App
 
+- Overview.
+- Sign in.
+- Reserve container to fill.
+- Routing to the container.
+- Chat with service consumer.
+- Withdraw from wallet.
+
 ##### Admin App
+
+- Overview.
+- Sign in.
+- Viewing Users.
+- Viewing Requests.
+- Viewing Map.
+- Chating with users.
 
 ##### Database
 
