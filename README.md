@@ -242,16 +242,30 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------------------ | ------------------------------------------ |
 | ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-| Map                            | SVG waves                          | Chart                              |
-| ------------------------------ | ---------------------------------- | ---------------------------------- |
-| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) | ![Chart](./src/img/gifs/chart.gif) |
+| Map                            | SSO with Firebase                            | Chart                              |
+| ------------------------------ | -------------------------------------------- | ---------------------------------- |
+| ![Map](./src/img/gifs/map.gif) | ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
-| SSO with firebase                            | Fliping Bank Card                         | Logo Loading                           |
-| -------------------------------------------- | ----------------------------------------- | -------------------------------------- |
-| ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
+- Monster as a native app.
+- Monster app size less than 400kb.
 
-| Hardware |
-| -------- |
+| PWA as native app                                   | PWA size (343kb)                                          | Profile image                              |
+| --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------ |
+| ![Native](./src/img/gifs/monster-as-native-app.gif) | ![Size](./src/img/gifs/monster-size-less-thank-400kb.gif) | ![Upload](./src/img/gifs/upload-image.gif) |
+
+- Pure components with css animation.
+
+| SVG waves                          | Fliping Bank Card                         | Logo Loading                           |
+| ---------------------------------- | ----------------------------------------- | -------------------------------------- |
+| ![Waves](./src/img/gifs/waves.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
+
+| Connecting                                       | Installation day                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| ![Connecting](./src/img/gifs/sensor-circute.gif) | ![Installation](./src/img/gifs/installation-day.gif) |
+
+| Testing the sensor                         | Sensor is working                             |
+| ------------------------------------------ | --------------------------------------------- |
+| ![Testing](./src/img/gifs/sensor-test.gif) | ![Working](./src/img/gifs/sensor-working.gif) |
 
 ##### Client App
 
@@ -259,9 +273,24 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Admin App
 
+##### Database
+
 ##### Analytics
 
-##### Jira
+| Deployment analytics with Vercel          |
+| ----------------------------------------- |
+| ![Vercel](./src/img/vercel-analytics.png) |
+
+- performance not shown from this website because of not having credintials to access.
+
+| PWA Analytics                     |
+| --------------------------------- |
+| ![PWA](./src/img/Analytics_3.png) |
+
+##### Jira dashboard
+
+| ![PWA](./src/img/jira.png) |
+| -------------------------- |
 
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 
