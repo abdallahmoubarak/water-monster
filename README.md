@@ -253,25 +253,27 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------ |
 | ![Native](./src/img/gifs/monster-as-native-app.gif) | ![Size](./src/img/gifs/monster-size-less-thank-400kb.gif) | ![Upload](./src/img/gifs/upload-image.gif) |
 
-| Connecting                                       | Installation day                                     |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| ![Connecting](./src/img/gifs/sensor-circute.gif) | ![Installation](./src/img/gifs/installation-day.gif) |
-
-| Sensor testing                             | Sensor working                                |
-| ------------------------------------------ | --------------------------------------------- |
-| ![Testing](./src/img/gifs/sensor-test.gif) | ![Working](./src/img/gifs/sensor-working.gif) |
-
-- Pure components with animating with css
+- Pure components with css animation.
 
 | SVG waves                          | Fliping Bank Card                         | Logo Loading                           |
 | ---------------------------------- | ----------------------------------------- | -------------------------------------- |
 | ![Waves](./src/img/gifs/waves.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
+
+| Connecting                                       | Installation day                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| ![Connecting](./src/img/gifs/sensor-circute.gif) | ![Installation](./src/img/gifs/installation-day.gif) |
+
+| Testing the sensor                         | Sensor is working                             |
+| ------------------------------------------ | --------------------------------------------- |
+| ![Testing](./src/img/gifs/sensor-test.gif) | ![Working](./src/img/gifs/sensor-working.gif) |
 
 ##### Client App
 
 ##### Provider App
 
 ##### Admin App
+
+##### Database
 
 ##### Analytics
 
