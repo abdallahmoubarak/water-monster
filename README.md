@@ -246,9 +246,12 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------ | -------------------------------------------- | ---------------------------------- |
 | ![Map](./src/img/gifs/map.gif) | ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
-| PWA as native app | PWA size | Uploading Image |
-| ----------------- | -------- | --------------- |
-|                   |          |                 |
+- Monster as a native app.
+- Monster app size less than 400kb.
+
+| PWA as native app                                   | PWA size (343kb)                                          | Profile image                              |
+| --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------ |
+| ![Native](./src/img/gifs/monster-as-native-app.gif) | ![Size](./src/img/gifs/monster-size-less-thank-400kb.gif) | ![Upload](./src/img/gifs/upload-image.gif) |
 
 | Hardware |
 | -------- |
