@@ -238,18 +238,30 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Sexy features
 
-- PWA
-- Real time chat
-- Hardware
-- Map
+| Real time call                             | Real time chat                             |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-##### CRUD & front-end features
+| Map                            | SVG waves                          | Chart                              |
+| ------------------------------ | ---------------------------------- | ---------------------------------- |
+| ![Map](./src/img/gifs/map.gif) | ![Waves](./src/img/gifs/waves.gif) | ![Chart](./src/img/gifs/chart.gif) |
+
+| SSO with firebase                            | Fliping Bank Card                         | Logo Loading                           |
+| -------------------------------------------- | ----------------------------------------- | -------------------------------------- |
+| ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Card](./src/img/gifs/flipping-card.gif) | ![Loading](./src/img/gifs/loading.gif) |
+
+| Hardware |
+| -------- |
+
+##### Client App
 
 ##### Provider App
 
 ##### Admin App
 
 ##### Analytics
+
+##### Jira
 
 <img id="how-to-run" src="./src/img/title5.svg" alt="How to run?" />
 

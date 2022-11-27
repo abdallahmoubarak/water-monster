@@ -7,6 +7,7 @@ export default function PageTitle({ text }) {
           font-size: 1.4rem;
           font-weight: bold;
           padding: 0.6rem 1rem;
+          text-align: left;
         }
       `}</style>
     </>
