@@ -19,6 +19,7 @@ export default function Index() {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
+        <title>Water Monster</title>
       </Head>
       {enabled && (isLoading && !currentUser?.id &&  (
         <div className="fallback">
