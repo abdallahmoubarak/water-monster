@@ -277,7 +277,7 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Analytics
 
-| Vercel Analytics                          |
+| Deployment analytics with Vercel          |
 | ----------------------------------------- |
 | ![Vercel](./src/img/vercel-analytics.png) |
 
