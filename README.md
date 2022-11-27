@@ -242,7 +242,7 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ------------------------------------------ | ------------------------------------------ |
 | ![Call](./src/img/gifs/real-time-call.gif) | ![Chat](./src/img/gifs/real-time-chat.gif) |
 
-| Map                            | SSO with firebase                            | Chart                              |
+| Map                            | SSO with Firebase                            | Chart                              |
 | ------------------------------ | -------------------------------------------- | ---------------------------------- |
 | ![Map](./src/img/gifs/map.gif) | ![SSO](./src/img/gifs/sso-with-firebase.gif) | ![Chart](./src/img/gifs/chart.gif) |
 
@@ -253,11 +253,15 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | --------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------ |
 | ![Native](./src/img/gifs/monster-as-native-app.gif) | ![Size](./src/img/gifs/monster-size-less-thank-400kb.gif) | ![Upload](./src/img/gifs/upload-image.gif) |
 
-| Hardware |
-| -------- |
-|          |
+| Connecting                                       | Installation day                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| ![Connecting](./src/img/gifs/sensor-circute.gif) | ![Installation](./src/img/gifs/installation-day.gif) |
 
-Pure components with animating with css
+| Sensor testing                             | Sensor working                                |
+| ------------------------------------------ | --------------------------------------------- |
+| ![Testing](./src/img/gifs/sensor-test.gif) | ![Working](./src/img/gifs/sensor-working.gif) |
+
+- Pure components with animating with css
 
 | SVG waves                          | Fliping Bank Card                         | Logo Loading                           |
 | ---------------------------------- | ----------------------------------------- | -------------------------------------- |
@@ -274,6 +278,8 @@ Pure components with animating with css
 | Vercel Analytics                          |
 | ----------------------------------------- |
 | ![Vercel](./src/img/vercel-analytics.png) |
+
+- performance not shown from this website because of not having credintials to access.
 
 | PWA Analytics                     |
 | --------------------------------- |
