@@ -269,11 +269,64 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 
 ##### Client App
 
+- Overview.
+- Sign in.
+- Request & remove installation.
+- Request fillment.
+- Deposit in wallet.
+- Pay & chat with provider.
+- Changing container settings.
+- Updating personal info.
+
+> Note: to view other GIFs visit ./src/img/gifs
+
+| Overview                                        | Request installation                          | Pay after fillment                         |
+| ----------------------------------------------- | --------------------------------------------- | ------------------------------------------ |
+| ![Overview](./src/img/gifs/client-overview.gif) | ![Sign in](./src/img/gifs/sign-in-client.gif) | ![Pay](./src/img/gifs/pay-with-wallet.gif) |
+
 ##### Provider App
+
+- Overview.
+- Sign in.
+- Reserve container to fill.
+- Routing to the container.
+- Chat with service consumer.
+- Withdraw from wallet.
+
+> Note: to view other GIFs visit ./src/img/gifs
+
+| Overview                                          | Reserve container                              | Withdraw                                 |
+| ------------------------------------------------- | ---------------------------------------------- | ---------------------------------------- |
+| ![Overview](./src/img/gifs/provider-overview.gif) | ![Request](./src/img/gifs/reserve-request.gif) | ![Withdraw](./src/img/gifs/withdraw.gif) |
 
 ##### Admin App
 
+- Overview.
+- Sign in.
+- Viewing Users.
+- Viewing Requests.
+- Viewing Map.
+- Chating with users.
+
+> Note: to view other GIFs visit ./src/img/gifs
+
+| Overview                                       |
+| ---------------------------------------------- |
+| ![Overview](./src/img/gifs/admin-overview.gif) |
+
+| Handeling Requests                             |
+| ---------------------------------------------- |
+| ![Requests](./src/img/gifs/accept-request.gif) |
+
+| Admin App On windows                          |
+| --------------------------------------------- |
+| ![Admin](./src/img/gifs/admin-on-windows.gif) |
+
 ##### Database
+
+| Graph Database in action              |
+| ------------------------------------- |
+| ![Graph](./src/img/gifs/database.gif) |
 
 ##### Analytics
 
