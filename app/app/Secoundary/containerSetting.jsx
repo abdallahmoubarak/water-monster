@@ -4,7 +4,9 @@ import Layout from "./sLayout";
 export default function ContainerSetting({ setPage, containerId }) {
   return (
     <>
-      <Layout title={"Container Setting"} onClick={() => setPage("Containers")}>
+      <Layout
+        title={"Container Settings"}
+        onClick={() => setPage("Containers")}>
         <SettingForm containerId={containerId} setPage={setPage} />
       </Layout>
     </>

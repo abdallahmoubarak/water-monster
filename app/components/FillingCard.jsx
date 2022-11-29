@@ -10,6 +10,7 @@ import { client } from "pages/_app";
 import { FaCheckCircle, FaInfoCircle } from "react-icons/fa";
 import Alert from "./Alert";
 import { BsFillChatFill } from "react-icons/bs";
+import { BiDollar, BiMoney, BiWater } from "react-icons/bi";
 
 export default function FillingCard({ item, balance, setChatUser, setPage }) {
   const currentUser = client.getQueryData(["User"]);
@@ -45,7 +46,12 @@ export default function FillingCard({ item, balance, setChatUser, setPage }) {
                 <Image src={user?.profile_url} alt="" width={48} height={48} />
               )}
             </div>
-            <div>{user?.name}</div>
+            <div>
+              <div>{user?.name}</div>
+              <div className={styles.date}>
+                {dateTimeChanger(item.createdAt)}
+              </div>
+            </div>
           </div>
           <div
             className={styles.chatIcon}
@@ -58,19 +64,25 @@ export default function FillingCard({ item, balance, setChatUser, setPage }) {
         </div>
         <div className={styles.cardBody}>
           <div className={styles.cardBodyItem}>
-            <div>Filling</div>
+            <div className={styles.cardItemLabel}>
+              <BiWater /> Filling
+            </div>
             <div>
               <span>{item?.initial_state}</span> litter
             </div>
           </div>
           <div className={styles.cardBodyItem}>
-            <div>Price</div>
+            <div className={styles.cardItemLabel}>
+              <BiDollar /> Price
+            </div>
             <div>
               <span>100 LBP / litter</span>
             </div>
           </div>
           <div className={styles.cardBodyItemTotal}>
-            <div>Total</div>
+            <div className={styles.cardTotalLabel}>
+              <BiDollar /> Total
+            </div>
             <div>
               <span>{formatter.format(toPay)}</span>
             </div>
@@ -111,7 +123,6 @@ export default function FillingCard({ item, balance, setChatUser, setPage }) {
             </div>
           )}
         </div>
-        <div className={styles.date}>{dateTimeChanger(item.createdAt)}</div>
       </div>
       <Alert alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
     </>

@@ -8,11 +8,11 @@
   flex-direction: column;
   -webkit-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
-  -webkit-border-radius: 0.3rem;
-  -moz-border-radius: 0.3rem;
-  -ms-border-radius: 0.3rem;
-  -o-border-radius: 0.3rem;
+  border-radius: 0.6rem;
+  -webkit-border-radius: 0.6rem;
+  -moz-border-radius: 0.6rem;
+  -ms-border-radius: 0.6rem;
+  -o-border-radius: 0.6rem;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -38,7 +38,7 @@
 
 .chatIcon {
   color: var(--primary-color);
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
@@ -50,7 +50,7 @@
   -ms-flex-align: center;
   align-items: center;
   gap: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .cardImg {
@@ -67,7 +67,7 @@
     no-repeat;
 }
 .cardBody {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 1rem;
   white-space: nowrap;
   display: -webkit-box;
@@ -80,6 +80,7 @@
   gap: 0.6rem;
   border-bottom: 1px solid lightgray;
   border-top: 1px solid lightgray;
+  background: #fafafa;
 }
 
 .cardBodyItem {
@@ -93,6 +94,31 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   gap: 2rem;
+  color: #333;
+}
+
+.cardItemLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  gap: 0.3rem;
+}
+.cardTotalLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  gap: 0.3rem;
+  color: var(--primary-color);
 }
 
 .cardBodyItemTotal {
@@ -105,7 +131,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  border-top: 1px solid lightgray;
+  border-top: 1px solid var(--primary-color);
   padding-top: 0.6rem;
   gap: 2rem;
 }
@@ -116,9 +142,7 @@
 
 .date {
   font-size: 0.8rem;
-  color: #9e9e9e;
-  text-align: right;
-  padding: 0rem 1rem;
+  color: #aaa;
 }
 
 .cardPayment {
@@ -139,7 +163,7 @@
   gap: 0.4rem;
   color: green;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .waiting {
