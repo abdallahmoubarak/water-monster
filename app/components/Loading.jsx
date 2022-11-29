@@ -10,6 +10,7 @@ export default function Loading() {
         .loading {
           width: 4rem;
           margin: auto;
+          padding-top: 1rem;
         }
       `}</style>
     </>

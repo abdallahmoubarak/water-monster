@@ -39,7 +39,7 @@ export default function ContactCard({
         </div>
         <div className={styles.contactBody}>
           <div className={styles.middle}>
-            <div className={styles.contactTitle}>{user?.name}</div>
+            <div className={styles.contactName}>{user?.name}</div>
             <div className={styles.contactText}>{lastmsg?.content}</div>
           </div>
           <div className={styles.time}>
@@ -48,7 +48,9 @@ export default function ContactCard({
                 ? "Online"
                 : "Offline"}
             </div>
-            <div>{lastmsg?.createdAt && timeChanger(lastmsg?.createdAt)}</div>
+            <div className={styles.lastmsg}>
+              {lastmsg?.createdAt && timeChanger(lastmsg?.createdAt)}
+            </div>
           </div>
         </div>
       </div>

@@ -58,8 +58,12 @@ export default function Contacts({
           display: flex;
           height: inherit;
           gap: 0.3rem;
+          max-width: 100%;
         }
         .contacts-wrapper {
+          max-width: 100%;
+          flex: 1 1;
+          max-width: 22rem;
         }
         .contacts-container {
           ${styles.flexColumn};
@@ -67,7 +71,7 @@ export default function Contacts({
           overflow: auto;
           padding: 1rem;
           height: 100%;
-          min-width: 22rem;
+          max-width: 100%;
         }
         .chat-wrapper {
           padding: 1rem 0rem;
@@ -79,7 +83,7 @@ export default function Contacts({
             display: none;
           }
           .contacts-wrapper {
-            flex: 1 1;
+            max-width: 100%;
           }
         }
       `}</style>

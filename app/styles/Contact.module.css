@@ -24,6 +24,7 @@
   -ms-user-select: none;
   user-select: none;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .contactCard:hover {
@@ -68,8 +69,10 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.contactTitle {
+.contactName {
   font-size: 1.2rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .contactText {
@@ -81,5 +84,11 @@
   flex: 0 1 3.6rem;
   font-weight: 500;
   font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lastmsg {
+  overflow: hidden;
   white-space: nowrap;
 }
