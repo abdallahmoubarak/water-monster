@@ -314,7 +314,7 @@ Using the above-mentioned tech stacks and the wireframes built with Figma, the i
 | ---------------------------------------------- |
 | ![Overview](./src/img/gifs/admin-overview.gif) |
 
-| Handeling Requests                             |
+| Handling Requests                              |
 | ---------------------------------------------- |
 | ![Requests](./src/img/gifs/accept-request.gif) |
 
