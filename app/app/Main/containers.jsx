@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { styles } from "@/utils/styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RequestInstallation from "@/components/RequestInstallation";
 import Container from "@/components/Container";
 import { useUserContainers } from "@/hooks/useContainer";
