@@ -13,7 +13,10 @@ export default function Index() {
 
   useEffect(() => setEnabled(Boolean(localStorage.getItem("JWT"))), []);
   useEffect(() => {
-    client.setQueryData(["User"], JSON.parse(localStorage.getItem("User")));
+    client.setQueryData(
+      ["User"],
+      JSON.parse(!!localStorage.getItem("User") || "{}"),
+    );
   }, []);
 
   return (
