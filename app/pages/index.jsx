@@ -5,6 +5,7 @@ import { useCurrentUser } from "@/hooks/useAuth";
 import { styles } from "@/utils/styles";
 import AnimatedLogo from "@/components/SVG/AnimatedLogo";
 import { useEffect, useState } from "react";
+import { client } from "./_app";
 
 export default function Index() {
   const [enabled, setEnabled] = useState(true);
