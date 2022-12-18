@@ -11,6 +11,9 @@ export default function Index() {
   const { data: currentUser, isLoading } = useCurrentUser({ enabled });
 
   useEffect(() => setEnabled(Boolean(localStorage.getItem("JWT"))), []);
+  useEffect(() => {
+    client.setQueryData(["User"], JSON.parse(localStorage.getItem("User")));
+  }, []);
 
   return (
     <>
@@ -21,13 +24,14 @@ export default function Index() {
         />
         <title>Water Monster</title>
       </Head>
-      {enabled && (isLoading && !currentUser?.id &&  (
+
+      {isLoading && (
         <div className="fallback">
           <div className="logo-container">
             <AnimatedLogo />
           </div>
         </div>
-      ))}
+      )}
 
       {currentUser?.id ? <Home /> : <SignPage />}
       <style jsx>{`

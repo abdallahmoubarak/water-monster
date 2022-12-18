@@ -15,6 +15,7 @@ export const useSignUp = ({ setMsg, setIsLoading }) => {
   return useMutation(signUp, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
+      localStorage.setItem("User", JSON.stringify(res?.user));
       client.setQueryData(["User"], res?.user);
       graphQLClient.setHeaders({
         authorization: `Bearer ${res?.token}`,
@@ -40,6 +41,7 @@ export const useSignIn = ({ setMsg, setIsLoading }) => {
   return useMutation(signIn, {
     onSuccess: (res) => {
       localStorage.setItem("JWT", res?.token);
+      localStorage.setItem("User", JSON.stringify(res?.user));
       client.setQueryData(["User"], res?.user);
       graphQLClient.setHeaders({
         authorization: `Bearer ${res?.token}`,
@@ -64,6 +66,7 @@ export const useCurrentUser = ({ enabled }) => {
   return useQuery({
     queryKey: ["User"],
     queryFn: () => getUser(),
+    onSuccess: () => localStorage.setItem("User", JSON.stringify(res?.user)),
     refetchOnWindowFocus: false,
     enabled,
   });

@@ -23,6 +23,7 @@ export const useUserContainers = (id) => {
   return useQuery({
     queryKey: ["Containers"],
     queryFn: () => getUserContainers(id),
+    onSuccess: (res) => localStorage.setItem("Containers", JSON.stringify(res)),
   });
 };
 

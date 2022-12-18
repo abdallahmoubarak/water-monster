@@ -14,6 +14,12 @@ export default function Containers({ setPage }) {
   const [alertMsg, setAlertMsg] = useState("");
 
   const { data: containers, isLoading } = useUserContainers(currentUser.id);
+  useEffect(() => {
+    client.setQueryData(
+      ["Containers"],
+      JSON.parse(localStorage.getItem("Containers") || "[{}]"),
+    );
+  }, []);
 
   return (
     <>
