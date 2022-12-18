@@ -1,6 +1,6 @@
 import ContainerSVG from "@/components/SVG/ContainerSVG";
 import Image from "next/image";
-import settings from "@/public/svg/settings.svg";
+import settings from "@/public/svg/sun.svg";
 import { styles } from "@/utils/styles";
 import { BiWater } from "react-icons/bi";
 
