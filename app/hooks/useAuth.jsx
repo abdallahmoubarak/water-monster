@@ -66,7 +66,8 @@ export const useCurrentUser = ({ enabled }) => {
   return useQuery({
     queryKey: ["User"],
     queryFn: () => getUser(),
-    onSuccess: (res) => localStorage.setItem("User", JSON.stringify(res?.user)),
+    onSuccess: (res) =>
+      localStorage.setItem("User", JSON.stringify(res) || "{}"),
     refetchOnWindowFocus: false,
     enabled,
   });
