@@ -29,6 +29,7 @@ export const useGetMessages = ({ me, other, enabled }) => {
   return useQuery({
     queryKey: [`${other}`],
     queryFn: () => getMessages({ me, other }),
+    onSuccess: (res) => localStorage.setItem(`${other}`, JSON.stringify(res)),
     onError: (err) => console.log(err),
     enabled,
   });

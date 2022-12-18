@@ -93,6 +93,7 @@ export default function Profile({ setPage }) {
                 onClick={() => {
                   client.setQueryData(["User"], null);
                   localStorage.removeItem("JWT");
+                  localStorage.removeItem("User");
                   graphQLClient.setHeaders({ authorization: undefined });
                 }}
               />

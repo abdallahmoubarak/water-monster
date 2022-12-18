@@ -8,6 +8,7 @@ export default function AdminLogout() {
         className="admin-logout"
         onClick={() => {
           localStorage.removeItem("JWT");
+          localStorage.removeItem("User");
           client.setQueryData(["User"], null);
           graphQLClient.setHeaders({ authorization: undefined });
         }}>
