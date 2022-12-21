@@ -27,10 +27,6 @@ export default function SignPage() {
   const { mutate: signUp } = useSignUp({ setMsg, setIsLoading });
   const { mutate: signIn } = useSignIn({ setMsg, setIsLoading });
 
-  useEffect(() => {
-    client.removeQueries();
-  }, []);
-
   const handleSignClick = (signType) => {
     if (!isLoading) {
       setIsLoading(true);
